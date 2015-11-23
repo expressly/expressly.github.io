@@ -1,0 +1,226 @@
+@font-face {
+    font-family: 'Avenir Light';
+    src: url("../fonts/AvenirLTStd-Light.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Book';
+    src: url("../fonts/Avenir-lt-45-book.ttf")
+}
+
+@font-face {
+    font-family: 'Avenir Roman';
+    src: url("../fonts/Avenir-lt-55-roman.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url("../fonts/Avenir-lt-65-medium.ttf")
+}
+
+@font-face {
+    font-family: 'Avenir Heavy';
+    src: url("../fonts/Avenir-lt-85-heavy.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Black';
+    src: url("../fonts/Avenir-lt-95-black.ttf")
+}
+
+@font-face {
+    font-family: 'Avenir Light';
+    src: url("../fonts/AvenirLTStd-Light.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Book';
+    src: url("../fonts/Avenir-lt-45-book.ttf")
+}
+
+@font-face {
+    font-family: 'Avenir Roman';
+    src: url("../fonts/Avenir-lt-55-roman.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url("../fonts/Avenir-lt-65-medium.ttf")
+}
+
+@font-face {
+    font-family: 'Avenir Heavy';
+    src: url("../fonts/Avenir-lt-85-heavy.otf")
+}
+
+@font-face {
+    font-family: 'Avenir Black';
+    src: url("../fonts/Avenir-lt-95-black.ttf")
+}
+
+body {
+}
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.clr {
+    clear: both;
+}
+
+body {
+    font-family: "Avenir Roman", sans-serif;
+    font-size: 14px;
+    background-color: white;
+    color: #6e7780;
+    margin-top: 69px;
+}
+
+header {
+    z-index: 40;
+    position: fixed;
+    top: 0;
+    left: 0;
+    clear: both;
+    background-color: white;
+    width: 100%;
+}
+
+header .header_inner {
+    max-width: 947px;
+    height: 69px;
+    margin: 0 auto;
+}
+
+header .logo {
+    float: left;
+    padding: 16px 10px;
+}
+
+header .cta {
+    float: right;
+    line-height: 69px;
+    padding-right: 10px;
+}
+
+footer {
+    width: 100%;
+    font-family: "Avenir Medium",sans-serif;
+    font-size: 15px;
+    color: #9da3a9;
+    background-color: #5b666f;
+}
+
+footer .footer_inner {
+    max-width: 947px;
+    height: 70px;
+    margin: 0 auto;
+    line-height: 70px;
+}
+
+footer .copyright {
+    float: right;
+    padding-right: 10px;
+}
+
+section {
+    padding-top: 53px;
+    padding-bottom: 53px;
+}
+
+.feature {
+    background: #cbe0e8;
+}
+
+.highlight {
+    background: #fffaec;
+}
+
+.button-gray {
+    font-family: "Avenir Black", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    background-color: #9da5ab;
+    padding: 11px 20px;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-gray:hover {
+    background-color: rgba(158, 158, 158, 0.2);
+    text-decoration: none;
+}
+
+.section_inner {
+    max-width: 947px;
+    margin: 0 auto;
+}
+
+section h1 {
+    padding-left: 10px;
+    margin-top: 0;
+    margin-bottom: 53px;
+    font-family: "Avenir Black", sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+table {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    border-color: grey;
+    width: 100%;
+}
+
+table, tr, td {
+    border-spacing: 0;
+}
+
+table > thead {
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+table > thead > tr, table > thead > tr > th {
+    background-color: #6e7780;
+    color: #efefef;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+table > tbody > tr > td {
+    background-color: rgb(239, 239, 239);
+}
+
+table > tbody > tr > td,
+table > tbody > tr > th,
+table > tfoot > tr > td,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > thead > tr > th {
+    padding: 8px 14px;
+    vertical-align: top;
+    border: 1px solid #fff;
+    min-height: 30px;
+}
+
+a {
+    color: #6e7780;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
