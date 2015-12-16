@@ -1,9 +1,11 @@
- @include media-query($on-palm) {
+@include media-query($on-palm) {
 
+  header .logo img {
+    width: 100px;
+  }
 
-     .badges a {
-         display: block;
-     }
+  .badges a {
+    display: block;
+  }
 
-
- }
+}
