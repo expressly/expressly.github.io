@@ -1,0 +1,65 @@
+body {
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  background-color: white;
+  color: $text-light-grey;
+  margin-top: $header-height;
+}
+
+header {
+  z-index: 40;
+  position: fixed;
+  top: 0;
+  left: 0;
+  clear: both;
+  background-color: white;
+  width: 100%;
+}
+
+header .header_inner {
+  max-width: $site-max-width;
+  height: $header-height;
+  margin: 0 auto;
+}
+
+header .logo {
+  float: left;
+  padding: 16px 10px;
+}
+
+header .cta {
+  float: right;
+  line-height: $header-height;
+  padding-right: 10px;
+}
+
+footer {
+  width: 100%;
+  font-family: $base-font-family;
+  font-size: 15px;
+  color: #9da3a9;
+  background-color: $brand-color-dark;
+}
+
+footer .footer_inner {
+  max-width: $site-max-width;
+  height: $footer-height;
+  margin: 0 auto;
+  line-height: $footer-height;
+}
+
+footer .copyright {
+  float: right;
+  padding-right: 10px;
+}

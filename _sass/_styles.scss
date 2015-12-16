@@ -1,0 +1,51 @@
+.clr {
+  clear: both;
+}
+
+
+section {
+  padding-top: 53px;
+  padding-bottom: 53px;
+}
+
+.feature {
+  background: $brand-color-blue;
+}
+
+.highlight {
+  background: $brand-color-yellow;
+}
+
+.section_inner {
+  max-width: $site-max-width;
+  margin: 0 auto;
+}
+
+section h1 {
+  padding-left: 10px;
+  margin-top: 0;
+  margin-bottom: 53px;
+  font-family: $bold-font-family;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+
+a {
+  color: $text-light-grey;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.lang img {
+  border-radius: 25%;
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  vertical-align:middle;
+}
