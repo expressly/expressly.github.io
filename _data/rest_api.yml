@@ -1,0 +1,502 @@
+- id: flows
+  title: Flows
+  description:
+    - For the following flows, the following defined Actors have been used
+    - SERVER - Expressly API Server.
+    - STORE - The store/integration Expressly is being configured with.
+    - CUSTOMER - The customer interacting with the store.
+  children:
+    - id: flows_registration
+      title: Merchant Registration
+      description:
+      template: rest_api/flow.html
+      preconditions:
+        - Expressly plugin has to be integrated, ticking all the boxes on the integration checklist.
+        - API Key exists, and has been created on the portal.
+      flow:
+        1: STORE calls <a href="#requests_register">Register Merchant</a> with appropriate body, and header.
+        2: SERVER pings store to make sure the plugin is installed correctly, and reachable.
+        3: SERVER returns response successfully to STORE.
+      alternate:
+        3.1: SERVER cannot ping STORE, returns error message.
+        2.2: SERVER recieved invalid credentials, returns error message.
+    - id: flows_user_migration
+      title: User Campaign Migration
+      description:
+      template: rest_api/flow.html
+      preconditions:
+        - <a href="#flows_registration">Merchant Registration</a>
+        - Campaign exists, and has been created on the portal.
+      flow:
+        1: CUSTOMER navigates to provided link with unique uuid attached (<a href="#responses_popup">Show Popup</a>).
+        2: STORE requests popup for unique uuid (<a href="#requests_migration_popup">Get Campaign Migration Popup</a>).
+        3: SERVER returns popup html rendered for the given campaign, and CUSTOMER.
+        4: STORE renders html atop a given store page (e.g. homepage).
+        5: CUSTOMER accepts terms & conditions, and privacy policy by pressing "OK".
+        6: STORE navigates to <a href="#responses_migrate_user">Migrate User</a>, and requests information.
+        7: SERVER returns information associated with CUSTOMER.
+        8: STORE adds customer to their store; adds product, and coupon (if provided, and supported) to cart.
+        9: STORE tells SERVER that CUSTOMER has been migrated correctly (<a href="#requests_migration_success">Migration Success</a>).
+        10: STORE logs user in, and navigates to homepage.
+      alternate:
+        7.1: CUSTOMER already exists, STORE tells SERVER that CUSTOMER has been migrated previously (<a href="#requests_migration_success">Migration Success</a>).
+        8.1: STORE adds product, and coupon (if provided, and supported) to cart.
+        9.1: STORE shows CUSTOMER message that they already exist, asking if they would like to be redirected to the login page.
+        10.1: CUSTOMER accepts confirm message, and is redirected to the STORE login page.
+    - id: flows_purchases
+      title: Check Purchases
+      description:
+      template: rest_api/flow.html
+      preconditions:
+        - <a href="#flows_registration">Merchant Registration</a>
+      flow:
+        1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_invoices">Invoices for Customer Purchases</a>.
+        2: STORE compares emails, and period to gather purchase information for provided email addresses.
+        3: STORE returns compiled data to SERVER.
+    - id: flows_migration
+      title: Check Customer Migration
+      description:
+      template: rest_api/flow.html
+      preconditions:
+        - <a href="#flows_registration">Merchant Registration</a>
+      flows:
+        1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_customers">Customers on Store</a>.
+        2: STORE compares emails to determine wether an emails has been migrated to the STORE.
+        3: STORE returns compiled data to the SERVER.
+    - id: flows_banner
+      title: Campaign Banner
+      description:
+      template: rest_api/flow.html
+      preconditions:
+        - <a href="#flows_registration">Merchant Registration</a>
+      flows:
+        1: STORE requests banner from SERVER (<a href="#requests_campaign_banner">Get Campaign Banner</a>).
+        2: SERVER returns image, and url.
+        3: STORE displays banner on page.
+        4: Banner is clicked on, redirecting CUSTOMER to provided url.
+- id: requests
+  title: Requests
+  description: Interacting with us.
+  children:
+    - id: requests_ping
+      title: Ping
+      template: rest_api/route.html
+      route: /api/admin/ping
+      method: GET
+      request:
+        authorization: false
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+        example: >
+          {
+            "Server": "Live",
+            "DB Status": "Live"
+          }
+    - id: requests_register
+      title: Register Merchant
+      template: rest_api/route.html
+      route: /api/v2/plugin/merchant
+      method: POST
+      request:
+        authorization: false
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          204:
+          400:
+        example: >
+          {
+            "apiBaseUrl": "",
+            "apiKey": ""
+          }
+    - id: requests_migration_popup
+      title: Get Campaign Migration Popup
+      template: rest_api/route.html
+      route: /api/v2/migration/{uuid}
+      parameters:
+        uuid: String
+      method: GET
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "text/html"
+        status:
+          200:
+    - id: requests_migration_data
+      title: Get Campaign Migration Data
+      template: rest_api/route.html
+      route: /api/v2/migration/{uuid}/user
+      parameters:
+        uuid: String
+      method: GET
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+          400:
+        example: >
+          {
+              "meta": {
+                  "locale": "UKR",
+                  "sender": "https://expresslyapp.com/api/v1/migration/{uuid}"
+              },
+              "data": {
+                  "email": "john.smith@gmail.com",
+                  "customerData": {
+                      "firstName": "John",
+                      "lastName": "Smith",
+                      "gender": "M",
+                      "billingAddress": 0,
+                      "shippingAddress": 1,
+                      "company": "Expressly",
+                      "dob": "1987-08-07",
+                      "taxNumber": "GB0249894821",
+                      "onlinePresence": [
+                          {
+                              "field": "website",
+                              "value": "http://www.myblog.com"
+                          }
+                      ],
+                      "dateUpdated": "2015-07-10T11:42:00+01:00",
+                      "emails": [
+                          {
+                              "email": "john.smith@gmail.com",
+                              "alias": "default"
+                          },
+                          {
+                              "email": "john@smithcorp.com",
+                              "alias": "work"
+                          }
+                      ],
+                      "phones": [
+                          {
+                              "type": "M",
+                              "number": "020734581250",
+                              "countryCode": 44
+                          },
+                          {
+                              "type": "L",
+                              "number": "020731443250",
+                              "countryCode": 44
+                          }
+                      ],
+                      "addresses": [
+                          {
+                              "firstName": "John",
+                              "lastName": "Smith",
+                              "address1": "12 Piccadilly",
+                              "address2": "Room 14",
+                              "city": "London",
+                              "companyName": "WorkHard Ltd",
+                              "zip": "W1C 34U",
+                              "phone": 1,
+                              "alias": "Work address",
+                              "stateProvince": "LND",
+                              "country": "GBR"
+                          },
+                          {
+                              "firstName": "John C.",
+                              "lastName": "Smith",
+                              "address1": "23 Sallsberry Ave",
+                              "address2": "Flat 3",
+                              "city": "London",
+                              "companyName": "",
+                              "zip": "NW3 4HG",
+                              "phone": 0,
+                              "alias": "Home address",
+                              "stateProvince": "LND",
+                              "country": "GBR"
+                          }
+                      ]
+                  },
+                  "cart": {
+                      "productId": "491",
+                      "couponCode": "20OFF"
+                  }
+              }
+          }
+    - id: requests_migration_success
+      title: Migration Success
+      template: rest_api/route.html
+      route: /api/v2/migration/{uuid}/success
+      paramters:
+        uuid: String
+      method: GET
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+          400:
+        example: >
+          {
+              "success": "true",
+              "msg": ""
+          }
+    - id: requests_campaign_banner
+      title: Campaign Banner
+      template: rest_api/route.html
+      route: /api/v2/banner/{uuid}?email={email}
+      paramters:
+        uuid: String
+        email: String
+      method: GET
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+          400:
+        example: >
+          {
+              "bannerImageUrl": "https://buyexpressly.com/assets/banner/awesome-banner.jpg",
+              "migrationLink": "https://www.myblog.com/expressly/api/3aff1880-b0f5-45bd-8f33-247f55981f2c
+          }
+- id: responses
+  title: Responses
+  description: Must be implemented for us to be able to talk to you.
+  children:
+    - id: responses_ping
+      title: Ping Store
+      template: rest_api/route.html
+      route: /expressly/api/ping
+      method: GET
+      request:
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+        example: >
+          {
+            "expressly": "Stuff is happening"
+          }
+    - id: responses_popup
+      title: Show Popup
+      template: rest_api/route.html
+      route: /expressly/api/{uuid}
+      method: GET
+      paramters:
+        uuid: String
+      request:
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "text/html"
+    - id: responses_migrate_user
+      title: Migrate User
+      template: rest_api/route.html
+      route: /expressly/api/{uuid}/migrate
+      method: GET
+      parameters:
+        uuid: String
+      request:
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+          401:
+        example: >
+          {}
+    - id: responses_user
+      title: Retrieve User
+      template: rest_api/route.html
+      route: /expressly/api/user/{email}
+      method: GET
+      parameters:
+        email: String
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+          401:
+        example: >
+          {
+              "meta": {
+                  "locale": "UKR",
+                  "sender": "https://yourstore.com/",
+                  "issuerData": []
+              },
+              "data": {
+                  "email": "john.smith@gmail.com",
+                  "customerData": {
+                      "firstName": "John",
+                      "lastName": "Smith",
+                      "gender": "M",
+                      "billingAddress": 0,
+                      "shippingAddress": 1,
+                      "company": "Expressly",
+                      "dob": "1987-08-07",
+                      "taxNumber": "GB0249894821",
+                      "onlinePresence": [
+                          {
+                              "field": "website",
+                              "value": "www.myblog.com"
+                          }
+                      ],
+                      "dateUpdated": "2015-07-10T11:42:00+01:00",
+                      "dateLastOrder": "2015-07-10T11:42:00+01:00",
+                      "numberOrdered": 5,
+                      "emails": [
+                          {
+                              "email": "john.smith@gmail.com",
+                              "alias": "default"
+                          },
+                          {
+                              "email": "john@smithcorp.com",
+                              "alias": "work"
+                          }
+                      ],
+                      "phones": [
+                          {
+                              "type": "M",
+                              "number": "020734581250",
+                              "countryCode": 44
+                          },
+                          {
+                              "type": "L",
+                              "number": "020731443250",
+                              "countryCode": 44
+                          }
+                      ],
+                      "addresses": [
+                          {
+                              "firstName": "John",
+                              "lastName": "Smith",
+                              "address1": "12 Piccadilly",
+                              "address2": "Room 14",
+                              "city": "London",
+                              "companyName": "WorkHard Ltd",
+                              "zip": "W1C 34U",
+                              "phone": 1,
+                              "alias": "Work address",
+                              "stateProvince": "LND",
+                              "country": "GBR"
+                          },
+                          {
+                              "firstName": "John C.",
+                              "lastName": "Smith",
+                              "address1": "23 Sallsberry Ave",
+                              "address2": "Flat 3",
+                              "city": "London",
+                              "companyName": "",
+                              "zip": "NW3 4HG",
+                              "phone": 0,
+                              "alias": "Home address",
+                              "stateProvince": "LND",
+                              "country": "GBR"
+                          }
+                      ]
+                  }
+              }
+          }
+    - id: responses_batch_invoices
+      title: Invoices for Customer Purchases
+      template: rest_api/route.html
+      route: /expressly/api/batch/invoice
+      method: POST
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+        example: >
+          {
+              "customers": [
+                  {
+                      "email": "john.smith@gmail.com",
+                      "from": "2015-07-01T00:00:00+00:00",
+                      "to": "2015-08-01T00:00:00+00:00"
+                  }
+              ]
+          }
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+        example: >
+          {
+              "invoices": [
+                  {
+                      "email": "john.smith@gmail.com",
+                      "orderCount": 1,
+                      "preTaxTotal": 100.00,
+                      "tax": 10.00,
+                      "orders": [
+                          {
+                              "id": "ORDER-5321311",
+                              "date": "2015-07-10T11:42:00+01:00",
+                              "itemCount": 2,
+                              "coupon": "",
+                              "currency": "GBP",
+                              "preTaxTotal": 100.00,
+                              "postTaxTotal": 110.00,
+                              "tax": 10.00
+                          }
+                      ]
+                  }
+              ]
+          }
+    - id: responses_batch_customers
+      title: Customers on Store
+      template: rest_api/route.html
+      route: /expressly/api/batch/customers
+      method: POST
+      request:
+        authorization: true
+        headers:
+          - Content-Type "application/json"
+        example: >
+          {
+              "emails": [
+                  "john.smith@gmail.com"
+              ]
+          }
+      response:
+        headers:
+          - Content-Type "application/json"
+        status:
+          200:
+        example: >
+          {
+              "existing": [
+                  "john.smith@gmail.com"
+              ],
+              "deleted": [],
+              "pending": []
+          }

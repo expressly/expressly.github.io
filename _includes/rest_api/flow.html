@@ -1,0 +1,36 @@
+<div class="section">
+    <h3>{{ include.self.title }}</h3>
+
+    <p>{{ include.self.description }}</p>
+
+    {% if include.self.preconditions %}
+    <div class="section_item">
+        <h4>Preconditions</h4>
+        <ul>
+            {% for condition in include.self.preconditions %}
+            <li>{{ condition }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="section_item">
+        <h4>Flow</h4>
+        <ul>
+            {% for step in include.self.flow %}
+            <li>{{ step[0] }}. {{ step[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if include.self.alternate %}
+    <div class="section_item">
+        <h4>Alternate Flows</h4>
+        <ul>
+            {% for step in include.self.alternate %}
+            <li>{{ step[0] }}. {{ step[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>

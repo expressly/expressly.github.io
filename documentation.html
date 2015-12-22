@@ -1,0 +1,49 @@
+---
+layout: default
+title: Documentation
+---
+
+<section class="feature">
+    <div class="section_inner">
+        <h1>Documentation</h1>
+    </div>
+</section>
+
+<section>
+    <div class="section_inner">
+        <aside class="menu">
+            <ul>
+                {% for item in site.data.rest_api %}
+                <li><a href="#{{ item.id }}"><h3>{{ item.title }}</h3></a></li>
+                {% if item.children %}
+                <ul>
+                    {% for child in item.children %}
+                    <li><a href="#{{ child.id }}"><h5>{{ child.title }}</h5></a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <div class="content">
+            {% for item in site.data.rest_api %}
+            <div id="{{ item.id }}" class="chapter">
+                <h2>{{ item.title }}</h2>
+
+                <div>
+                    {% for desc in item.description %}
+                    <p>{{ desc }}</p>
+                    {% endfor %}
+                </div>
+
+                {% for child in item.children %}
+                <div id="{{ child.id }}" class="chapter">
+                    {% include {{ child.template }} self=child %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

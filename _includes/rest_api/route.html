@@ -1,0 +1,66 @@
+<div class="section">
+    <h3>{{ include.self.title }}</h3>
+
+    <div class="section_item">
+        <h4>General</h4>
+        <ul>
+            <li>route: {{ include.self.route }}</li>
+            <li>method: {{ include.self.method }}</li>
+            {% if include.self.parameters %}
+            <li>
+                parameters:
+                <ul>
+                    {% for param in include.self.parameters %}
+                    <li>{{ param[0] }}: {{ param[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="section_item">
+        <h4>Request</h4>
+        <ul>
+            <li>
+                headers:
+                <ul>
+                    {% if include.self.response.authorization %}
+                    <li>Authorization: Basic token</li>
+                    {% endif %}
+                    {% for header in include.self.request.headers %}
+                    <li>{{ header }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section_item">
+        <h4>Response</h4>
+        <ul>
+            <li>
+                headers:
+                <ul>
+                    {% for header in include.self.response.headers %}
+                    <li>{{ header }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                status(es):
+                <ul>
+                    {% for status in include.self.response.status %}
+                    <li>{{ status[0] }}: {{ status[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% if include.self.response.example %}
+            <li>
+                example:
+                <pre><code>{{ include.self.response.example }}</code></pre>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
