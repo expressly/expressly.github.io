@@ -2,7 +2,6 @@
   clear: both;
 }
 
-
 section {
   padding-top: 53px;
   padding-bottom: 53px;
@@ -48,4 +47,40 @@ a:hover {
   height: 24px;
   margin-right: 5px;
   vertical-align:middle;
+}
+
+aside.menu {
+  float: left;
+  max-width: 25%;
+  margin-right: 20px;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.content {
+  display: inline-block;
+  max-width: 70%;
+
+  .chapter {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+  }
+
+  .section {
+    .section_item {
+      ul {
+        margin-left: 10px;
+      }
+    }
+  }
 }
