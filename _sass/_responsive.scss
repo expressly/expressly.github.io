@@ -8,4 +8,13 @@
     display: block;
   }
 
+  .menu {
+    display: none;
+  }
+
+  .content {
+    max-width: 100%;
+    display: block;
+    padding: 10px;
+  }
 }

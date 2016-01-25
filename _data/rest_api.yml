@@ -59,7 +59,7 @@
       template: rest_api/flow.html
       preconditions:
         - <a href="#flows_registration">Merchant Registration</a>
-      flows:
+      flow:
         1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_customers">Customers on Store</a>.
         2: STORE compares emails to determine wether an emails has been migrated to the STORE.
         3: STORE returns compiled data to the SERVER.
@@ -69,7 +69,7 @@
       template: rest_api/flow.html
       preconditions:
         - <a href="#flows_registration">Merchant Registration</a>
-      flows:
+      flow:
         1: STORE requests banner from SERVER (<a href="#requests_campaign_banner">Get Campaign Banner</a>).
         2: SERVER returns image, and url.
         3: STORE displays banner on page.

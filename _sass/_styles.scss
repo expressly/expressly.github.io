@@ -19,7 +19,13 @@ section {
   max-width: $site-max-width;
   margin: 0 auto;
 }
+ section.page {
+   padding-top: 33px;
+ }
 
+ .breadcrumb .section_inner {
+  padding-left: 20px;
+ }
 section h1 {
   padding-left: 10px;
   margin-top: 0;
@@ -31,7 +37,17 @@ section h1 {
   letter-spacing: 6px;
 }
 
+p {
+  padding: 0 10px 10px 10px;
+}
 
+p a {
+  border-bottom: dotted 1px;
+}
+p a:hover, p a:active {
+  border-bottom: solid 1px;
+  text-decoration: none;
+}
 a {
   color: $text-light-grey;
   text-decoration: none;
@@ -83,4 +99,35 @@ aside.menu {
       }
     }
   }
+}
+
+pre {
+  background: $brand-color-yellow;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+pre {
+  overflow: auto;
+  margin-top: 10px;
+}
+
+.page h2 {
+  padding: 15px 15px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.page h3 {
+  margin: 10px 0;
+  padding: 3px 10px;
+  background: $brand-color-blue;
+}
+.page h4 {
+  padding: 20px 0;
+}
+
+.page li {
+  margin: 5px 0 5px 25px;
 }
