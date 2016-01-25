@@ -63,17 +63,17 @@
         1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_customers">Customers on Store</a>.
         2: STORE compares emails to determine wether an emails has been migrated to the STORE.
         3: STORE returns compiled data to the SERVER.
-    - id: flows_banner
-      title: Campaign Banner
-      description:
-      template: rest_api/flow.html
-      preconditions:
-        - <a href="#flows_registration">Merchant Registration</a>
-      flow:
-        1: STORE requests banner from SERVER (<a href="#requests_campaign_banner">Get Campaign Banner</a>).
-        2: SERVER returns image, and url.
-        3: STORE displays banner on page.
-        4: Banner is clicked on, redirecting CUSTOMER to provided url.
+#    - id: flows_banner
+#      title: Campaign Banner
+#      description:
+#      template: rest_api/flow.html
+#      preconditions:
+#        - <a href="#flows_registration">Merchant Registration</a>
+#      flow:
+#        1: STORE requests banner from SERVER (<a href="#requests_campaign_banner">Get Campaign Banner</a>).
+#        2: SERVER returns image, and url.
+#        3: STORE displays banner on page.
+#        4: Banner is clicked on, redirecting CUSTOMER to provided url.
 - id: requests
   title: Requests
   description: Interacting with us.
@@ -253,29 +253,29 @@
               "success": "true",
               "msg": ""
           }
-    - id: requests_campaign_banner
-      title: Campaign Banner
-      template: rest_api/route.html
-      route: /api/v2/banner/{uuid}?email={email}
-      paramters:
-        uuid: String
-        email: String
-      method: GET
-      request:
-        authorization: true
-        headers:
-          - Content-Type "application/json"
-      response:
-        headers:
-          - Content-Type "application/json"
-        status:
-          200:
-          400:
-        example: >
-          {
-              "bannerImageUrl": "https://buyexpressly.com/assets/banner/awesome-banner.jpg",
-              "migrationLink": "https://www.myblog.com/expressly/api/3aff1880-b0f5-45bd-8f33-247f55981f2c
-          }
+#    - id: requests_campaign_banner
+#      title: Campaign Banner
+#      template: rest_api/route.html
+#      route: /api/v2/banner/{uuid}?email={email}
+#      paramters:
+#        uuid: String
+#        email: String
+#      method: GET
+#      request:
+#        authorization: true
+#        headers:
+#          - Content-Type "application/json"
+#      response:
+#        headers:
+#          - Content-Type "application/json"
+#        status:
+#          200:
+#          400:
+#        example: >
+#          {
+#              "bannerImageUrl": "https://buyexpressly.com/assets/banner/awesome-banner.jpg",
+#              "migrationLink": "https://www.myblog.com/expressly/api/3aff1880-b0f5-45bd-8f33-247f55981f2c
+#          }
 - id: responses
   title: Responses
   description: Must be implemented for us to be able to talk to you.
