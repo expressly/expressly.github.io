@@ -19,7 +19,7 @@
         3: SERVER returns response successfully to STORE.
       alternate:
         3.1: SERVER cannot ping STORE, returns error message.
-        2.2: SERVER recieved invalid credentials, returns error message.
+        2.2: SERVER received invalid credentials, returns error message.
     - id: flows_user_migration
       title: User Campaign Migration
       description:

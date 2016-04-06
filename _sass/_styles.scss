@@ -87,6 +87,10 @@ aside.menu {
       padding-top: 0;
     }
 
+    &:target {
+      padding-top: 65px;
+    }
+
     ul {
       list-style-type: none;
     }
