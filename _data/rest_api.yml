@@ -4,51 +4,35 @@
     - For the following flows, the following defined Actors have been used
     - SERVER - Expressly API Server.
     - STORE - The store/integration Expressly is being configured with.
-    - CUSTOMER - The customer interacting with the store.
+    - CUSTOMER - The customer interacting with the store using their browser.
   children:
-    - id: flows_registration
-      title: Merchant Registration
-      description:
-      template: rest_api/flow.html
-      preconditions:
-        - Expressly plugin has to be integrated, ticking all the boxes on the integration checklist.
-        - API Key exists, and has been created on the portal.
-      flow:
-        1: STORE calls <a href="#requests_register">Register Merchant</a> with appropriate body, and header.
-        2: SERVER pings store to make sure the plugin is installed correctly, and reachable.
-        3: SERVER returns response successfully to STORE.
-      alternate:
-        3.1: SERVER cannot ping STORE, returns error message.
-        2.2: SERVER received invalid credentials, returns error message.
     - id: flows_user_migration
       title: User Campaign Migration
       description:
       template: rest_api/flow.html
       preconditions:
-        - <a href="#flows_registration">Merchant Registration</a>
-        - Campaign exists, and has been created on the portal.
+        - A campaign has been created and is active.
       flow:
         1: CUSTOMER navigates to provided link with unique uuid attached (<a href="#responses_popup">Show Popup</a>).
         2: STORE requests popup for unique uuid (<a href="#requests_migration_popup">Get Campaign Migration Popup</a>).
         3: SERVER returns popup html rendered for the given campaign, and CUSTOMER.
         4: STORE renders html atop a given store page (e.g. homepage).
-        5: CUSTOMER accepts terms & conditions, and privacy policy by pressing "OK".
-        6: STORE navigates to <a href="#responses_migrate_user">Migrate User</a>, and requests information.
-        7: SERVER returns information associated with CUSTOMER.
-        8: STORE adds customer to their store; adds product, and coupon (if provided, and supported) to cart.
-        9: STORE tells SERVER that CUSTOMER has been migrated correctly (<a href="#requests_migration_success">Migration Success</a>).
-        10: STORE logs user in, and navigates to homepage.
+        5: CUSTOMER accepts terms & conditions, and privacy policy by pressing "OK" which will start migration.
+        6: CUSTOMER navigates to <a href="#responses_migrate_user">Migrate User</a>.
+        7: STORE requests CUSTOMER information from SERVER
+        8: SERVER returns information associated with CUSTOMER.
+        9: STORE adds customer to their store; adds product, and coupon (if provided, and supported) to cart.
+        10: STORE tells SERVER that CUSTOMER has been migrated correctly (<a href="#requests_migration_success">Migration Success</a>).
+        11: STORE logs user in, and navigates to homepage.
       alternate:
-        7.1: CUSTOMER already exists, STORE tells SERVER that CUSTOMER has been migrated previously (<a href="#requests_migration_success">Migration Success</a>).
-        8.1: STORE adds product, and coupon (if provided, and supported) to cart.
-        9.1: STORE shows CUSTOMER message that they already exist, asking if they would like to be redirected to the login page.
-        10.1: CUSTOMER accepts confirm message, and is redirected to the STORE login page.
+        8.1: CUSTOMER already exists, STORE tells SERVER that CUSTOMER has been migrated previously (<a href="#requests_migration_success">Migration Success</a>).
+        9.1: STORE adds product, and coupon (if provided, and supported) to cart.
+        10.1: STORE shows CUSTOMER message that they already exist, asking if they would like to be redirected to the login page.
+        11.1: CUSTOMER accepts confirm message, and is redirected to the STORE login page.
     - id: flows_purchases
       title: Check Purchases
       description:
       template: rest_api/flow.html
-      preconditions:
-        - <a href="#flows_registration">Merchant Registration</a>
       flow:
         1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_invoices">Invoices for Customer Purchases</a>.
         2: STORE compares emails, and period to gather purchase information for provided email addresses.
@@ -57,8 +41,6 @@
       title: Check Customer Migration
       description:
       template: rest_api/flow.html
-      preconditions:
-        - <a href="#flows_registration">Merchant Registration</a>
       flow:
         1: SERVER makes a request to STORE endpoint, <a href="#responses_batch_customers">Customers on Store</a>.
         2: STORE compares emails to determine wether an emails has been migrated to the STORE.
@@ -68,7 +50,7 @@
 #      description:
 #      template: rest_api/flow.html
 #      preconditions:
-#        - <a href="#flows_registration">Merchant Registration</a>
+#        - None
 #      flow:
 #        1: STORE requests banner from SERVER (<a href="#requests_campaign_banner">Get Campaign Banner</a>).
 #        2: SERVER returns image, and url.
@@ -78,45 +60,6 @@
   title: Requests
   description: Interacting with us.
   children:
-    - id: requests_ping
-      title: Ping
-      template: rest_api/route.html
-      route: /api/admin/ping
-      method: GET
-      request:
-        authorization: false
-        headers:
-          - Content-Type "application/json"
-      response:
-        headers:
-          - Content-Type "application/json"
-        status:
-          200:
-        example: >
-          {
-            "Server": "Live",
-            "DB Status": "Live"
-          }
-    - id: requests_register
-      title: Register Merchant
-      template: rest_api/route.html
-      route: /api/v2/plugin/merchant
-      method: POST
-      request:
-        authorization: false
-        headers:
-          - Content-Type "application/json"
-      response:
-        headers:
-          - Content-Type "application/json"
-        status:
-          204:
-          400:
-        example: >
-          {
-            "apiBaseUrl": "",
-            "apiKey": ""
-          }
     - id: requests_migration_popup
       title: Get Campaign Migration Popup
       template: rest_api/route.html
@@ -125,10 +68,12 @@
         uuid: String
       method: GET
       request:
+        requester: STORE
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
       response:
+        responder: SERVER
         headers:
           - Content-Type "text/html"
         status:
@@ -141,12 +86,14 @@
         uuid: String
       method: GET
       request:
+        requester: STORE
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
       response:
+        responder: SERVER
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
           400:
@@ -239,12 +186,14 @@
         uuid: String
       method: GET
       request:
+        requester: STORE
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
       response:
+        responder: SERVER
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
           400:
@@ -264,10 +213,10 @@
 #      request:
 #        authorization: true
 #        headers:
-#          - Content-Type "application/json"
+#          - "Content-Type: application/json" 
 #      response:
 #        headers:
-#          - Content-Type "application/json"
+#          - "Content-Type: application/json" 
 #        status:
 #          200:
 #          400:
@@ -283,46 +232,80 @@
     - id: responses_ping
       title: Ping Store
       template: rest_api/route.html
+      description: Simple response message to note that the plugin has been installed
       route: /expressly/api/ping
       method: GET
       request:
+        requester: SERVER
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json"
       response:
+        responder: STORE
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
         example: >
           {
             "expressly": "Stuff is happening"
           }
+    - id: responses_registered
+      title: Token Check
+      template: rest_api/route.html
+      description: Simple response message to check that the API key / token has been configured correctly. The endpoint
+       as with all the authenticated endpoints should return a 401 if the token part of the Authorization header does not
+       match the stored token.
+      route: /expressly/api/registered
+      method: GET
+      request:
+        requester: SERVER
+        authorization: true
+        headers:
+          - "Authorization: Basic &lt;API Token&gt;"
+          - "Content-Type: application/json"
+      response:
+        responder: STORE
+        headers:
+          - "Content-Type: application/json"
+        status:
+          200:
+          401:
+        example: >
+          {
+            "registered": true
+          }
     - id: responses_popup
       title: Show Popup
+      description: Start the user migration process. This uri should invoke the <a href="#requests_migration_popup">Get Campaign Migration Popup</a> request. The Popup can be shown over any page you wish, we recommend appending the html to your homepage.
       template: rest_api/route.html
       route: /expressly/api/{uuid}
       method: GET
       paramters:
         uuid: String
       request:
+        requester: CUSTOMER
         headers:
-          - Content-Type "application/json"
+          - N/A
       response:
+        responder: STORE
         headers:
           - Content-Type "text/html"
     - id: responses_migrate_user
       title: Migrate User
+      description: End of the user migration process. This uri should invoke the <a href="#requests_migration_data">Get Campaign Migration Data</a> request. The method should add all data for the provided user to the store, and if provided, add a product and/or coupon to the user's cart. The user should be logged in directly after this migration, and a welcome email (if not part of your store's initial flow) should be dispatched.
       template: rest_api/route.html
       route: /expressly/api/{uuid}/migrate
       method: GET
       parameters:
         uuid: String
       request:
+        requester: CUSTOMER
         headers:
-          - Content-Type "application/json"
+          - N/A
       response:
+        responder: STORE
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
           401:
@@ -330,18 +313,22 @@
           {}
     - id: responses_user
       title: Retrieve User
+      description: Return a users data, via your application facilities, conforming to our defined entities.
       template: rest_api/route.html
       route: /expressly/api/user/{email}
       method: GET
       parameters:
         email: String
       request:
+        requester: SERVER
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Authorization: Basic &lt;API Token&gt;"
+          - "Content-Type: application/json"
       response:
+        responder: STORE
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
           401:
@@ -427,13 +414,16 @@
           }
     - id: responses_batch_invoices
       title: Invoices for Customer Purchases
+      description: Given a list of date ranges and emails checks to see if the associated campaign users have had any transactions during the specified period. Used for auditing and tracking purposes.
       template: rest_api/route.html
       route: /expressly/api/batch/invoice
       method: POST
       request:
+        requester: SERVER
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Authorization: Basic &lt;API Token&gt;"
+          - "Content-Type: application/json"
         example: >
           {
               "customers": [
@@ -445,8 +435,9 @@
               ]
           }
       response:
+        responder: STORE
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
         example: >
@@ -474,22 +465,27 @@
           }
     - id: responses_batch_customers
       title: Customers on Store
+      description: Given a list of emails, checks to see if a user already exists on the STORE or has completed the migration process successfully. Used for auditing and tracking purposes.
       template: rest_api/route.html
-      route: /expressly/api/batch/customers
+      route: /expressly/api/batch/customer
       method: POST
       request:
+        requester: SERVER
         authorization: true
         headers:
-          - Content-Type "application/json"
+          - "Authorization: Basic &lt;API Token&gt;"
+          - "Content-Type: application/json"
         example: >
           {
               "emails": [
-                  "john.smith@gmail.com"
+                  "john.smith@gmail.com",
+                  "jane.smith@gmail.com"
               ]
           }
       response:
+        responder: STORE
         headers:
-          - Content-Type "application/json"
+          - "Content-Type: application/json" 
         status:
           200:
         example: >
