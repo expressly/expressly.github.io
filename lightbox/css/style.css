@@ -1,3 +1,10 @@
+div.xly * {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: Tahoma, Lucida Sans, Helvetica, Arial, sans-serif;
+}
+
 div.xly.xly-popup {
     overflow: auto;
     display: block;
