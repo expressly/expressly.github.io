@@ -85,9 +85,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell.
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div {
     height: 100px;
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: transparent no-repeat center;
     background-size: contain
 }
 
@@ -116,7 +114,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
     display: inline-block;
     margin-top: 27px;
     color: #808080;
-    font-family: "Graphik-Medium", Arial;
+    font-family: "Graphik-Medium", Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -131,7 +129,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-regular {
-    font-family: "Graphik-Regular", Arial;
+    font-family: "Graphik-Regular", Arial, sans-serif;
     font-weight: normal
 }
 
@@ -182,7 +180,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
-    display: inline-block;
     width: 100%;
     color: #808080;
     border-radius: 0 0 6px 6px;
@@ -304,7 +301,7 @@ div.xly.xly-popup a:hover {
 }
 
 div.xly.xly-popup .expressly {
-    font-family: "Graphik-Medium", Arial;
+    font-family: "Graphik-Medium", Arial, sans-serif;
     font-weight: bold;
     font-style: italic;
     vertical-align: middle
