@@ -1,22 +1,3 @@
-/*Start: inherited from parent style.css file - to be removed*/
-* {
-    padding: 0;
-    margin: 0;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    list-style-image: none;
-    list-style-position: outside;
-    list-style-type: none;
-    text-decoration: none;
-    font-family: Tahoma, Lucida Sans, Helvetica, Arial, sans-serif;
-}
-
-/*End: inherited from parent style.css file - to be removed*/
-
 div.xly.xly-popup {
     overflow: auto;
     display: block;
