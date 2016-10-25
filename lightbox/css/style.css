@@ -179,6 +179,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
     font-weight: bold;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a:first-child {
+    font-weight: 400;
+}
+
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
     width: 100%;
     color: #808080;
