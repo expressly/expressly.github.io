@@ -176,11 +176,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > img {
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
     font-size: 13px;
     color: #b2b2b2;
-    font-weight: bold;
+    font-weight: 400;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a:first-child {
-    font-weight: 400;
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a:last-child {
+    font-weight: bold;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
