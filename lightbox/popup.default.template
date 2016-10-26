@@ -4,7 +4,7 @@
         <div class="xly xly-row">
             <div class="xly-item xly-content">
                 <div class="xly-top">
-                    Welcome {firstName}
+                    Welcome {firstName}!
                 </div>
                 <div class="xly-bottom">
                     <div>
