@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="https://expressly.github.io/demo-popup/css/style.css" />
+<script type="text/javascript" src="https://expressly.github.io/demo-popup/js/popup.js"></script>
+
+<div class="xly-demo-popup" id="xly-demo-popup">
+    <div class="xly-demo-popup-container">
+        <div class="xly-demo-popup-title">Demo Hint</div>
+        <div class="xly-demo-popup-content">
+            <p>Welcome to the source demo store - a real e-commerce (Magento-based).</p>
+            <p>On this first page we simulate beign a known customer, so you can Powerlink to exciting partners.</p>
+        </div>
+        <div class="xly-demo-popup-close" onclick="javascript:xly_close_popup()"></div>
+    </div>
+</div>
