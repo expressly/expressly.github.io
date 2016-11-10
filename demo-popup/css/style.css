@@ -6,8 +6,10 @@
     position: absolute;
     height: auto;
     top: 10vh;
-    left: 25vw;
-    right: 25vw;
+    left: 15vw;
+    right: 15vw;
+    max-width: 650px;
+    margin: 0 auto;
     box-sizing: border-box;
     z-index: 9999;
 }
