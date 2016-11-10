@@ -6,9 +6,10 @@
     position: absolute;
     height: auto;
     top: 10vh;
-    left: 15vw;
-    right: 15vw;
+    left: 25vw;
+    right: 25vw;
     box-sizing: border-box;
+    z-index: 9999;
 }
 
 .xly-demo-popup-container {
