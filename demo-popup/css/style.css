@@ -1,0 +1,56 @@
+/**
+ * Expressly demo popup stylesheet.
+ * Handles how the popup and it's contents are displayed.
+ **/
+.xly-demo-popup {
+    position: absolute;
+    height: auto;
+    top: 10vh;
+    left: 15vw;
+    right: 15vw;
+    box-sizing: border-box;
+}
+
+.xly-demo-popup-container {
+    padding: 20px;
+    position: relative;
+    color: #2A7335;
+    border: 1px solid #9FC59F;
+    background: #DBF1D6;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.xly-demo-popup-container .xly-demo-popup-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.xly-demo-popup-container .xly-demo-popup-content p {
+    margin: 5px 0;
+}
+
+.xly-demo-popup-container .xly-demo-popup-close {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 10px;
+    font-size: 32px;
+    line-height: 30px;
+    text-align: center;
+    color: #9FC59F;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #9FC59F;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.xly-demo-popup-container .xly-demo-popup-close:after {
+    content: '\00d7';
+}
