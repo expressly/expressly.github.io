@@ -3,15 +3,30 @@
  * Handles how the popup and it's contents are displayed.
  **/
 .xly-demo-popup {
-    position: absolute;
+    position: fixed;
     height: auto;
-    top: 10vh;
-    left: 15vw;
-    right: 15vw;
-    max-width: 650px;
+    top: 25vh;
+    left: 30vw;
+    right: 30vw;
     margin: 0 auto;
     box-sizing: border-box;
     z-index: 9999;
+    display: none;
+}
+
+@media all and (max-width: 1200px) {
+    .xly-demo-popup {
+        left: 15vw;
+        right: 15vw;
+    }
+}
+
+@media all and (max-width: 850px) {
+    .xly-demo-popup {
+        position: absolute;
+        left: 10vw;
+        right: 10vw;
+    }
 }
 
 .xly-demo-popup-container {
