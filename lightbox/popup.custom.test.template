@@ -43,7 +43,7 @@
                             <div class="xly-accept">OK</div>
                         </a>
                         <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
-                        <a href="{takerUrl}">
+                        <a href="{migrationCancelledUrl}">
                             <div class="xly-decline">Cancel</div>
                         </a>
                     </div>
@@ -73,7 +73,7 @@
             var loader = event.nextElementSibling;
             loader.style.display = "block";
             loader.nextElementSibling.style.display = "none";
-            window.location.replace("{takerApiBase}/expressly/api/{campaignCustomerUuid}/migrate");
+            window.location.replace("{migrationInitiateUrl}");
         };
 
         (function () {
