@@ -38,6 +38,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    z-index: 2;
 }
 
 .xly-demo-popup-container .xly-demo-popup-title {
@@ -71,4 +72,14 @@
 
 .xly-demo-popup-container .xly-demo-popup-close:after {
     content: '\00d7';
+}
+
+.xly-demo-popup-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
 }
