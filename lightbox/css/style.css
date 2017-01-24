@@ -338,5 +338,5 @@ div.xly.xly-popup .xly-dot:after {
 div.xly.xly-popup [type="checkbox"]:not(:checked), 
 div.xly.xly-popup [type="checkbox"]:checked {
     position: initial;
-    opacity: 100%;
+    opacity: 100;
 }
