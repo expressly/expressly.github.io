@@ -28,7 +28,9 @@
             </div>
             <div class="xly-item">
                 <div class="xly-subscribe">
-                    <!--<label for="subscribe"><input type="checkbox" id="subscribe"/> <span>Please subscribe me to SHOP2 updates</span></label>-->
+                    <div style="display:{displayOptout}">
+                        <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I do not want to receive updates from {takerName}</span></label>
+                    </div>
                 </div>
                 <div class="xly-secure">
                     <img src="{assetsUrl}/lightbox/img/lock.png">
