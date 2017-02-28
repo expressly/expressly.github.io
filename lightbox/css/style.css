@@ -273,8 +273,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
         text-align: center;
     }
 
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a {
+        width: 100px;
+    }
+    
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
-        margin-right: calc(50% - 117px);
+        margin-right: calc(50% - 105px);
     }
 }
 
