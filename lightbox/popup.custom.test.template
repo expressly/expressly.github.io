@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/style.css?v={cssVersion}">
+<link rel="stylesheet" type="text/css" href="{apiUrl}/api/webasset/css/lightbox:css:style?v={cssVersion}">
 <div id="xly" class="xly xly-popup">
     <div class="xly xly-container">
         <div class="xly xly-row">
