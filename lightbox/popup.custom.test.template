@@ -86,7 +86,9 @@
         (function () {
             // make sure our popup is on top or hierarchy
             var content = document.getElementById("xly");
-            document.body.insertBefore(content, document.body.firstChild);
+            if (content) {
+                document.body.insertBefore(content, document.body.firstChild);
+            }        
         })();
     })();
 </script>
