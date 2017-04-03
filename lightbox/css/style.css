@@ -106,7 +106,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div.xly-arrows {
-    background-image: url("../img/flow.png");
+    background-image: url("https://expressly.github.io/lightbox/img/flow.png");
     background-size: auto;
 }
 
@@ -273,8 +273,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
         text-align: center;
     }
 
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
+        width: 100px;
+    }
+    
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
-        margin-right: calc(50% - 117px);
+        margin-right: calc(50% - 105px);
     }
 }
 
@@ -333,4 +337,10 @@ div.xly.xly-popup .xly-dot:after {
 
 .xly-clear {
     clear: both
+}
+
+div.xly.xly-popup [type="checkbox"]:not(:checked), 
+div.xly.xly-popup [type="checkbox"]:checked {
+    position: initial;
+    opacity: 100;
 }
