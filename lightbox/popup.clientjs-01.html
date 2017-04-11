@@ -2,7 +2,10 @@
 <link rel="stylesheet" type="text/css" href="css/client-style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
-<script src="file://Users/Jake/Expressly Javascript Advertiser Registration/expressly.github.io/js/client.js"
+<script src="http://www.wip4.adobe.com:8888/js/client.js"></script>
+<script src="../js/crafty_postcode.class.js"></script>
+
+</script>
 <div id="xly" class="xly xly-popup">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -26,9 +29,15 @@
             <div class="xly-item xly-form">
                 <form autocomplete="off" method="post" name="address" id="xly-submit-form">
                     <div>
-                        <div class="form-item field text required" id="xly-fullName">
-                            <div class="xly-error" style="display:hidden;"></div>
-                            <input type="text" class="field-element text" name="fullName" placeholder="Full Name">
+                        <div class="half-width-container">
+                            <div class="form-item field text required half-width-child" id="xly-firstName">
+                                <div class="xly-error" style="display:hidden;"></div>
+                                <input type="text" class="field-element text" name="fullName" placeholder="First Name">
+                            </div>
+                            <div class="form-item field text required half-width-child" id="xly-lastName">
+                                <div class="xly-error" style="display:hidden;"></div>
+                                <input type="text" class="field-element text" name="fullName" placeholder="Last Name">
+                            </div>
                         </div>
                         <div class="form-item field email required" id="xly-email">
                             <div class="xly-error" style="display: ;">Please enter a valid email address</div>
@@ -49,8 +58,12 @@
                         </div>
                         <div class="form-item field text required" id="xly-address">
                             <div class="xly-error" style="display:hidden;"></div>
-                            <input type="text" class="field-element text" name="address1" style="display: none;" />
                             <span id="crafty_postcode_result_display"></span><br/>
+                            <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
+                        </div>
+                        <div class="form-item field text required" id="xly-town">
+                            <div class="xly-error" style="display:hidden;"></div>
+                            <input type="text" class="field-element text" name="town" placeholder="Town">
                         </div>
                         <div class="half-width-container">
                             <div class="form-item field select required">

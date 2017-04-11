@@ -383,7 +383,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form {
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item .field-element {
   background: #E4E4E5;
   border-radius: 5px;
-  font-family: Avenir-Heavy;
+  font-family: "Graphik-Regular", Arial, sans-serif;
   font-size: 14px;
   color: #837575;
   border: 0px;
@@ -401,7 +401,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   background: #E99292;
   border: 1px solid #E99292;
   border-radius: 10px 10px 0 0;
-  font-family: Avenir-Heavy;
+  font-family: "Graphik-Regular", Arial, sans-serif;
   font-size: 12px;
   color: #FFFFFF;
   margin-top: 10px;
@@ -444,16 +444,16 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-of
   margin-bottom: 10px;
 }
 
-#crafty_postcode_result_display {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #crafty_postcode_result_display {
   width: 100%;
   padding-left: 0px;
 }
 
-#crafty_postcode_lookup_result_option1 {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #crafty_postcode_result_display #crafty_postcode_lookup_result_option1 {
   width: 100%!important;
   background: #E4E4E5;
   border-radius: 5px;
-  font-family: Avenir-Heavy;
+  font-family: "Graphik-Regular", Arial, sans-serif;
   font-size: 14px;
   color: #837575;
   border: 0px;
