@@ -81,11 +81,11 @@
                     <div class="xly-clear"></div>
                     <div class="xly-item">
                         <div class="xly-subscribe">
-                            <div style="display:{displayOptout}">
+                            <div>
                                 <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{giverTermsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{giverTermsUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
                             </div>
                             <div class="xly-competition-terms">
-                                <div style="display:{displayOptout}">
+                                <div>
                                     <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>Please subscribe me to {takerName} newsletter</span></label>
                                 </div>
                             </div>
