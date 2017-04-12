@@ -17,16 +17,16 @@ cp_obj.set("elem_postcode", "postcode");
     }
 })();
 
-jQuery(document).ready(function() {
-    var milliseconds = new Date().getTime();
-    jQuery('#xly-firstName input').val('Jake');
-    jQuery('#xly-lastName input').val('Smith');
-    jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
-    jQuery('#xly-phone input').val('07920599089');
-    jQuery('#xly-postcode input').val('Cf64 1AZ');
-    //jQuery('#xly-address input').val('11 Church Avenue');
-    jQuery('#xly-town input').val('Penarth');
-});
+// jQuery(document).ready(function() {
+//     var milliseconds = new Date().getTime();
+//     jQuery('#xly-firstName input').val('Jake');
+//     jQuery('#xly-lastName input').val('Smith');
+//     jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
+//     jQuery('#xly-phone input').val('07920599089');
+//     jQuery('#xly-postcode input').val('Cf64 1AZ');
+//     //jQuery('#xly-address input').val('11 Church Avenue');
+//     jQuery('#xly-town input').val('Penarth');
+// });
 
 jQuery(function() {
 
@@ -36,71 +36,79 @@ jQuery(function() {
 
     form.submit(function(event) {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        var submitButton = form.find('#submitButton');
-
-        submitButton.val('Submitting...');
-
-        jQuery.ajax({
-            type: "POST",
-            url: "/my-account/",
-            data: {
-                email: jQuery('#xly-email input').val(),
-                password: "asd234fdgd!!!",
-                'woocommerce-register-nonce': "aa96605c2c",
-                register: "Register"
-            },
-            success: function(output) {
-                if (xlyRegistrationSuccessful(output)) {
-                    xlySendMigrationSuccess();
-                    xlyAddBillingDetails();
-                };
+            if (document.querySelector('#xly-firstName input').value == "") {
+                alert("Please provide your name!");
+                return false;
             }
-        });
 
-        function xlyRegistrationSuccessful(output) {
-            return true;
-        };
+            if (document.querySelector('#xly-lastName input').value == "") {
+                alert("Please provide your name!");
+                return false;
+            }
 
-        function xlyAddBillingDetails() {
-          jQuery.ajax({
-              type: "GET",
-              url: "/my-account/edit-address/billing/",
-              success: function(data) {
-                html = data;
-                var htmlFiltered = jQuery(data).find('#_wpnonce').val();
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/my-account/edit-address/billing/",
-                    data: {
-                        billing_first_name: jQuery('#xly-firstName input').val(),
-                        billing_last_name: jQuery('#xly-lastName input').val(),
-                        billing_company: '',
-                        billing_email: jQuery('#xly-email input').val(),
-                        billing_phone: jQuery('#xly-phone input').val(),
-                        billing_country: 'GB',
-                        billing_address_1: jQuery('#xly-address input').val(),
-                        billing_address_2: '',
-                        billing_city: jQuery('#xly-town input').val(),
-                        billing_state: '',
-                        billing_postcode: jQuery('#xly-postcode input').val(),
-                        save_address: 'Save Address',
-                        '_wpnonce': htmlFiltered,
-                        '_wp_http_referer': '/my-account/edit-address/billing/',
-                        action: 'edit_address'
-                    },
-                    success: function(output) {
-                      //xlyCloseForm();
-                    }
-                });
-              }
-          });
-        }
+        // jQuery.ajax({
+        //     type: "POST",
+        //     url: "/my-account/",
+        //     data: {
+        //         email: jQuery('#xly-email input').val(),
+        //         password: "asd234fdgd!!!",
+        //         'woocommerce-register-nonce': "dc79fa4796",
+        //         register: "Register"
+        //     },
+        //     success: function(output) {
+        //         if (xlyRegistrationSuccessful(output)) {
+        //             xlySendMigrationSuccess();
+        //             xlyAddBillingDetails();
+        //         };
+        //     }
+        // });
 
-        function xlyCloseForm() {
-          jQuery("#xly").css({'display':'none'})
-        }
+
+
+        // function xlyRegistrationSuccessful(output) {
+        //     return true;
+        // };
+
+        // function xlyAddBillingDetails() {
+        //     jQuery.ajax({
+        //         type: "GET",
+        //         url: "/my-account/edit-address/billing/",
+        //         success: function(data) {
+        //             html = data;
+        //             var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        //             jQuery.ajax({
+        //                 type: "POST",
+        //                 url: "/my-account/edit-address/billing/",
+        //                 data: {
+        //                     billing_first_name: jQuery('#xly-firstName input').val(),
+        //                     billing_last_name: jQuery('#xly-lastName input').val(),
+        //                     billing_company: '',
+        //                     billing_email: jQuery('#xly-email input').val(),
+        //                     billing_phone: jQuery('#xly-phone input').val(),
+        //                     billing_country: 'GB',
+        //                     billing_address_1: jQuery('#xly-address input').val(),
+        //                     billing_address_2: '',
+        //                     billing_city: jQuery('#xly-town input').val(),
+        //                     billing_state: '',
+        //                     billing_postcode: jQuery('#xly-postcode input').val(),
+        //                     save_address: 'Save Address',
+        //                     '_wpnonce': htmlFiltered,
+        //                     '_wp_http_referer': '/my-account/edit-address/billing/',
+        //                     action: 'edit_address'
+        //                 },
+        //                 success: function(output) {
+        //                     //xlyCloseForm();
+        //                 }
+        //             });
+        //         }
+        //     });
+        // }
+
+        // function xlyCloseForm() {
+        //   jQuery("#xly").css({'display':'none'})
+        // }
 
         function xlySendMigrationSuccess() {}
 
@@ -108,40 +116,3 @@ jQuery(function() {
 
     });
 });
-
-// jQuery.ajaxSetup({
-//     xhrFields: {
-//         withCredentials: true
-//     }});
-//
-//     jQuery.post( "/my-account/", {
-//     email:
-//     }).done(function(data)
-//     {
-//         form.find('.form-item').removeClass('error');
-//         form.find('.xly-error').removeClass('field-error');
-//         form.find('.xly-error').hide();
-//         if (!data.success) {
-//             $.each( data.errors.fieldErrors, function( key, value ) {
-//                 var fieldDiv = form.find('#xly-' + key);
-//                 var fieldError = fieldDiv.find('.xly-error');
-//                 fieldDiv.addClass('error');
-//                 fieldError.text(value);
-//                 fieldError.show();
-//                 fieldError.addClass('field-error');
-//             });
-//
-//             if (data.errors.globalError) {
-//                 var globalError = form.find('#xly-globalError');
-//                 globalError.text(data.errors.globalError);
-//                 if (data.errors.globalErrorHelp) {
-//                     globalError.text(globalError.text() + '. ' + data.errors.globalErrorHelp);
-//                 }
-//                 globalError.show();
-//                 globalError.addClass('field-error');
-//                 submitButton.val('OK');
-//             }
-//         } else {
-//             window.location.replace("https://prod.expresslyapp.com/api/redirect/migration/{uuid}/failed");
-//         }
-//     });
