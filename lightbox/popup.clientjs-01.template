@@ -26,14 +26,17 @@
             <div class="xly-item xly-form">
                 <form autocomplete="off" method="post" name="address" id="xly-submit-form">
                     <div>
+                        <div class="form-item field email required" >
+                            <div class="xly-error" style="display: hidden;" id="xly-globalError"></div>
+                        </div>
                         <div class="half-width-container">
                             <div class="form-item field text required half-width-child" id="xly-firstName">
                                 <div class="xly-error" style="display:hidden;"></div>
-                                <input type="text" class="field-element text" name="fullName" placeholder="First Name">
+                                <input type="text" class="field-element text" name="firstName" placeholder="First Name">
                             </div>
                             <div class="form-item field text required half-width-child" id="xly-lastName">
                                 <div class="xly-error" style="display:hidden;"></div>
-                                <input type="text" class="field-element text" name="fullName" placeholder="Last Name">
+                                <input type="text" class="field-element text" name="lastName" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="form-item field email required" id="xly-email">
