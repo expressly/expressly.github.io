@@ -431,10 +431,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-widt
   color: #43454b;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form #xly-address {
-  display: hidden;
-}
-
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container {
   display: inline-block;
   float: left;

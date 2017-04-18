@@ -57,15 +57,10 @@
                 <button type="button" onclick="cp_obj.doLookup()" class="field-element">Look Up Address</button>
               </div>
             </div>
-
-            <div class="form-item field" id="xly-postcode-results">
-              <span id="crafty_postcode_result_display"></span><br/>
-            </div>
-
             <div class="form-item field text required" id="xly-address">
-              <div class="xly-error" style="display:hidden;"></div>
-              <span id="crafty_postcode_result_display"></span><br/>
-              <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
+                <div class="xly-error" style="display:hidden;"></div>
+                <span id="crafty_postcode_result_display"></span><br/>
+                <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
             </div>
             <!-- <div class="form-item field text required" id="xly-town">
               <div class="xly-error" style="display:hidden;"></div>
