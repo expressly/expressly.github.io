@@ -17,10 +17,6 @@ cp_obj.set("elem_postcode", "postcode");
   }
 })();
 
-function xlyShowAddress(){
-  document.getElementById('xly-address').style.display = "block";
-  document.getElementById('crafty_postcode_result_display').style.display = "block";
-}
 
 // jQuery(document).ready(function() {
 //     var milliseconds = new Date().getTime();
