@@ -17,16 +17,21 @@ cp_obj.set("elem_postcode", "postcode");
   }
 })();
 
-jQuery(document).ready(function() {
-    var milliseconds = new Date().getTime();
-    jQuery('#xly-firstName input').val('Jake');
-    jQuery('#xly-lastName input').val('Smith');
-    jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
-    jQuery('#xly-phone input').val('07920599089');
-    jQuery('#xly-postcode input').val('Cf64 1AZ');
-    jQuery('#xly-address input').val('11 Church Avenue');
-    jQuery('#xly-town input').val('Penarth');
-});
+function xlyShowAddress(){
+  document.getElementById('xly-address').style.display = "block";
+  document.getElementById('crafty_postcode_result_display').style.display = "block";
+}
+
+// jQuery(document).ready(function() {
+//     var milliseconds = new Date().getTime();
+//     jQuery('#xly-firstName input').val('Jake');
+//     jQuery('#xly-lastName input').val('Smith');
+//     jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
+//     jQuery('#xly-phone input').val('07920599089');
+//     jQuery('#xly-postcode input').val('Cf64 1AZ');
+//     jQuery('#xly-address input').val('11 Church Avenue');
+//     jQuery('#xly-town input').val('Penarth');
+// });
 
 jQuery(function() {
 

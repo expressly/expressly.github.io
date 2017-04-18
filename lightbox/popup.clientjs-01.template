@@ -52,7 +52,7 @@
               <div class="form-item field text required half-width-child" id="xly-postcode">
                 <div class="xly-error" style="display:hidden;"></div>
                 <input type="text" class="field-element text" name="postcode" placeholder="Postcode">
-                <p id="xly-enter-address"><span>Enter address manually</span></p>
+                <p id="xly-enter-address"><span onclick="xlyShowAddress(); return false">Enter address manually</span></p>
               </div>
               <div class="form-item field text required half-width-child" id="xly-look-up">
                 <button type="button" onclick="cp_obj.doLookup()" class="field-element">Look Up Address</button>

@@ -428,6 +428,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-widt
   text-decoration: underline;
   cursor: pointer;
   font-size: 12px;
+  color: #43454b;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form #xly-address {
+  display: hidden;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container {
