@@ -43,7 +43,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
     width: 100%;
     max-width: 615px;
     margin: 0 auto;
-    padding-top: 33px;
+    padding-top: 10px;
     background-color: white;
     border: 1px solid #7e7e7e;
     border-radius: 6px;
@@ -117,6 +117,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
+    width: 90%;
     display: inline-block;
     margin-top: 20px;
     color: #808080;
@@ -131,6 +132,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-to
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom {
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
     font-size: 14px !important;
 }
 
@@ -162,10 +166,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding-left: 12px;
     text-indent: -12px;
+    text-align: left;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe input,
@@ -376,6 +381,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe a {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form #xly-submit-form-fields {
   width: 90%;
   margin: 0 auto;
 }
@@ -406,6 +416,18 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   color: #FFFFFF;
   margin-top: 10px;
   line-height: 28px;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container .form-item #xly-enter-address {
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container .form-item #xly-enter-address span {
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container {
@@ -439,7 +461,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image {
+  margin: 0 auto;
   background-color: #BADA55;
+  width: 80%;
   height: 100px;
   margin-bottom: 10px;
 }

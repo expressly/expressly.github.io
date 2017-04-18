@@ -10,11 +10,11 @@ cp_obj.set("elem_town", "town");
 cp_obj.set("elem_postcode", "postcode");
 
 (function() {
-    // make sure our popup is on top or hierarchy
-    var content = document.getElementById("xly");
-    if (content) {
-        document.body.insertBefore(content, document.body.firstChild);
-    }
+  // make sure our popup is on top or hierarchy
+  var content = document.getElementById("xly");
+  if (content) {
+    document.body.insertBefore(content, document.body.firstChild);
+  }
 })();
 
 jQuery(document).ready(function() {
@@ -24,132 +24,199 @@ jQuery(document).ready(function() {
     jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
     jQuery('#xly-phone input').val('07920599089');
     jQuery('#xly-postcode input').val('Cf64 1AZ');
-    //jQuery('#xly-address input').val('11 Church Avenue');
+    jQuery('#xly-address input').val('11 Church Avenue');
     jQuery('#xly-town input').val('Penarth');
 });
 
 jQuery(function() {
 
-    console.log("working");
-    var form = jQuery("#xly-submit-form");
-    var htmlFiltered = "";
+  console.log("working");
+  var form = jQuery("#xly-submit-form");
+  var htmlFiltered = "";
 
-    form.submit(function(event) {
+  form.submit(function(event) {
+    event.preventDefault();
+    xlyValidateAndChecked();
+    //xlyValidateSpecialFields();
+    function xlySubmitform() {
+      xlyGetNonceAndRegister();
+    }
 
-        xlyFormValidate();
-        event.preventDefault();
-        jQuery.ajax({
+    function xlyGetNonceAndRegister() {
+      //Grabs the generated password from function
+      var xlyPassword = password_generator();
+      //First AJAX gets the current wpNonce for registration and soted
+      jQuery.ajax({
+        type: "GET",
+        url: "/my-account/",
+        success: function(data) {
+          html = data;
+          var wpnonce = jQuery(data).find('#woocommerce-register-nonce').val();
+          //Second AJAX posts form data into registration fields
+          jQuery.ajax({
             type: "POST",
             url: "/my-account/",
             data: {
-                email: jQuery('#xly-email input').val(),
-                password: "asd234fdgd!!!",
-                'woocommerce-register-nonce': "dc79fa4796",
-                register: "Register"
+              email: jQuery('#xly-email input').val(),
+              password: xlyPassword,
+              'woocommerce-register-nonce': wpnonce,
+              register: "Register"
             },
             success: function(output) {
-                if (xlyRegistrationSuccessful(output)) {
-                    xlySendMigrationSuccess();
-                    xlyAddBillingDetails();
-                };
-            }
-        });
-
-        function xlyFormValidate() {
-      }
-
-        function xlyRegistrationSuccessful(output) {
-            return true;
-        };
-
-        function xlyAddBillingDetails() {
-          jQuery.ajax({
-              type: "GET",
-              url: "/my-account/edit-address/billing/",
-              success: function(data) {
-                html = data;
-                var htmlFiltered = jQuery(data).find('#_wpnonce').val();
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/my-account/edit-address/billing/",
-                    data: {
-                        billing_first_name: jQuery('#xly-firstName input').val(),
-                        billing_last_name: jQuery('#xly-lastName input').val(),
-                        billing_company: '',
-                        billing_email: jQuery('#xly-email input').val(),
-                        billing_phone: jQuery('#xly-phone input').val(),
-                        billing_country: 'GB',
-                        billing_address_1: jQuery('#xly-address input').val(),
-                        billing_address_2: '',
-                        billing_city: jQuery('#xly-town input').val(),
-                        billing_state: '',
-                        billing_postcode: jQuery('#xly-postcode input').val(),
-                        save_address: 'Save Address',
-                        '_wpnonce': htmlFiltered,
-                        '_wp_http_referer': '/my-account/edit-address/billing/',
-                        action: 'edit_address'
-                    },
-                    success: function(output) {
-                      //xlyCloseForm();
-                    }
-                });
+              if (xlyRegistrationSuccessful(output)) {
+                xlyAddBillingDetails();
               }
+            }
           });
         }
+      });
+    }
 
-        // Check if T&C's are checked
-        function xlyCheckTerms() {
-          var check = document.getElementById('subscribe');
-          if(!check.checked){
-            alert('Please accept the terms and conditions for this competition');
-            return false;
-          }
+    //First GET function pulls the required nonce code to allow for editing of account details
+    //If GET is sucessful it inputs form data into relavent fields
+    //Then proceeds to close the form and redirect user to URL
+    function xlyAddBillingDetails() {
+      jQuery.ajax({
+        type: "GET",
+        url: "/my-account/edit-address/billing/",
+        success: function(data) {
+          html = data;
+          var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+          jQuery.ajax({
+            type: "POST",
+            url: "/my-account/edit-address/billing/",
+            data: {
+              billing_first_name: jQuery('#xly-firstName input').val(),
+              billing_last_name: jQuery('#xly-lastName input').val(),
+              billing_company: '',
+              billing_email: jQuery('#xly-email input').val(),
+              billing_phone: jQuery('#xly-phone input').val(),
+              billing_country: 'GB',
+              billing_address_1: jQuery('#xly-address input').val(),
+              billing_address_2: '',
+              billing_city: jQuery('#xly-town input').val(),
+              billing_state: '',
+              billing_postcode: jQuery('#xly-postcode input').val(),
+              save_address: 'Save Address',
+              '_wpnonce': htmlFiltered,
+              '_wp_http_referer': '/my-account/edit-address/billing/',
+              action: 'edit_address'
+            },
+            success: function(output) {
+              console.log('form would close');
+              xlySendMigrationSuccess();
+            }
+          });
         }
+      });
+    }
 
-        function xlyCloseForm() {
-          jQuery("#xly").css({'display':'none'})
+    //TODO Detect if the form submission failed because the e-mail address already exists. It should display and appropriate error message telling the user that they are already registered and then redirect the user to the login page on the advertiser site
+
+    function xlyRegistrationSuccessful(output) {
+      var emailCheck = jQuery(output).find('.woocommerce-error li').text();
+      //If error message is not displayed run this code
+      if (emailCheck == "") {
+        console.log('email doesnt exist, registration went forward');
+        //This will fire through the billing details migraiton
+        return true;
+      //If error message is shown
+      } else if (emailCheck !== ""){
+        alert('You already have an account with {takerName} redirecting you to login page');
+        console.log('Email exists and redirect to login page');
+      // For all other errors
+      } else {
+        xlySendMigrationFailure();
+      }
+    };
+
+
+
+    // Looks for if the value of an input is null and flags global error
+    function xlyFormValidate() {
+      var isValid = true;
+      jQuery(".field-element[type='text']").each(function() {
+        if (jQuery(this).val() == '') {
+          isValid = false;
+          jQuery('#xly-globalError').css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+          jQuery(this).css({'border': '1px solid red'});
+          jQuery('#xly-globalError').text('Please ensure all fields are filled');
+        } else {
+          jQuery(this).css({'border': 'none'});
+          jQuery('#xly-globalError').css({'display': 'none'});
+          xlyValidateEmailField();
         }
+      });
+      return isValid;
 
-        function xlySendMigrationSuccess() {}
+      // Function to check if email address is correct format
+      function xlyValidateEmailField() {
+        var x = jQuery('#xly-email input').val();
+        var atpos = x.indexOf("@");
+        var dotpos = x.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+          jQuery('#xly-globalError').css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+          jQuery('#xly-email input').css({'border': '1px solid red'});
+          jQuery('#xly-globalError').text('Not a valid email address');
+          return false;
+        }
+      }
+    }
 
-        function xlySendMigrationFailure() {}
+    // Check if T&C's are checked
+    function xlyCheckTerms() {
+      var check = document.getElementById('subscribe');
+      if (check.checked) {
+        return true;
+      } else {
+        alert('Please accept the terms and conditions for this competition');
+      }
+    }
 
-    });
+    function xlyValidateAndChecked() {
+      if (xlyFormValidate() && xlyCheckTerms()) {
+        xlySubmitform();
+      }
+    }
+
+    //Sends user to migration success URL
+    function xlySendMigrationSuccess() {
+      console.log('Migration success');
+      // TODO ADD BEFORE PUSH window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/{uuid}/success');
+    }
+
+    //Sends user to migration failure URL
+    function xlySendMigrationFailure() {
+      alert('There has been an issue with this migration')
+      // TODO ADD BEFORE PUSH window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/{uuid}/failed');
+    }
+
+    //Generates password that will pass all reqirements
+    function password_generator(len) {
+      var length = (len)
+        ? (len)
+        : (10);
+      var string = "abcdefghijklmnopqrstuvwxyz"; //to upper
+      var numeric = '0123456789';
+      var punctuation = '!@#jQuery%^&*()_+~`|}{[]\:;?><,./-=';
+      var password = "";
+      var character = "";
+      var crunch = true;
+      while (password.length < length) {
+        entity1 = Math.ceil(string.length * Math.random() * Math.random());
+        entity2 = Math.ceil(numeric.length * Math.random() * Math.random());
+        entity3 = Math.ceil(punctuation.length * Math.random() * Math.random());
+        hold = string.charAt(entity1);
+        hold = (entity1 % 2 == 0)
+          ? (hold.toUpperCase())
+          : (hold);
+        character += hold;
+        character += numeric.charAt(entity2);
+        character += punctuation.charAt(entity3);
+        password = character;
+      }
+      return password;
+    }
+
+  });
 });
-
-// jQuery.ajaxSetup({
-//     xhrFields: {
-//         withCredentials: true
-//     }});
-//
-//     jQuery.post( "/my-account/", {
-//     email:
-//     }).done(function(data)
-//     {
-//         form.find('.form-item').removeClass('error');
-//         form.find('.xly-error').removeClass('field-error');
-//         form.find('.xly-error').hide();
-//         if (!data.success) {
-//             $.each( data.errors.fieldErrors, function( key, value ) {
-//                 var fieldDiv = form.find('#xly-' + key);
-//                 var fieldError = fieldDiv.find('.xly-error');
-//                 fieldDiv.addClass('error');
-//                 fieldError.text(value);
-//                 fieldError.show();
-//                 fieldError.addClass('field-error');
-//             });
-//
-//             if (data.errors.globalError) {
-//                 var globalError = form.find('#xly-globalError');
-//                 globalError.text(data.errors.globalError);
-//                 if (data.errors.globalErrorHelp) {
-//                     globalError.text(globalError.text() + '. ' + data.errors.globalErrorHelp);
-//                 }
-//                 globalError.show();
-//                 globalError.addClass('field-error');
-//                 submitButton.val('OK');
-//             }
-//         } else {
-//             window.location.replace("https://prod.expresslyapp.com/api/redirect/migration/{uuid}/failed");
-//         }
-//     });
