@@ -1,0 +1,132 @@
+<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
+<!-- link rel="stylesheet" type="text/css" href="css/client-style.css" -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
+<script>
+   var xlyrData = {
+       uuid: '{campaignCustomerUuid}'
+   };
+</script>
+<!-- script src="{assetsUrl}/lightbox/popup.getaticket.js"></script -->
+<script src="http://www.wip4.adobe.com:8888/js/client.js"></script>
+<div id="xly" class="xly xly-popup">
+  <div class="xly xly-container">
+    <div class="xly xly-row">
+      <div class="xly-item xly-content">
+        <div class="xly-top">
+          WIN 1000 of wine from Laithwaite's
+        </div>
+        <div class="xly-offer-image">
+          <span>{offerImg}</span>
+        </div>
+        <div class="xly-bottom">
+          <div>
+            <span class="xly-regular">Fill in your data to enter our exclusive competition to win</span>
+            <span>{offerName}</span>
+            <span class="xly-regular">and register with</span>
+            <span>{giverName}.</span>
+          </div>
+        </div>
+      </div>
+      <div class="xly-item xly-form">
+        <form autocomplete="off" method="post" name="address" id="xly-submit-form">
+          <div id="xly-submit-form-fields">
+            <div class="form-item field email required">
+              <div class="xly-error" style="display: hidden;" id="xly-globalError"></div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field text required half-width-child" id="xly-firstName">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="text" class="field-element text" name="firstName" placeholder="First Name">
+              </div>
+              <div class="form-item field text required half-width-child" id="xly-lastName">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="text" class="field-element text" name="lastName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field email required half-width-child" id="xly-email">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="text" spellcheck="false" class="field-element" name="email" placeholder="Email">
+              </div>
+              <div class="form-item field text required half-width-child" id="xly-phone">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="text" class="field-element text" name="phone" placeholder="Phone">
+              </div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field text required half-width-child" id="xly-postcode">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="text" class="field-element text" name="postcode" placeholder="Postcode">
+              </div>
+              <div class="form-item field text required half-width-child" id="xly-look-up">
+                <button type="button" id="xly-addressLookup" class="field-element">Look Up Address</button>
+              </div>
+            </div>
+            <div class="form-item field text required" id="xly-address">
+                <div class="xly-error" style="display:hidden;"></div>
+                <span id="crafty_postcode_result_display"></span><br/>
+                <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
+            </div>
+            <div class="form-item field text required" id="xly-town">
+              <div class="xly-error" style="display:hidden;"></div>
+              <input type="text" class="field-element text" name="town" placeholder="Town">
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field select required">
+                <select name="gender" class="field-element text half-width-child">
+                               <option selected="" value="TAKER" style="color:#fff;">Gender</option>
+                               <option value="Male">Male</option>
+                               <option value="Female">Female</option>
+                               <option value="Other">Other</option>
+                            </select>
+              </div>
+              <div class="form-item field text required" id="xly-dob">
+                <div class="xly-error" style="display:hidden;"></div>
+                <input type="date" class="field-element text half-width-child" name="dob" placeholder="Date of Birth">
+              </div>
+            </div>
+          </div>
+
+          <div class="xly-clear"></div>
+          <div class="xly-item">
+            <div class="xly-subscribe">
+              <div>
+                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{giverTermsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{giverTermsUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
+              </div>
+              <div class="xly-competition-terms">
+                <div>
+                  <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>Please subscribe me to {takerName} newsletter</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="xly-footer">
+            <div class="xly-item">
+              <div class="xly-actions">
+                <div>
+                  <input type="submit" id="submitButton" name="submit" value="OK" class="xly-accept" />
+                </div>
+                <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
+                <a href="{migrationCancelledUrl}">
+                  <div class="xly-decline">Cancel</div>
+                </a>
+              </div>
+              <div class="xly-terms">
+                <div class="xly-policy">
+                  Powered by
+                  <span class="expressly">
+                                    <a href="https://www.buyexpressly.com">
+                                        <img src="{assetsUrl}/lightbox/img/expressly_logo.png" alt="expressly">
+                                    </a>
+                                </span>
+                </div>
+              </div>
+              <div class="xly-clear"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
