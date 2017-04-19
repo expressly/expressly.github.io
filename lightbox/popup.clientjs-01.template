@@ -62,10 +62,10 @@
                 <span id="crafty_postcode_result_display"></span><br/>
                 <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
             </div>
-            <!-- <div class="form-item field text required" id="xly-town">
+            <div class="form-item field text required" id="xly-town">
               <div class="xly-error" style="display:hidden;"></div>
               <input type="text" class="field-element text" name="town" placeholder="Town">
-            </div> -->
+            </div>
             <div class="half-width-container">
               <div class="form-item field select required">
                 <select name="gender" class="field-element text half-width-child">
