@@ -14,17 +14,15 @@
     <div class="xly xly-row">
       <div class="xly-item xly-content">
         <div class="xly-top">
-          WIN 1000 of wine from Laithwaite's
+          WIN &#163;1000 of wine from Laithwaite's
         </div>
         <div class="xly-offer-image">
           <span>{offerImg}</span>
         </div>
         <div class="xly-bottom">
           <div>
-            <span class="xly-regular">Fill in your data to enter our exclusive competition to win</span>
-            <span>{offerName}</span>
-            <span class="xly-regular">and register with</span>
-            <span>{giverName}.</span>
+            <span class="xly-regular">ENTER our exclusive competition to win and join</span>
+            <span>{takerName}.</span>
           </div>
         </div>
       </div>
@@ -64,9 +62,9 @@
               </div>
             </div>
             <div class="form-item field text required" id="xly-address">
-                <div class="xly-error" style="display:hidden;"></div>
-                <span id="crafty_postcode_result_display"></span><br/>
-                <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
+              <div class="xly-error" style="display:hidden;"></div>
+              <span id="crafty_postcode_result_display"></span><br/>
+              <input type="text" class="field-element text" name="address1" id="address1" placeholder="Address">
             </div>
             <div class="form-item field text required" id="xly-town">
               <div class="xly-error" style="display:hidden;"></div>
@@ -91,13 +89,13 @@
           <div class="xly-clear"></div>
           <div class="xly-item">
             <div class="xly-subscribe">
-              <div>
-                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{giverTermsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{giverTermsUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
-              </div>
               <div class="xly-competition-terms">
                 <div>
-                  <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>Please subscribe me to {takerName} newsletter</span></label>
+                  <label for="subscribe"><input type="checkbox" id="subscribe" checked/> <span>Please subscribe me to {takerName} newsletter</span></label>
                 </div>
+              </div>
+              <div>
+                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{giverTermsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{giverTermsUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
               </div>
             </div>
           </div>

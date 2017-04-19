@@ -162,13 +162,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     padding-bottom: 10px;
     font-size: 13px;
     color: #b2b2b2;
-    padding-top: 15px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 12px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-left: 10px;
     text-indent: -12px;
     text-align: left;
 }

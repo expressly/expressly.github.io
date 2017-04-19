@@ -17,17 +17,17 @@ cp_obj.set("elem_postcode", "postcode");
   }
 })();
 
-
-// jQuery(document).ready(function() {
-//     var milliseconds = new Date().getTime();
-//     jQuery('#xly-firstName input').val('Jake');
-//     jQuery('#xly-lastName input').val('Smith');
-//     jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
-//     jQuery('#xly-phone input').val('07920599089');
-//     jQuery('#xly-postcode input').val('Cf64 1AZ');
-//     jQuery('#xly-address input').val('11 Church Avenue');
-//     jQuery('#xly-town input').val('Penarth');
-// });
+//Autofill
+jQuery(document).ready(function() {
+  var milliseconds = new Date().getTime();
+  jQuery('#xly-firstName input').val('Jake');
+  jQuery('#xly-lastName input').val('Smith');
+  jQuery('#xly-email input').val('Jake' + milliseconds + '@email.com');
+  jQuery('#xly-phone input').val('07920599089');
+  jQuery('#xly-postcode input').val('Cf64 1AZ');
+  jQuery('#xly-address input').val('11 Church Avenue');
+  jQuery('#xly-town input').val('Penarth');
+});
 
 jQuery(function() {
 
@@ -106,32 +106,31 @@ jQuery(function() {
             success: function(output) {
               console.log('form would close');
               xlySendMigrationSuccess();
+            },
+            error: function(output) {
+              console.log('Error');
+              xlySendMigrationFailure();
             }
           });
         }
       });
     }
 
-    //TODO Detect if the form submission failed because the e-mail address already exists. It should display and appropriate error message telling the user that they are already registered and then redirect the user to the login page on the advertiser site
+    //Detect if the form submission failed because the e-mail address already exists. It should display and appropriate error message telling the user that they are already registered and then redirect the user to the login page on the advertiser site
 
     function xlyRegistrationSuccessful(output) {
       var emailCheck = jQuery(output).find('.woocommerce-error li').text();
-      //If error message is not displayed run this code
-      if (emailCheck == "") {
+
+      if (emailCheck !== 'Error: An account is already registered with your email address. Please login.') {
         console.log('email doesnt exist, registration went forward');
         //This will fire through the billing details migraiton
         return true;
-      //If error message is shown
-      } else if (emailCheck !== ""){
+      } else {
         alert('You already have an account with {takerName} redirecting you to login page');
         console.log('Email exists and redirect to login page');
-      // For all other errors
-      } else {
-        xlySendMigrationFailure();
+        //Insert Redirect
       }
-    };
-
-
+    }
 
     // Looks for if the value of an input is null and flags global error
     function xlyFormValidate() {
