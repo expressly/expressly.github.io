@@ -21,7 +21,7 @@ var xlyr = xlyr || {
             this.townField = jQuery('#xly-town').find('input');
 
             this.initialiseAddressLookup();
-            this.autofill();
+            //this.autofill();
             this.form.submit(this.register)
         },
 
