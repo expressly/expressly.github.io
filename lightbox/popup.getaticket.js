@@ -46,9 +46,8 @@ var xlyr = xlyr || {
 
 
         xlyValidateAndChecked: function () {
-            console.log(this.xlyFormValidate());
-            if (this.xlyFormValidate() && this.xlyCheckTerms()) {
-                this.xlySubmitform();
+            if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms()) {
+                xlyr.xlySubmitform();
             }
         },
 
@@ -64,14 +63,14 @@ var xlyr = xlyr || {
                     //Second AJAX posts form data into registration fields
                     jQuery.ajax({ type: "POST", url: "/my-account/",
                         data: {
-                            email: this.emailField.val(),
-                            password: this.generatePassword(),
+                            email: xlyr.emailField.val(),
+                            password: xlyr.generatePassword(),
                             'woocommerce-register-nonce': wpnonce,
                             register: "Register"
                         },
                         success: function (output) {
-                            if (this.xlyRegistrationSuccessful(output)) {
-                                this.xlyAddBillingDetails();
+                            if (xlyr.xlyRegistrationSuccessful(output)) {
+                                xlyr.xlyAddBillingDetails();
                             }
                         }
                     });
@@ -90,17 +89,17 @@ var xlyr = xlyr || {
                         type: "POST",
                         url: "/my-account/edit-address/billing/",
                         data: {
-                            billing_first_name: this.firstNameField.val(),
-                            billing_last_name: this.lastNameField.find('input').val(),
+                            billing_first_name: xlyr.firstNameField.val(),
+                            billing_last_name: xlyr.lastNameField.val(),
                             billing_company: '',
-                            billing_email: this.emailField.find('input').val(),
-                            billing_phone: this.phoneField.find('input').val(),
+                            billing_email: xlyr.emailField.val(),
+                            billing_phone: xlyr.phoneField.val(),
                             billing_country: 'GB',
-                            billing_address_1: this.addressField.find('input').val(),
+                            billing_address_1: xlyr.addressField.val(),
                             billing_address_2: '',
-                            billing_city: this.townField.find('input').val(),
+                            billing_city: xlyr.townField.val(),
                             billing_state: '',
-                            billing_postcode: this.postcodeField.find('input').val(),
+                            billing_postcode: xlyr.postcodeField.val(),
                             save_address: 'Save Address',
                             '_wpnonce': htmlFiltered,
                             '_wp_http_referer': '/my-account/edit-address/billing/',
@@ -108,11 +107,11 @@ var xlyr = xlyr || {
                         },
                         success: function () {
                             console.log('form would close');
-                            this.xlySendMigrationSuccess();
+                            xlyr.xlySendMigrationSuccess();
                         },
                         error: function () {
                             console.log('error with address');
-                            this.xlySendMigrationSuccess(); // send the success because registration has been successful
+                            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
                         }
                     });
                 }
@@ -205,13 +204,13 @@ var xlyr = xlyr || {
 
         xlySendMigrationSuccess: function () {
             console.log('Migration success');
-            window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + uuid + '/success');
+            window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + xlyr.uuid + '/success');
         },
 
         //Sends user to migration failure URL
         xlySendMigrationFailure: function () {
             alert('There has been an issue with this migration');
-            window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + uuid + '/failed');
+            window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + xlyr.uuid + '/failed');
         },
 
         autofill: function () {
