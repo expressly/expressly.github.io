@@ -59,7 +59,7 @@
                 <input type="text" class="field-element text" name="postcode" placeholder="Postcode">
               </div>
               <div class="form-item field text required half-width-child" id="xly-look-up">
-                <button type="button" onclick="cp_obj.doLookup()" class="field-element">Look Up Address</button>
+                <button type="button" id="xly-addressLookup" class="field-element">Look Up Address</button>
               </div>
             </div>
             <div class="form-item field text required" id="xly-address">
