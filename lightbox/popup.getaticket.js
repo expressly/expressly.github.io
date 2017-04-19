@@ -214,7 +214,6 @@ var xlyr = xlyr || {
         },
 
         autofill: function () {
-            console.log('what');
             var milliseconds = new Date().getTime();
             this.firstNameField.val('Jake');
             this.lastNameField.val('Smith');
