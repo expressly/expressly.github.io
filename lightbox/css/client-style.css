@@ -17,8 +17,7 @@ div.xly.xly-popup {
     font-family: "Graphik-Regular", Arial, sans-serif;
     font-weight: normal;
     z-index: 9999999999999999999;
-    /*background-color: rgba(0, 0, 0, 0.5)*/
-    background-color: #BADA55;
+    background-color: rgba(0, 0, 0, 0.5)
 }
 
 div.xly.xly-popup > div.xly.xly-container {
