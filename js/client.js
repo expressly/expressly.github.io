@@ -23,6 +23,7 @@ var xlyr = xlyr || {
 
             this.initialiseAddressLookup();
             this.form.submit(this.register)
+
         },
 
         initialiseAddressLookup: function() {
@@ -70,9 +71,9 @@ var xlyr = xlyr || {
                             register: "Register"
                         },
                         success: function (output) {
-                            if (xlyr.xlyRegistrationSuccessful(output)) {
-                                xlyr.xlyAddBillingDetails();
-                            }
+                        //     if (xlyr.xlyRegistrationSuccessful(output)) {
+                        //         xlyr.xlyAddBillingDetails();
+                        //     }
                         }
                     });
                 }
