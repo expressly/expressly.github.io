@@ -9,8 +9,6 @@
 </script>
 <script src="{assetsUrl}/lightbox/popup.getaticket.js"></script>
 <!-- script src="http://www.wip4.adobe.com:8888/js/client.js"></script -->
-<!-- script src="{assetsUrl}/lightbox/popup.getaticket.js"></script -->
-<script src="http://www.wip4.adobe.com:8888/js/client.js"></script>
 <div id="xly" class="xly xly-popup">
   <div class="xly xly-container">
     <div class="xly xly-row">
