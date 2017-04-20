@@ -104,7 +104,7 @@
                 <div>
                   <input type="submit" id="submitButton" name="submit" value="OK" class="xly-accept" />
                 </div>
-                <div id="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
+                <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
                 <a href="{migrationCancelledUrl}">
                   <div class="xly-decline">Cancel</div>
                 </a>
