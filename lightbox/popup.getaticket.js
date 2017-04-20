@@ -214,12 +214,23 @@ var xlyr = xlyr || {
             window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + xlyr.uuid + '/failed');
         },
 
+        autofill: function () {
+            var milliseconds = new Date().getTime();
+            this.firstNameField.val('Jake');
+            this.lastNameField.val('Smith');
+            this.emailField.val('Jake' + milliseconds + '@email.com');
+            this.phoneField.val('07920599089');
+            this.postcodeField.val('Cf64 1AZ');
+            this.addressField.val('11 Church Avenue');
+            this.townField.val('Penarth');
+        },
+
         expresslyContinue: function(event){
           submitButton.style.display = "none";
           console.log('Ajax');
           var loader = jQuery('.xly-loader');
           jQuery(loader).css({
-            'display':'inline-block';
+            'display':'inline-block'
           });
           var xlyLoader = jQuery('.xly-loader')[0];
           jQuery(xlyLoader).css({
