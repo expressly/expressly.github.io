@@ -228,6 +228,10 @@ var xlyr = xlyr || {
         expresslyContinue: function(event){
           submitButton.style.display = "none";
           console.log('Ajax');
+          var loader = jQuery('.xly-loader');
+          jQuery(loader).css({
+            'display':'inline-block';
+          });
           var xlyLoader = jQuery('.xly-loader')[0];
           jQuery(xlyLoader).css({
             'display':'inline-block',
