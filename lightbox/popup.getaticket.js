@@ -23,6 +23,7 @@ var xlyr = xlyr || {
 
             this.initialiseAddressLookup();
             this.form.submit(this.register)
+
         },
 
         initialiseAddressLookup: function() {

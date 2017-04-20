@@ -71,9 +71,9 @@ var xlyr = xlyr || {
                             register: "Register"
                         },
                         success: function (output) {
-                        //     if (xlyr.xlyRegistrationSuccessful(output)) {
-                        //         xlyr.xlyAddBillingDetails();
-                        //     }
+                            if (xlyr.xlyRegistrationSuccessful(output)) {
+                                xlyr.xlyAddBillingDetails();
+                            }
                         }
                     });
                 }
