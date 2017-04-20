@@ -19,6 +19,9 @@ var xlyr = xlyr || {
             this.postcodeField = jQuery('#xly-postcode').find('input');
             this.addressField = jQuery('#xly-address').find('input');
             this.townField = jQuery('#xly-town').find('input');
+            this.submitButton = jQuery('#submitButton');
+            // var loader = document.getElementsByClassName('xly-loader');
+            console.log(submitButton);
 
             this.initialiseAddressLookup();
             //this.autofill();
@@ -26,6 +29,7 @@ var xlyr = xlyr || {
         },
 
         initialiseAddressLookup: function() {
+                xlyr.autofill();
             var cp_obj = CraftyPostcodeCreate();
             cp_obj.set("access_token", "3436f-5ccf3-93f86-02095"); // your token here
             cp_obj.set("result_elem_id", "crafty_postcode_result_display");
@@ -53,6 +57,7 @@ var xlyr = xlyr || {
 
         xlySubmitform: function () {
             this.xlyGetNonceAndRegister();
+            xlyr.expresslyContinue();
         },
 
         xlyGetNonceAndRegister: function () {
@@ -162,7 +167,7 @@ var xlyr = xlyr || {
 
         xlyFormValidate: function () {
             var isValid = true;
-            jQuery(".field-element[type='text']").each(function () {
+            jQuery(".field-element:input:not(:button)").each(function () {
                 var field = jQuery(this);
                 if (field.val() === '') {
                     isValid = false;
@@ -222,6 +227,18 @@ var xlyr = xlyr || {
             this.postcodeField.val('Cf64 1AZ');
             this.addressField.val('11 Church Avenue');
             this.townField.val('Penarth');
+        },
+
+        expresslyContinue: function(event){
+          submitButton.style.display = "none";
+          console.log('Ajax');
+          var xlyLoader = jQuery('.xly-loader')[0];
+          jQuery(xlyLoader).css({
+            'display':'inline-block',
+            'float': 'right',
+            'margin-left': '47px',
+            'padding-top': '8px'
+          });
         }
     };
 
