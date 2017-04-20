@@ -69,7 +69,7 @@
               <div class="xly-error" style="display:hidden;"></div>
               <input type="text" class="field-element text" name="town" placeholder="Town">
             </div>
-            <div class="half-width-container">
+            <!-- <div class="half-width-container">
               <div class="form-item field select required">
                 <select name="gender" class="field-element text half-width-child">
                                <option selected="" value="TAKER" style="color:#fff;">Gender</option>
@@ -83,7 +83,7 @@
                 <input type="date" class="field-element text half-width-child" name="dob" placeholder="Date of Birth">
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="xly-clear"></div>
           <div class="xly-item">

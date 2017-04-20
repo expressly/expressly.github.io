@@ -228,7 +228,8 @@ var xlyr = xlyr || {
 
         expresslyContinue: function(event){
           submitButton.style.display = "none";
-          console.log('Ajax');
+          var closeButton = jQuery('.xly-decline')[0];
+          jQuery(closeButton).css({'display':'none'});
           var loader = jQuery('.xly-loader');
           jQuery(loader).css({
             'display':'inline-block'
