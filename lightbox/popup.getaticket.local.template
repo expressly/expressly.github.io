@@ -48,7 +48,7 @@
               </div>
               <div class="form-item field text required half-width-child" id="xly-phone">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="text" class="field-element text" name="phone" placeholder="Phone">
+                <input type="number" class="field-element text" name="phone" placeholder="Phone">
               </div>
             </div>
             <div class="half-width-container">
