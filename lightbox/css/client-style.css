@@ -274,13 +274,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     margin-left: 5px;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions #xly-loader {
     display: none;
     margin: 7px auto;
     color: white;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions #xly-loader img {
     display: inline
 }
 
