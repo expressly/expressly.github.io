@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
-<link rel="stylesheet" type="text/css" href="css/client-style.css">
+<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/popup.getaticket.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
 <script>
@@ -7,7 +7,7 @@
     uuid: '{campaignCustomerUuid}'
   };
 </script>
-<!-- script src="{assetsUrl}/lightbox/popup.getaticket.js"></script -->
+<!-- script src="css/client-style.css"></script -->
 <script src="http://www.wip4.adobe.com:8888/js/client.js"></script>
 <div id="xly" class="xly xly-popup">
   <div class="xly xly-container">
@@ -94,7 +94,7 @@
                 </div>
               </div>
               <div>
-                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{giverTermsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{giverTermsUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
+                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
               </div>
             </div>
           </div>

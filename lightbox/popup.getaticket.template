@@ -1,12 +1,14 @@
 <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
-<link rel="stylesheet" type="text/css" href="css/client-style.css">
+<!-- link rel="stylesheet" type="text/css" href="css/client-style.css" -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
 <script>
-  var xlyrData = {
-    uuid: '{campaignCustomerUuid}'
-  };
+   var xlyrData = {
+       uuid: '{campaignCustomerUuid}'
+   };
 </script>
+<script src="{assetsUrl}/lightbox/popup.getaticket.js"></script>
+<!-- script src="http://www.wip4.adobe.com:8888/js/client.js"></script -->
 <!-- script src="{assetsUrl}/lightbox/popup.getaticket.js"></script -->
 <script src="http://www.wip4.adobe.com:8888/js/client.js"></script>
 <div id="xly" class="xly xly-popup">
