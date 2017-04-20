@@ -209,7 +209,7 @@ var xlyr = xlyr || {
 
         xlySendMigrationSuccess: function () {
             console.log('Migration success');
-            // window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + xlyr.uuid + '/success');
+            window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + xlyr.uuid + '/success');
         },
 
         //Sends user to migration failure URL
