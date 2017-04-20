@@ -17,7 +17,8 @@ div.xly.xly-popup {
     font-family: "Graphik-Regular", Arial, sans-serif;
     font-weight: normal;
     z-index: 9999999999999999999;
-    background-color: rgba(0, 0, 0, 0.5)
+    /*background-color: rgba(0, 0, 0, 0.5)*/
+    background-color: #BADA55;
 }
 
 div.xly.xly-popup > div.xly.xly-container {
@@ -281,7 +282,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
-    display: inline
+    display: none!important;
 }
 
 @media (max-width: 768px) {
