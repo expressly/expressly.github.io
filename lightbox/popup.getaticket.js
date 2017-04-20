@@ -20,16 +20,12 @@ var xlyr = xlyr || {
             this.addressField = jQuery('#xly-address').find('input');
             this.townField = jQuery('#xly-town').find('input');
             this.submitButton = jQuery('#submitButton');
-            // var loader = document.getElementsByClassName('xly-loader');
-            console.log(submitButton);
 
             this.initialiseAddressLookup();
-            //this.autofill();
             this.form.submit(this.register)
         },
 
         initialiseAddressLookup: function() {
-                xlyr.autofill();
             var cp_obj = CraftyPostcodeCreate();
             cp_obj.set("access_token", "3436f-5ccf3-93f86-02095"); // your token here
             cp_obj.set("result_elem_id", "crafty_postcode_result_display");
