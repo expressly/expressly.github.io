@@ -93,7 +93,7 @@
                   <label for="subscribe"><input type="checkbox" checked/> <span>Please subscribe me to {takerName} newsletter</span></label>
                 </div>
               </div>
-              <div>
+              <div id="xly-subscribe-container">
                 <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
               </div>
             </div>
@@ -101,9 +101,7 @@
           <div class="xly-footer">
             <div class="xly-item">
               <div class="xly-actions">
-                <div>
                   <input type="submit" id="submitButton" name="submit" value="OK" class="xly-accept" />
-                </div>
                 <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
                 <a href="{migrationCancelledUrl}">
                   <div class="xly-decline">Cancel</div>
