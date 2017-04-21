@@ -101,6 +101,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
     }
 }
 
+@media (max-width: 360px) {
+  div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type > div {
+    float: right;
+  }
+
+}
 @media (max-width: 450px) {
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
         width: calc(100% - 20px);
