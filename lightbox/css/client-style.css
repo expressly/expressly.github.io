@@ -174,8 +174,17 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
         width: auto;
     }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions a div {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions {
+    left: -15%;
+    position: relative;
+    }
+
+     a div {
         width: 90px;
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span {
+        margin-left: -3px;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions .xly-accept {
