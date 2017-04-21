@@ -187,6 +187,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
         margin-left: -3px;
     }
 
+    div.xly.xly-popup [type="checkbox"]:not(:checked), div.xly.xly-popup [type="checkbox"]:checked {
+        top: 3px;
+        position: relative;    
+    }
+
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions .xly-accept {
       /*float: none;*/
     }
