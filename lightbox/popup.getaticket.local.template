@@ -81,7 +81,7 @@
               </div>
               <div class="form-item field text" id="xly-dob">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="date" class="field-element text half-width-child" name="dob" placeholder="Date of Birth">
+                <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" placeholder="Date of Birth">
               </div>
             </div>
           </div>

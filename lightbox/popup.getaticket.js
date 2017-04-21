@@ -208,9 +208,9 @@ var xlyr = xlyr || {
     if (!check.checked) {
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
       this.error.text('Please accept the terms and conditions');
-      this.subField.css({'border': '1px solid red', 'border-radius': '5px', 'padding': '2px 2px 2px 0px'});
+      this.subField.css({'color':'red'});
     } else {
-      this.subField.css({'border': 'none', 'border-radius': '0px', 'padding': '0px'});
+      this.subField.css({'color':'#B2B2B2'});
     }
     return check.checked;
   },
