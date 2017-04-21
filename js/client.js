@@ -164,7 +164,7 @@ var xlyr = xlyr || {
 
         xlyFormValidate: function () {
             var isValid = true;
-            jQuery(".field-element:input:not(:button)").each(function () {
+            jQuery(".required").each(function () {
                 var field = jQuery(this);
                 if (field.val() === '') {
                     isValid = false;

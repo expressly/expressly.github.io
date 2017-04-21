@@ -164,7 +164,7 @@ var xlyr = xlyr || {
 
         xlyFormValidate: function () {
             var isValid = true;
-            jQuery(".field-element:input:not(:button)").each(function () {
+            jQuery(".required").each(function () {
                 var field = jQuery(this);
                 if (field.val() === '') {
                     isValid = false;
@@ -228,7 +228,8 @@ var xlyr = xlyr || {
 
         expresslyContinue: function(event){
           submitButton.style.display = "none";
-          console.log('Ajax');
+          var closeButton = jQuery('.xly-decline')[0];
+          jQuery(closeButton).css({'display':'none'});
           var loader = jQuery('.xly-loader');
           jQuery(loader).css({
             'display':'inline-block'
