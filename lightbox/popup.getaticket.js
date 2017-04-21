@@ -29,7 +29,7 @@ var xlyr = xlyr || {
 
   initialiseAddressLookup: function() {
     var cp_obj = CraftyPostcodeCreate();
-    cp_obj.set("access_token", "3436f-5ccf3-93f86-02095"); // your token here
+    cp_obj.set("access_token", "f8aec-d8058-824ff-015f6"); // your token here
     cp_obj.set("result_elem_id", "crafty_postcode_result_display");
     cp_obj.set("form", "address");
     cp_obj.set("elem_company", "companyname");
