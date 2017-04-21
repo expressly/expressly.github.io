@@ -168,7 +168,7 @@ var xlyr = xlyr || {
                 var field = jQuery(this);
                 if (field.val() === '') {
                     isValid = false;
-                    field.css({'border': '1px solid red'});
+                    field.css({'border': '1px solid red!important'});
                 } else {
                     field.css({'border': 'none'});
                 }
@@ -190,7 +190,7 @@ var xlyr = xlyr || {
             if (!re.test(this.emailField.val())) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Not a valid email address');
-                this.emailField.css({'border': '1px solid red'});
+                this.emailField.css({'border': '1px solid red!important'});
                 return false;
             }
             return true;
