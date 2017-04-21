@@ -487,3 +487,16 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   height: 40px;
   margin-top: 10px;
 }
+
+::-webkit-datetime-edit-fields-wrapper {
+}
+::-webkit-datetime-edit-text {
+}
+::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-year-field {
+}
+::-webkit-inner-spin-button {
+    display: none;
+}
+::-webkit-calendar-picker-indicator:hover {
+    background:none;
+}
