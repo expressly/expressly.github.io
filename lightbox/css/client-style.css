@@ -153,6 +153,32 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
         margin-top: 0;
     }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
+        margin-right: 10px!important;
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions a div {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
+        width: auto;
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions a div {
+        width: 50px;
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions .xly-accept {
+      /*float: none;*/
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-item .xly-actions a {
+        /*float: none;*/
+    }
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe,

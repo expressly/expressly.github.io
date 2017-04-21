@@ -20,6 +20,7 @@ var xlyr = xlyr || {
             this.addressField = jQuery('#xly-address').find('input');
             this.townField = jQuery('#xly-town').find('input');
             this.submitButton = jQuery('#submitButton');
+            this.subField = jQuery('#xly-subscribe-container label');
 
             this.initialiseAddressLookup();
             this.form.submit(this.register)
@@ -200,7 +201,13 @@ var xlyr = xlyr || {
             console.log('Checking');
             var check = document.getElementById('subscribe');
             if (!check.checked) {
-                alert('Please accept the terms and conditions for this competition');
+              this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+              this.error.text('Please accept the terms and conditions');
+              this.subField.css({
+                      'border': '1px solid red',
+                      'border-radius': '5px',
+                      'padding':'2px 2px 2px 0px'
+              });
             }
             return check.checked;
         },
