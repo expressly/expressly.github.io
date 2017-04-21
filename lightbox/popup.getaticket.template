@@ -90,7 +90,7 @@
             <div class="xly-subscribe">
               <div class="xly-competition-terms">
                 <div>
-                  <label for="subscribe"><input type="checkbox" id="subscribe" checked/> <span>Please subscribe me to {takerName} newsletter</span></label>
+                  <label for="subscribe"><input type="checkbox" checked/> <span>Please subscribe me to {takerName} newsletter</span></label>
                 </div>
               </div>
               <div>

@@ -197,6 +197,7 @@ var xlyr = xlyr || {
         },
 
         xlyCheckTerms: function xlyCheckTerms() {
+            console.log('Checking');
             var check = document.getElementById('subscribe');
             if (!check.checked) {
                 alert('Please accept the terms and conditions for this competition');
