@@ -223,9 +223,14 @@ var xlyr = xlyr || {
 
   xlyNewsletter: function() {
     console.log('checking newsletter');
-    var newsletterCheck = jQuery('#newsletter').val();
-    console.log(newsletterCheck);
-    return newsletterCheck.checked ? 1 : 0;
+    var newsletterCheck = document.getElementById('newsletter');
+    if(newsletterCheck.checked) {
+      console.log('checked');
+    } else {
+      console.log('not checked');
+    }
+
+    //return newsletterCheck.checked ? 1 : 0;
   },
 
   xlySendMigrationSuccess: function() {

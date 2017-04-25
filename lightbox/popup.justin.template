@@ -14,15 +14,17 @@
     <div class="xly xly-row">
       <div class="xly-item xly-content">
         <div class="xly-top">
-          Win Justin Bieber Tickets!
+          Win 2 free Justin tickets in London
         </div>
         <div class="xly-offer-image">
         </div>
         <div class="xly-bottom">
           <div>
-            <span class="xly-regular">ENTER our exclusive competition to win and join</span>
-            <span>{takerName}.</span>
+            <span class="xly-regular">Help us test our new competition product for your chance to win <br / />2 tickets to Justin Bieber in Hyde Park on July 2nd</span>
           </div>
+          <!-- <div>
+            <span class="xly-regular">Competition is for 2 Justin Bieber tickets in Hyde Park on July 2nd.</span>
+          </div> -->
         </div>
       </div>
       <div class="xly-item xly-form">
@@ -78,9 +80,9 @@
                                <option value="Other">Other</option>
                             </select>
               </div>
-              <div class="form-item field text" id="xly-dob">
+              <div class="form-item field text">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="date" class="field-element text half-width-child" name="dob" placeholder="Date of Birth">
+                <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" id="xly-dob" placeholder="Date of Birth">
               </div>
             </div>
           </div>
@@ -90,11 +92,11 @@
             <div class="xly-subscribe">
               <div class="xly-competition-terms">
                 <div>
-                  <label for="subscribe"><input type="checkbox" checked/> <span>Please subscribe me to {takerName} newsletter</span></label>
+                  <label for="subscribe"><input type="checkbox" id="newsletter" checked/> <span>Please subscribe me to Expressly for future updates and opportunities</label>
                 </div>
               </div>
               <div id="xly-subscribe-container">
-                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
+                <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I accept the competition <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and Expressly <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span></label>
               </div>
             </div>
           </div>
