@@ -1,6 +1,7 @@
 var xlyr = xlyr || {
   milliseconds: new Date().getTime(),
 
+
   initialise: function(uuid) {
     console.log("working " + uuid);
 
@@ -10,7 +11,7 @@ var xlyr = xlyr || {
     }
 
     this.uuid = uuid;
-    this.form = jQuery("#xly-submit-form");
+    this.form = jQuery('#xly-submit-form');
     this.error = jQuery('#xly-globalError');
     this.firstNameField = jQuery('#xly-firstName').find('input');
     this.lastNameField = jQuery('#xly-lastName').find('input');
@@ -21,6 +22,7 @@ var xlyr = xlyr || {
     this.townField = jQuery('#xly-town').find('input');
     this.submitButton = jQuery('#submitButton');
     this.subField = jQuery('#xly-subscribe-container label');
+    this.newsletterCheck = jQuery('#newsletter');
 
     this.initialiseAddressLookup();
     this.form.submit(this.register)
@@ -46,6 +48,7 @@ var xlyr = xlyr || {
   register: function(event) {
     event.preventDefault();
     xlyr.xlyValidateAndChecked();
+    xlyr.xlyNewsletter();
   },
 
   xlyValidateAndChecked: function() {
@@ -73,6 +76,7 @@ var xlyr = xlyr || {
           data: {
             email: xlyr.emailField.val(),
             password: xlyr.generatePassword(),
+            '_mc4wp_subscribe_wp-registration-form': newsletterCheck,
             'woocommerce-register-nonce': wpnonce,
             register: "Register"
           },
@@ -170,6 +174,7 @@ var xlyr = xlyr || {
 
   xlyFormValidate: function() {
     var isValid = true;
+    //xlyr.xlyValidateAge();
     jQuery(".required").each(function() {
       var field = jQuery(this);
       if (field.val() === '') {
@@ -203,7 +208,6 @@ var xlyr = xlyr || {
   },
 
   xlyCheckTerms: function xlyCheckTerms() {
-    console.log('Checking');
     var check = document.getElementById('subscribe');
     if (!check.checked) {
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -213,6 +217,15 @@ var xlyr = xlyr || {
       this.subField.css({'color':'#B2B2B2'});
     }
     return check.checked;
+  },
+
+  // Needed for test compeitition to subscribe users to our mailchimp
+
+  xlyNewsletter: function() {
+    console.log('checking newsletter');
+    var newsletterCheck = jQuery('#newsletter').val();
+    console.log(newsletterCheck);
+    return newsletterCheck.checked ? 1 : 0;
   },
 
   xlySendMigrationSuccess: function() {
@@ -236,6 +249,19 @@ var xlyr = xlyr || {
     this.addressField.val('11 Church Avenue');
     this.townField.val('Penarth');
   },
+
+  // xlyValidateAge: function(){
+  //   var today = new Date();
+  //   var birthDate = jQuery("#xly-dob").val();
+  //   var age = today.getFullYear() - birthDate;
+  //   // var month = today.getMonth() - birthDate.getMonth();
+  //   // var m = today.getMonth() - birthDate.getMonth();
+  //   // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //   //   age--;
+  //   // }
+  //   // return age;
+  //   console.log(age);
+  // },
 
   expresslyContinue: function(event) {
     submitButton.style.display = "none";
