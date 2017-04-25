@@ -48,7 +48,6 @@ var xlyr = xlyr || {
   register: function(event) {
     event.preventDefault();
     xlyr.xlyValidateAndChecked();
-    xlyr.xlyNewsletter();
   },
 
   xlyValidateAndChecked: function() {
@@ -62,7 +61,22 @@ var xlyr = xlyr || {
     xlyr.expresslyContinue();
   },
 
+  xlyNewsletter: function() {
+    console.log('checking newsletter');
+    var newsletterCheck = document.getElementById('newsletter');
+    if(newsletterCheck.checked) {
+      console.log('checked');
+      return 1;
+    } else {
+      console.log('not checked');
+      return 0;
+    }
+    //return newsletterCheck.checked ? 1 : 0;
+  },
+
   xlyGetNonceAndRegister: function() {
+    //Call to get state of newsletter checkbox
+
     //First AJAX gets the current wpNonce for registration and sorted
     jQuery.ajax({
       type: "GET",
@@ -76,7 +90,8 @@ var xlyr = xlyr || {
           data: {
             email: xlyr.emailField.val(),
             password: xlyr.generatePassword(),
-            '_mc4wp_subscribe_wp-registration-form': newsletterCheck,
+            '_mc4wp_subscribe_wp-registration-form': 0,
+            '_mc4wp_subscribe_wp-registration-form': xlyr.xlyNewsletter(),
             'woocommerce-register-nonce': wpnonce,
             register: "Register"
           },
@@ -220,18 +235,6 @@ var xlyr = xlyr || {
   },
 
   // Needed for test compeitition to subscribe users to our mailchimp
-
-  xlyNewsletter: function() {
-    console.log('checking newsletter');
-    var newsletterCheck = document.getElementById('newsletter');
-    if(newsletterCheck.checked) {
-      console.log('checked');
-    } else {
-      console.log('not checked');
-    }
-
-    //return newsletterCheck.checked ? 1 : 0;
-  },
 
   xlySendMigrationSuccess: function() {
     console.log('Migration success');
