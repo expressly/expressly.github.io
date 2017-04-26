@@ -14,7 +14,7 @@
     <div class="xly xly-row">
       <div class="xly-item xly-content">
         <div class="xly-top">
-          Win 2 free Justin tickets in London
+          Win 2 Justin tickets in London
         </div>
         <div class="xly-offer-image">
         </div>
@@ -92,14 +92,14 @@
             <div class="xly-subscribe">
               <div class="xly-competition-terms">
                 <div>
-                  <label for="subscribe"><input type="checkbox" id="newsletter" checked/> <span>Please subscribe me to Expressly for future updates and opportunities</label>
+                  <label for="subscribe"><input type="checkbox" id="newsletter" checked/> <span>Please subscribe me to future updates from Expressly</label>
                 </div>
               </div>
               <div id="xly-subscribe-container">
                 <p>
                   <label for="subscribe"><input type="checkbox" id="subscribe" name="mc4wp-subscribe" value="1" />
                     <span>I accept the competition
-                      <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and Expressly <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span>
+                      <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and Expressly <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a></span>
                   </label>
                 </p>
               </div>
