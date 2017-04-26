@@ -54,7 +54,8 @@ var xlyt = xlyt || {
                 content.innerHTML = payload;
                 var head  = document.getElementsByTagName('head')[0];
                 var cssLinks = content.getElementsByTagName("link");
-                for (var i = 0; i < cssLinks.length; i++) {
+                var cssLinksCount =  cssLinks.length;
+                for (var i = 0; i < cssLinksCount; i++) {
                     var cssLink = cssLinks[i];
                     var link  = document.createElement('link');
                     link.rel  = 'stylesheet';
@@ -66,7 +67,8 @@ var xlyt = xlyt || {
                     content.removeChild(cssLink);
                 }
                 var scripts = content.getElementsByTagName("script");
-                for (var i = 0; i < scripts.length; i++) {
+                var scriptsCount = scripts.length;
+                for (var i = 0; i < scriptsCount; i++) {
                     var scriptLink = scripts[i];
                     if (scriptLink.src) {
                         var script = document.createElement('script');
