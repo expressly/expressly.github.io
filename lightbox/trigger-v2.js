@@ -53,7 +53,7 @@ var xlyt = xlyt || {
                 var content = document.createElement("div");
                 content.innerHTML = payload;
                 var head  = document.getElementsByTagName('head')[0];
-                var cssLinks = content.getElementsByTagName("link").clone();
+                var cssLinks = content.getElementsByTagName("link");
                 for (var i = 0; i < cssLinks.length; i++) {
                     var cssLink = cssLinks[i];
                     var link  = document.createElement('link');
@@ -65,7 +65,7 @@ var xlyt = xlyt || {
                     head.appendChild(link);
                     //content.removeChild(cssLink);
                 }
-                var scripts = content.getElementsByTagName("script").clone();
+                var scripts = content.getElementsByTagName("script");
                 for (var i = 0; i < scripts.length; i++) {
                     var scriptLink = scripts[i];
                     if (scriptLink.src) {
