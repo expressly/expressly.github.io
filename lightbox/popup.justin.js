@@ -4,6 +4,7 @@ var xlyr = xlyr || {
 
   initialise: function(uuid) {
     console.log("working " + uuid);
+    console.log('local working');
 
     var content = document.getElementById("xly");
     if (content) {
@@ -24,7 +25,7 @@ var xlyr = xlyr || {
     this.subField = jQuery('#xly-subscribe-container label');
     this.newsletterCheck = jQuery('#newsletter');
 
-    this.initialiseAddressLookup();
+   this.initialiseAddressLookup();
     this.form.submit(this.register)
 
   },
@@ -135,7 +136,77 @@ var xlyr = xlyr || {
             action: 'edit_address'
           },
           success: function() {
-            console.log('form would close');
+            console.log('billing details added');
+            xlyr.xlyAddShippingDetails();
+          },
+          error: function() {
+            console.log('error with address');
+            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
+          }
+        });
+      }
+    });
+  },
+
+  xlyAddShippingDetails: function() {
+    jQuery.ajax({
+      type: "GET",
+      url: "/my-account/edit-address/shipping/",
+      success: function(data) {
+        var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        jQuery.ajax({
+          type: "POST",
+          url: "/my-account/edit-address/shipping/",
+          data: {
+            shipping_first_name: xlyr.firstNameField.val(),
+            shipping_last_name: xlyr.lastNameField.val(),
+            shipping_company: '',
+            shipping_email: xlyr.emailField.val(),
+            shipping_phone: xlyr.phoneField.val(),
+            shipping_country: 'GB',
+            shipping_address_1: xlyr.addressField.val(),
+            shipping_address_2: '',
+            shipping_city: xlyr.townField.val(),
+            shipping_state: '',
+            shipping_postcode: xlyr.postcodeField.val(),
+            save_address: 'Save Address',
+            '_wpnonce': htmlFiltered,
+            '_wp_http_referer': '/my-account/edit-address/shipping/',
+            action: 'edit_address'
+          },
+          success: function() {
+            console.log('Shipping details added');
+            xlyr.xlyAddAccountDetails();
+          },
+          error: function() {
+            console.log('error with address');
+            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
+          }
+        });
+      }
+    });
+  },
+
+  xlyAddAccountDetails: function() {
+    jQuery.ajax({
+      type: "GET",
+      url: "/my-account/edit-account/",
+      success: function(data) {
+        var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        jQuery.ajax({
+          type: "POST",
+          url: "/my-account/edit-account/",
+          data: {
+            account_first_name: xlyr.firstNameField.val(),
+            account_last_name: xlyr.lastNameField.val(),
+            account_email: xlyr.emailField.val(),
+            '_wpnonce': htmlFiltered,
+            '_wp_http_referer': '/my-account/edit-account/',
+            save_account_details: 'Save changes',
+            action: 'save_account_details'
+          },
+          success: function() {
+            console.log('Account details added');
             xlyr.xlySendMigrationSuccess();
           },
           error: function() {
