@@ -510,10 +510,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image {
   margin: 0 auto;
-  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/58f88b076a49630658c96154/1492683528612/banner.png?format=750w');
-  background-size: cover;
+  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/5901da1ec534a5e9a17e5a5e/1493293609161/BSTJB_800x300-73cf4c5efe.jpg?format=500w');
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 80%;
-  height: 100px;
+  height: 80px;
   margin-bottom: 10px;
   background-position: center;
 }
