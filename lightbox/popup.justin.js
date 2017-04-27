@@ -4,7 +4,6 @@ var xlyr = xlyr || {
 
   initialise: function(uuid) {
     console.log("working " + uuid);
-    console.log('local working');
 
     var content = document.getElementById("xly");
     if (content) {
