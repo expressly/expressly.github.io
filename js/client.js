@@ -137,6 +137,47 @@ var xlyr = xlyr || {
           success: function() {
             console.log('form would close');
             xlyr.xlySendMigrationSuccess();
+            xlyr.xlyAddShippingDetails();
+          },
+          error: function() {
+            console.log('error with address');
+            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
+          }
+        });
+      }
+    });
+  },
+
+  // Add shipping address from billing address
+  xlyAddShippingDetails: function() {
+    jQuery.ajax({
+      type: "GET",
+      url: "/my-account/edit-address/billing/",
+      success: function(data) {
+        var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        jQuery.ajax({
+          type: "POST",
+          url: "/my-account/edit-address/billing/",
+          data: {
+            billing_first_name: xlyr.firstNameField.val(),
+            billing_last_name: xlyr.lastNameField.val(),
+            billing_company: '',
+            billing_email: xlyr.emailField.val(),
+            billing_phone: xlyr.phoneField.val(),
+            billing_country: 'GB',
+            billing_address_1: xlyr.addressField.val(),
+            billing_address_2: '',
+            billing_city: xlyr.townField.val(),
+            billing_state: '',
+            billing_postcode: xlyr.postcodeField.val(),
+            save_address: 'Save Address',
+            '_wpnonce': htmlFiltered,
+            '_wp_http_referer': '/my-account/edit-address/billing/',
+            action: 'edit_address'
+          },
+          success: function() {
+            console.log('form would close');
+            xlyr.xlySendMigrationSuccess();
           },
           error: function() {
             console.log('error with address');

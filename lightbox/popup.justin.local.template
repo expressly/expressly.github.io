@@ -1,5 +1,5 @@
-<!-- <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}"> -->
-<link rel="stylesheet" type="text/css" href="css/client-style.css" />
+<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
+<!-- <link rel="stylesheet" type="text/css" href="css/client-style.css" /> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../js/crafty_postcode.class.js"></script>
 <script>
@@ -22,7 +22,7 @@
         </div>
         <div class="xly-bottom">
           <div>
-            <span class="xly-regular">Help us test our new competition product for your chance to win <br / />2 tickets to Justin Bieber in BST Hyde Park 2017 on July 2nd</span>
+            <span class="xly-regular">Help us test our new competition product for your chance to win <br / />2 tickets to Justin Bieber in Hyde Park on July 2nd</span>
           </div>
           <!-- <div>
             <span class="xly-regular">Competition is for 2 Justin Bieber tickets in Hyde Park on July 2nd.</span>
