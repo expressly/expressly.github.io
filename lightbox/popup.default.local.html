@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/style-local.css?v={cssVersion}">
-<link rel="stylesheet" href="http://www.wip4.adobe.com:8888/lightbox/css/style-local.css">
+<!-- <link rel="stylesheet" href="http://www.wip4.adobe.com:8888/lightbox/css/style-local.css"> -->
 <div id="xly" class="xly xly-popup">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -43,16 +43,16 @@
             <div class="xly-footer">
                 <div class="xly-item">
                     <div class="xly-actions">
-                        <div class="firstBtn">
+                          <div class="firstBtn">
+                            <a href="{migrationCancelledUrl}">
+                              <div class="xly-decline">Cancel</div>
+                            </a>
+                          </div>
+                        <div class="secondBtn">
                           <a onclick="expresslyContinue(this);return false;">
                               <div class="xly-accept">OK</div>
                           </a>
                           <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
-                        </div>
-                        <div class="secondBtn">
-                          <a href="{migrationCancelledUrl}">
-                            <div class="xly-decline">Cancel</div>
-                          </a>
                         </div>
                     </div>
                     <div class="xly-terms">
