@@ -285,14 +285,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
         margin-bottom: 11px;
     }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-        display: flex;
-        flex-direction: column-reverse;
-        width: 100%;
-        margin-bottom: 0;
-        text-align: center;
-    }
-
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
         width: 100px;
     }
@@ -334,6 +326,16 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
       line-height: 25px;
     }
+}
+
+@media (max-width: 320px) {
+  div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+      margin-bottom: 0;
+      text-align: center;
+  }
 }
 
 div.xly.xly-popup a {
