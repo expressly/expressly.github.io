@@ -1,19 +1,23 @@
 <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
+<script src="http://www.wip4.adobe.com:8082/assets/lightbox.form.js"></script>
+<script src="http://www.wip4.adobe.com:8082/assets/lightbox.woocommerce.register.js"></script>
 <script>
-   document.write('<scr' + 'ipt src="{assetsUrl}/js/crafty_postcode.class.js"></scr' + 'ipt>');
-   document.write('<scr' + 'ipt src="http://www.wip4.adobe.com:8082/assets/lightbox.form.js"></scr' + 'ipt>');
-   document.write('<scr' + 'ipt src="http://www.wip4.adobe.com:8082/assets/lightbox.api.push.js"></scr' + 'ipt>');
-   jQuery(document).ready(function () {
-      xlyr.initialise(
-         '{campaignCustomerUuid}', 
-         function(data) { xlylap.push(data); });
-   });
+   console.log("test 03");
+   var xlyrData = {
+       uuid: '{campaignCustomerUuid}',
+       registerFunction: function(data) { xlyrlwcr.registertest(data); }
+   };
+   //jQuery(document).ready(function () {
+   //   xlyr.initialise(
+   //      '{campaignCustomerUuid}', 
+   //      function(data) { xlyrlwcr.register(data); });
+   //});
 </script>
 <!-- <script src="{assetsUrl}/lightbox/popup.getaticket.js"></script> -->
 
-<div id="xly" class="xly xly-popup">
+<div id="xly" class="xly xly-popup" data-uuid="{campaignCustomerUuid}" data-register="xlyrlwcr.registertest">
   <div class="xly xly-container">
     <div class="xly xly-row">
       <div class="xly-item xly-content">
