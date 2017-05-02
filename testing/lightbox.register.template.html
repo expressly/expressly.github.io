@@ -4,15 +4,15 @@
 <script src="http://www.wip4.adobe.com:8082/assets/lightbox.form.js"></script>
 <script src="http://www.wip4.adobe.com:8082/assets/lightbox.woocommerce.register.js"></script>
 <script>
-   jQuery(document).ready(function () {
-      xlyr.initialise(
-         '{campaignCustomerUuid}', 
-         function(data) { xlyrlwcr.register(data); });
-   });
+   //jQuery(document).ready(function () {
+   //   xlyr.initialise(
+   //      '{campaignCustomerUuid}', 
+   //      function(data) { xlyrlwcr.register(data); });
+   //});
 </script>
 <!-- <script src="{assetsUrl}/lightbox/popup.getaticket.js"></script> -->
 
-<div id="xly" class="xly xly-popup">
+<div id="xly" class="xly xly-popup" data-uuid="{campaignCustomerUuid}" data-register="xlyrlwcr.registertest">
   <div class="xly xly-container">
     <div class="xly xly-row">
       <div class="xly-item xly-content">
