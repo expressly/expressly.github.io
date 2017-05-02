@@ -124,8 +124,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
     margin-bottom: 18px;
-    font-size: 1.5em !important;
+    font-size: 2em !important;
     font-weight: normal;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
+   display: block;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom {
@@ -261,6 +265,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 @media (max-width: 768px) {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
+        font-size: 1.4em !important;
+    }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
         margin-top: 25px;
     }
@@ -308,16 +315,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
         margin-right: 0;
         margin-bottom: 8px;
     }
-}
 
-@media (max-width: 380px) {
-  div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .secondBtn .xly-decline {
-    width: 80px;
-  }
-
-  div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .firstBtn .xly-accept {
-    width: 50px;
-  }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
+       display: none;
+    }
 }
 
 div.xly.xly-popup a {
