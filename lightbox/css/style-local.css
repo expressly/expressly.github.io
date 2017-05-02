@@ -93,12 +93,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
     background-size: contain
 }
 
-@media (max-width: 768px) {
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
-        padding-top: 35px;
-    }
-}
-
 @media (max-width: 450px) {
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
         width: calc(100% - 20px);
@@ -145,12 +139,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
     width: 100%;
     text-align: center;
     padding-bottom: 5px
-}
-
-@media (max-width: 768px) {
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
-        margin-top: 0;
-    }
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe,
@@ -268,12 +256,19 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
-    display: inline
+    display: inline;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+  display: none;
 }
 
 @media (max-width: 768px) {
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
         font-size: 1.4em !important;
+    }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
+       display: block;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
         margin-top: 25px;
@@ -286,47 +281,30 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
+        padding-top: 15px;
         float: none;
         text-align: center;
-        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px!important;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
-        width: 100px;
+        width: 60px;
     }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .firstBtn {
-        float: none;
-        margin: 0 auto;
-        display: inline-block;
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
+        padding-top: 35px;
     }
-
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .secondBtn {
-        float: none;
-        margin: 0 auto;
-        display: inline-block;
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
+        margin-top: 0;
     }
 }
 
 @media (max-width: 420px) {
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a {
-        float: none;
-        margin-right: 0 !important;
-        margin-left: 0 !important;
-    }
-
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div {
-        display: block;
-    }
-
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type > div {
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
-
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
-       display: none;
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+      display: block;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
@@ -334,16 +312,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     }
 }
 
-@media (max-width: 320px) {
-  div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-      display: flex;
-      flex-direction: column-reverse;
-      width: 100%;
-      margin-bottom: 0;
-      text-align: center;
-      padding-top: 15px;
-  }
-}
+
 
 div.xly.xly-popup a {
     text-decoration: none;
