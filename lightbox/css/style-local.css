@@ -285,6 +285,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
         margin-bottom: 11px;
     }
 
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
+      float: none;
+      text-align: center;
+    }
+
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
         width: 100px;
     }
