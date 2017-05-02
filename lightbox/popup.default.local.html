@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/style-local.css?v={cssVersion}">
-<!-- <link rel="stylesheet" href="http://www.wip4.adobe.com:8888/lightbox/css/style-local.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/style-local.css?v={cssVersion}"> -->
+<link rel="stylesheet" href="http://www.wip4.adobe.com:8888/lightbox/css/style-local.css">
 <div id="xly" class="xly xly-popup">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -80,7 +80,8 @@
             event.style.display = "none";
             var loader = event.nextElementSibling;
             loader.style.display = "block";
-            loader.nextElementSibling.style.display = "none";
+            var secondBtn = document.getElementsByClassName('secondBtn')[0].style.display = 'none';
+            // loader.nextElementSibling.style.display = "none";
             var url = "{migrationInitiateUrl}";
             var optout = document.getElementById("subscribe");
             if (optout.checked) {
