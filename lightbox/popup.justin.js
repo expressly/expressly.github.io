@@ -3,7 +3,7 @@ var xlyr = xlyr || {
 
 
   initialise: function(uuid) {
-    console.log("working " + uuid);
+    console.log("working locally" + uuid);
 
     var content = document.getElementById("xly");
     if (content) {
@@ -20,6 +20,7 @@ var xlyr = xlyr || {
     this.postcodeField = jQuery('#xly-postcode').find('input');
     this.addressField = jQuery('#xly-address').find('input');
     this.townField = jQuery('#xly-town').find('input');
+    this.dateOfBirth = jQuery('#xly-dob').find('input');
     this.submitButton = jQuery('#submitButton');
     this.subField = jQuery('#xly-subscribe-container label');
     this.newsletterCheck = jQuery('#newsletter');
@@ -273,6 +274,8 @@ var xlyr = xlyr || {
     if (isValid) {
       this.error.css({'display': 'none'});
       isValid = this.xlyValidateEmailField();
+      isValid = this.xlyValidatePostCode();
+      // isValid = this.xlyValidateAge();
     } else {
       this.error.text('Please ensure all fields are filled');
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -281,11 +284,23 @@ var xlyr = xlyr || {
     return isValid;
   },
 
+
+  xlyValidatePostCode: function() {
+    var rePostcode = /^([a-zA-Z]){1}([0-9][0-9]|[0-9]|[a-zA-Z][0-9][a-zA-Z]|[a-zA-Z][0-9][0-9]|[a-zA-Z][0-9]){1}([ ])([0-9][a-zA-z][a-zA-z]){1}$/;
+    if (!rePostcode.test(this.postcodeField.val())) {
+      this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+      this.error.text('Please enter a valid postcode');
+      this.postcodeField.attr('style', 'border: 1px solid red!important');
+      return false;
+    }
+    return true;
+  },
+
   xlyValidateEmailField: function() {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(this.emailField.val())) {
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
-      this.error.text('Not a valid email address');
+      this.error.text('Please enter a valid email address');
       this.emailField.attr('style', 'border: 1px solid red!important');
       return false;
     }
@@ -321,25 +336,12 @@ var xlyr = xlyr || {
     var milliseconds = new Date().getTime();
     this.firstNameField.val('Jake');
     this.lastNameField.val('Smith');
-    this.emailField.val('Jake' + milliseconds + '@email.com');
+    this.emailField.val('Jakesmith1922+' + milliseconds + '@googleemail.com');
     this.phoneField.val('07920599089');
-    this.postcodeField.val('Cf64 1AZ');
+    this.postcodeField.val('Cf64');
     this.addressField.val('11 Church Avenue');
     this.townField.val('Penarth');
   },
-
-  // xlyValidateAge: function(){
-  //   var today = new Date();
-  //   var birthDate = jQuery("#xly-dob").val();
-  //   var age = today.getFullYear() - birthDate;
-  //   // var month = today.getMonth() - birthDate.getMonth();
-  //   // var m = today.getMonth() - birthDate.getMonth();
-  //   // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //   //   age--;
-  //   // }
-  //   // return age;
-  //   console.log(age);
-  // },
 
   expresslyContinue: function(event) {
     submitButton.style.display = "none";

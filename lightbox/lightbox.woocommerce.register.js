@@ -1,8 +1,9 @@
 var xlyr = xlyr || {
   milliseconds: new Date().getTime(),
 
+
   initialise: function(uuid) {
-    console.log("working " + uuid);
+    console.log("working locally" + uuid);
 
     var content = document.getElementById("xly");
     if (content) {
@@ -10,7 +11,7 @@ var xlyr = xlyr || {
     }
 
     this.uuid = uuid;
-    this.form = jQuery("#xly-submit-form");
+    this.form = jQuery('#xly-submit-form');
     this.error = jQuery('#xly-globalError');
     this.firstNameField = jQuery('#xly-firstName').find('input');
     this.lastNameField = jQuery('#xly-lastName').find('input');
@@ -19,10 +20,12 @@ var xlyr = xlyr || {
     this.postcodeField = jQuery('#xly-postcode').find('input');
     this.addressField = jQuery('#xly-address').find('input');
     this.townField = jQuery('#xly-town').find('input');
+    this.dateOfBirth = jQuery('#xly-dob').find('input');
     this.submitButton = jQuery('#submitButton');
     this.subField = jQuery('#xly-subscribe-container label');
+    this.newsletterCheck = jQuery('#newsletter');
 
-    this.initialiseAddressLookup();
+   this.initialiseAddressLookup();
     this.form.submit(this.register)
 
   },
@@ -59,7 +62,22 @@ var xlyr = xlyr || {
     xlyr.expresslyContinue();
   },
 
+  xlyNewsletter: function() {
+    console.log('checking newsletter');
+    var newsletterCheck = document.getElementById('newsletter');
+    if(newsletterCheck.checked) {
+      console.log('checked');
+      return 1;
+    } else {
+      console.log('not checked');
+      return 0;
+    }
+    //return newsletterCheck.checked ? 1 : 0;
+  },
+
   xlyGetNonceAndRegister: function() {
+    //Call to get state of newsletter checkbox
+
     //First AJAX gets the current wpNonce for registration and sorted
     jQuery.ajax({
       type: "GET",
@@ -73,6 +91,8 @@ var xlyr = xlyr || {
           data: {
             email: xlyr.emailField.val(),
             password: xlyr.generatePassword(),
+            '_mc4wp_subscribe_wp-registration-form': 0,
+            '_mc4wp_subscribe_wp-registration-form': xlyr.xlyNewsletter(),
             'woocommerce-register-nonce': wpnonce,
             register: "Register"
           },
@@ -116,7 +136,77 @@ var xlyr = xlyr || {
             action: 'edit_address'
           },
           success: function() {
-            console.log('form would close');
+            console.log('billing details added');
+            xlyr.xlyAddShippingDetails();
+          },
+          error: function() {
+            console.log('error with address');
+            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
+          }
+        });
+      }
+    });
+  },
+
+  xlyAddShippingDetails: function() {
+    jQuery.ajax({
+      type: "GET",
+      url: "/my-account/edit-address/shipping/",
+      success: function(data) {
+        var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        jQuery.ajax({
+          type: "POST",
+          url: "/my-account/edit-address/shipping/",
+          data: {
+            shipping_first_name: xlyr.firstNameField.val(),
+            shipping_last_name: xlyr.lastNameField.val(),
+            shipping_company: '',
+            shipping_email: xlyr.emailField.val(),
+            shipping_phone: xlyr.phoneField.val(),
+            shipping_country: 'GB',
+            shipping_address_1: xlyr.addressField.val(),
+            shipping_address_2: '',
+            shipping_city: xlyr.townField.val(),
+            shipping_state: '',
+            shipping_postcode: xlyr.postcodeField.val(),
+            save_address: 'Save Address',
+            '_wpnonce': htmlFiltered,
+            '_wp_http_referer': '/my-account/edit-address/shipping/',
+            action: 'edit_address'
+          },
+          success: function() {
+            console.log('Shipping details added');
+            xlyr.xlyAddAccountDetails();
+          },
+          error: function() {
+            console.log('error with address');
+            xlyr.xlySendMigrationSuccess(); // send the success because registration has been successful
+          }
+        });
+      }
+    });
+  },
+
+  xlyAddAccountDetails: function() {
+    jQuery.ajax({
+      type: "GET",
+      url: "/my-account/edit-account/",
+      success: function(data) {
+        var htmlFiltered = jQuery(data).find('#_wpnonce').val();
+        jQuery.ajax({
+          type: "POST",
+          url: "/my-account/edit-account/",
+          data: {
+            account_first_name: xlyr.firstNameField.val(),
+            account_last_name: xlyr.lastNameField.val(),
+            account_email: xlyr.emailField.val(),
+            '_wpnonce': htmlFiltered,
+            '_wp_http_referer': '/my-account/edit-account/',
+            save_account_details: 'Save changes',
+            action: 'save_account_details'
+          },
+          success: function() {
+            console.log('Account details added');
             xlyr.xlySendMigrationSuccess();
           },
           error: function() {
@@ -170,6 +260,7 @@ var xlyr = xlyr || {
 
   xlyFormValidate: function() {
     var isValid = true;
+    //xlyr.xlyValidateAge();
     jQuery(".required").each(function() {
       var field = jQuery(this);
       if (field.val() === '') {
@@ -183,6 +274,8 @@ var xlyr = xlyr || {
     if (isValid) {
       this.error.css({'display': 'none'});
       isValid = this.xlyValidateEmailField();
+      isValid = this.xlyValidatePostCode();
+      // isValid = this.xlyValidateAge();
     } else {
       this.error.text('Please ensure all fields are filled');
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -191,11 +284,23 @@ var xlyr = xlyr || {
     return isValid;
   },
 
+
+  xlyValidatePostCode: function() {
+    var rePostcode = /^([a-zA-Z]){1}([0-9][0-9]|[0-9]|[a-zA-Z][0-9][a-zA-Z]|[a-zA-Z][0-9][0-9]|[a-zA-Z][0-9]){1}([ ])([0-9][a-zA-z][a-zA-z]){1}$/;
+    if (!rePostcode.test(this.postcodeField.val())) {
+      this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+      this.error.text('Please enter a valid postcode');
+      this.postcodeField.attr('style', 'border: 1px solid red!important');
+      return false;
+    }
+    return true;
+  },
+
   xlyValidateEmailField: function() {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(this.emailField.val())) {
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
-      this.error.text('Not a valid email address');
+      this.error.text('Please enter a valid email address');
       this.emailField.attr('style', 'border: 1px solid red!important');
       return false;
     }
@@ -203,7 +308,6 @@ var xlyr = xlyr || {
   },
 
   xlyCheckTerms: function xlyCheckTerms() {
-    console.log('Checking');
     var check = document.getElementById('subscribe');
     if (!check.checked) {
       this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -214,6 +318,8 @@ var xlyr = xlyr || {
     }
     return check.checked;
   },
+
+  // Needed for test compeitition to subscribe users to our mailchimp
 
   xlySendMigrationSuccess: function() {
     console.log('Migration success');
@@ -230,9 +336,9 @@ var xlyr = xlyr || {
     var milliseconds = new Date().getTime();
     this.firstNameField.val('Jake');
     this.lastNameField.val('Smith');
-    this.emailField.val('Jake' + milliseconds + '@email.com');
+    this.emailField.val('Jakesmith1922+' + milliseconds + '@googleemail.com');
     this.phoneField.val('07920599089');
-    this.postcodeField.val('Cf64 1AZ');
+    this.postcodeField.val('Cf64');
     this.addressField.val('11 Church Avenue');
     this.townField.val('Penarth');
   },
