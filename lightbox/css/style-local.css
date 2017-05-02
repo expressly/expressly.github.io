@@ -286,8 +286,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-      float: none;
-      text-align: center;
+        float: none;
+        text-align: center;
+        margin-top: 20px;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
@@ -340,6 +341,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
       width: 100%;
       margin-bottom: 0;
       text-align: center;
+      padding-top: 15px;
   }
 }
 
