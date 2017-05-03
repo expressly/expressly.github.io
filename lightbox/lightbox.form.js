@@ -26,7 +26,7 @@ var xlyr = xlyr || {
             this.newsletterCheck = document.getElementById('newsletter');
 
             this.initialiseAddressLookup();
-            this.autofill();
+            //this.autofill();
             this.form.submit(this.register)
         },
 
