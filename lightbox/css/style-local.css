@@ -1,7 +1,3 @@
-/*body {
-    overflow: hidden!important;
-}*/
-
 div.xly * {
     padding: 0;
     margin: 0;
@@ -91,10 +87,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
     height: 100px;
     background: transparent no-repeat center;
     background-size: contain
-}
-
-@media (max-width: 450px) {
-
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div.xly-arrows {
@@ -268,7 +260,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
         margin-top: 10px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
-    width: 100px;
+    width: 70px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
        display: none;
@@ -298,6 +290,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
         margin-top: 0;
     }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
+      text-align: center;
+      line-height: 22px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -314,6 +310,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
       text-align: center;
+      line-height: 22px;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
@@ -337,8 +334,6 @@ div.xly.xly-popup .expressly {
     font-weight: bold;
     font-style: italic;
     vertical-align: middle;
-    position: relative;
-    top: -1px;
     /* width: 30px; */
     /* height: 30px; */
 }
