@@ -130,7 +130,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-content .xly-bottom
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
   width: 100%;
   padding-bottom: 10px;
-  font-size: 13px;
+  font-size: 10px;
   color: #b2b2b2;
 }
 
@@ -151,10 +151,11 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label spa
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
   width: 10px;
+  vertical-align: middle;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
-  font-size: 13px;
+  font-size: 10px;
   color: #b2b2b2;
   font-weight: 400;
 }
@@ -335,7 +336,8 @@ div.xly.xly-popup .expressly {
 div.xly.xly-popup .expressly img {
   display: inline;
   vertical-align: middle;
-  max-width: 40px;
+  max-width: 47px;
+  padding-bottom: 1px;
 }
 
 div.xly.xly-popup .xly-dot {
