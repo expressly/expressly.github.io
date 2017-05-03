@@ -291,23 +291,20 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
         margin-top: 0;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
+      margin-top: 0px;
       text-align: center;
       line-height: 22px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
       margin-top: 25px;
     }
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe, div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
       padding-bottom: 0px;
       padding-top: 5px;
     }
 }
 
 @media (max-width: 420px) {
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
-        width: calc(100% - 20px);
-    }
-
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div {
         height: 80px;
     }
