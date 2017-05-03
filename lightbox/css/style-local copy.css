@@ -45,7 +45,7 @@ div.xly.xly-popup > div.xly.xly-container {
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
     width: 100%;
-    max-width: 380px;
+    max-width: 550px;
     margin: 0 auto;
     padding-top: 10px;
     background-color: white;
@@ -67,9 +67,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row span.xly-center-elem
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
     display: table;
-    width: 80%;
+    width: 65%;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 20px
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell {
@@ -170,7 +170,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a:last-child {
-    /* font-weight: bold; */
+    font-weight: bold;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
@@ -183,22 +183,19 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
     margin: 18px 0;
     float: left;
-    /* line-height: 44px; */
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
-    text-align: left;
+    text-align: center;
     width: 100%;
     overflow: hidden;
-    font-size: 10px;
-    line-height: 12px;
-    /* margin-left: 43px; */
+    font-size: 13px;
+    line-height: 44px;
     color: #b3b3b3;
-    margin-top: 9px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
-    font-size: 10px;
+    font-size: 13px;
     color: #b3b3b3;
 }
 
@@ -234,18 +231,16 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     border-radius: 4px;
     padding: 9px 14px;
     font-size: 14px;
-    color: #949492;
+    color: white;
     cursor: pointer;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-decline {
-    background-color: #D5D5D5;
+    background-color: #848484;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-accept {
     background-color: #3E7EA1;
-    color: #fff;
-    font-weight: bold;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader {
@@ -259,7 +254,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
-  display: block;
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -297,6 +292,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
         margin-top: 0;
+    }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe,
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
+      padding-bottom: 0px;
     }
 }
 
@@ -339,18 +338,16 @@ div.xly.xly-popup .expressly {
     vertical-align: middle;
     position: relative;
     top: -1px;
-    /* width: 30px; */
-    /* height: 30px; */
 }
 
 div.xly.xly-popup .expressly img {
     display: inline;
     vertical-align: middle;
-    max-width: 40px;
+    max-width: 64px
 }
 
 div.xly.xly-popup .xly-dot {
-    margin-right: 3px;
+    margin-right: 5px
 }
 
 div.xly.xly-popup .xly-dot:after {
