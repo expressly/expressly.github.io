@@ -267,6 +267,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
         font-size: 1.4em !important;
     }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
+    width: 100px;
+    }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
        display: block;
     }
@@ -289,10 +292,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
         margin-bottom: 10px!important;
     }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
-        width: 60px;
-    }
-
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
         padding-top: 35px;
     }
@@ -309,6 +308,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
       line-height: 25px;
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
+        width: 60px;
     }
 }
 
