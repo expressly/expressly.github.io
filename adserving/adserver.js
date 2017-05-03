@@ -1,5 +1,5 @@
 var xly = xly || {
-        callExpressly: function (url, callback, el) {
+        callExpressly: function (path, callback, el, data) {
             var xhr;
 
             if (typeof XMLHttpRequest !== 'undefined') xhr = new XMLHttpRequest();
@@ -36,15 +36,15 @@ var xly = xly || {
                 }
             }
 
-            xhr.open('GET', "https://prod.expresslyapp.com/api/adserver/banner" + url,
-                true);
-            xhr.send('');
+            xhr.open('POST', "https://prod.expresslyapp.com/api/adserver/banner" + path, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
         },
 
         getXlyAttr: function (attribute) {
             var metas = parent.document.getElementsByTagName('meta');
             for (var i = 0; i < metas.length; i++) {
-                if (metas[i].getAttribute("property") == "xly:" + attribute) {
+                if (metas[i].getAttribute("property") === ("xly:" + attribute)) {
                     return metas[i].getAttribute("content");
                 }
             }
@@ -69,7 +69,7 @@ var xly = xly || {
 
         xlyRenderCreative: function (payload, el) {
             var img = el.querySelector("img");
-            if (el.href == "%%XLY_LINK%%" || el.href == document.location.href || el.href == '' || !el.href) {
+            if (el.href === "%%XLY_LINK%%" || el.href === document.location.href || el.href === '' || !el.href) {
                 el.href = payload.migrationLink;
             } else {
                 el.href = el.href + encodeURIComponent(payload.migrationLink);
@@ -90,31 +90,43 @@ var xly = xly || {
                 var ppid = this.getPpid();
                 var merchant = this.getMerchant();
                 if (ppid) {
-                    this.callExpressly(
-                        "?ppid=" + encodeURIComponent(ppid) +
-                        "&width=" + img.getAttribute("width") +
-                        "&height=" + img.getAttribute("height"),
-                        this.xlyRenderCreative,
-                        link);
+                    this.callExpressly('', this.xlyRenderCreative, link,
+                        {
+                            ppid: ppid,
+                            width: img.getAttribute("width"),
+                            height: img.getAttribute("height")
+                        }
+                    );
                 } else if (merchant) {
                     var email = this.getEmail();
                     var fullName = this.getFullName();
                     if (email && fullName) {
-                        this.callExpressly(
-                            "/precache?merchantUuid=" + encodeURIComponent(merchant) +
-                            "&email=" + encodeURIComponent(email) +
-                            "&fullName=" + encodeURIComponent(fullName) +
-                            "&width=" + img.getAttribute("width") +
-                            "&height=" + img.getAttribute("height"),
-                            this.xlyRenderCreative,
-                            link);
+                        this.callExpressly('/precache', this.xlyRenderCreative, link,
+                            {
+                                merchantUuid: merchant,
+                                width: img.getAttribute("width"),
+                                height: img.getAttribute("height"),
+                                email:  email,
+                                fullName: fullName,
+                                address1: this.getXlyAttr('caddress1'),
+                                address2: this.getXlyAttr('caddress2'),
+                                city: this.getXlyAttr('ccity'),
+                                province: this.getXlyAttr('cprovince'),
+                                zip: this.getXlyAttr('czip'),
+                                country: this.getXlyAttr('ccountry'),
+                                phone: this.getXlyAttr('cphone'),
+                                gender: this.getXlyAttr('cgender'),
+                                dob: this.getXlyAttr('cdob')
+                            }
+                        );
                     } else {
-                        this.callExpressly(
-                            "/anonymous?merchantUuid=" + encodeURIComponent(merchant) +
-                            "&width=" + img.getAttribute("width") +
-                            "&height=" + img.getAttribute("height"),
-                            this.xlyRenderCreative,
-                            link);
+                        this.callExpressly('/anonymous', this.xlyRenderCreative, link,
+                            {
+                                merchantUuid: merchant,
+                                width: img.getAttribute("width"),
+                                height: img.getAttribute("height")
+                            }
+                        );
                     }
                 } else {
                     console.log("meta tag with xly:ppid or xly:merchant not found");
