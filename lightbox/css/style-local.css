@@ -294,8 +294,8 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
     margin-top: 25px;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
-    padding-bottom: 0px;
-    padding-top: 5px;
+    padding-bottom: 0px!important;
+    padding-top: 5px!important;
   }
 }
 
