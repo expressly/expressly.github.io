@@ -45,9 +45,9 @@ div.xly.xly-popup > div.xly.xly-container {
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
     width: 100%;
-    max-width: 615px;
+    max-width: 550px;
     margin: 0 auto;
-    padding-top: 33px;
+    padding-top: 10px;
     background-color: white;
     border: 1px solid #7e7e7e;
     border-radius: 6px;
@@ -56,7 +56,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-item {
     position: relative;
     margin-left: 33px;
-    margin-right: 33px
+    margin-right: 33px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row span.xly-center-element {
@@ -69,7 +69,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
     display: table;
     width: 65%;
     margin: 0 auto;
-    padding-top: 55px
+    padding-top: 20px
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell {
@@ -94,13 +94,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
 }
 
 @media (max-width: 450px) {
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
-        width: calc(100% - 20px);
-    }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div {
-        height: 80px;
-    }
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div.xly-arrows {
@@ -110,14 +104,14 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
     display: inline-block;
-    margin-top: 27px;
+    margin-top: 20px;
     color: #808080;
     font-family: "Graphik-Medium", Arial, sans-serif;
     font-weight: bold;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     font-size: 2em !important;
     font-weight: normal;
 }
@@ -150,7 +144,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-    margin-top: 45px;
+    margin-top: 20px;
     padding-left: 12px;
     text-indent: -12px;
 }
@@ -235,18 +229,18 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div {
     display: inline-block;
     border-radius: 4px;
-    padding: 11px 17px;
-    font-size: 16px;
+    padding: 9px 14px;
+    font-size: 14px;
     color: white;
     cursor: pointer;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-decline {
-    background-color: #d5d5d5;
+    background-color: #848484;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-accept {
-    background-color: #bdd8ea;
+    background-color: #3E7EA1;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader {
@@ -266,12 +260,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
 @media (max-width: 768px) {
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
         font-size: 1.4em !important;
+        margin-top: 10px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
     width: 100px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
-       display: block;
+       display: none;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
         margin-top: 25px;
@@ -293,7 +288,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
-        padding-top: 35px;
+        padding-top: 20px;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
         margin-top: 0;
@@ -301,7 +296,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
 }
 
 @media (max-width: 420px) {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
+        width: calc(100% - 20px);
+    }
 
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div {
+        height: 80px;
+    }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
       display: block;
     }
@@ -330,7 +331,9 @@ div.xly.xly-popup .expressly {
     font-family: "Graphik-Medium", Arial, sans-serif;
     font-weight: bold;
     font-style: italic;
-    vertical-align: middle
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
 }
 
 div.xly.xly-popup .expressly img {
