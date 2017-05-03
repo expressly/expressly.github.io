@@ -171,7 +171,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer {
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms {
-  margin: 18px 0;
+  margin: 21px 0;
   float: left;
   /* line-height: 44px; */
 }
@@ -190,6 +190,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy>a {
   font-size: 10px;
   color: #b3b3b3;
+  font-weight: normal;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions {
@@ -230,6 +231,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions a>div.xly-decline {
   background-color: #D5D5D5;
+  font-weight: normal;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions a>div.xly-accept {
@@ -286,9 +288,10 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
     margin-top: 0;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy {
-    margin-top: 0px!important;
+    margin-top: 9px!important;
+    margin-bottom: 7px!important;
     text-align: center;
-    line-height: 22px;
+    line-height: 13px!important;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
     margin-top: 25px;
@@ -305,10 +308,6 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
     display: block;
-  }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy {
-    text-align: center;
-    line-height: 22px;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions a div {
     width: 90px;
