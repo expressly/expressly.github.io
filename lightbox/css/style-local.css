@@ -294,6 +294,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
       text-align: center;
       line-height: 22px;
     }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
+      margin-top: 25px;
+    }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe, div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
+      padding-bottom: 0px;
+      padding-top: 5px;
+    }
 }
 
 @media (max-width: 420px) {
