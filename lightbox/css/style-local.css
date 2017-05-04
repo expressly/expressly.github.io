@@ -151,8 +151,9 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label spa
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
-  width: 6.6px;
+  width: 6.5px;
   vertical-align: initial;
+  position: relative;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
