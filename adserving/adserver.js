@@ -1,5 +1,21 @@
 var xly = xly || {
         callExpressly: function (path, callback, el, data) {
+            if (parent.document.xlyBusy) {
+                if (!parent.document.xlyQueue) {
+                    parent.document.xlyQueue = [];
+                }
+
+                parent.document.xlyQueue.push({
+                    path: path,
+                    callback: callback,
+                    el: el,
+                    data: data
+                });
+
+                return;
+            }
+            parent.document.xlyBusy = true;
+
             var xhr;
 
             if (typeof XMLHttpRequest !== 'undefined') xhr = new XMLHttpRequest();
@@ -25,6 +41,12 @@ var xly = xly || {
             function ensureReadiness() {
                 if (xhr.readyState < 4) {
                     return;
+                }
+
+                parent.document.xlyBusy = false;
+                if (parent.document.xlyQueue && parent.document.xlyQueue.length > 0) {
+                    var request = parent.document.xlyQueue.shift();
+                    xly.callExpressly(request.path, request.callback, request.el, request.data);
                 }
 
                 if (xhr.status !== 200) {
