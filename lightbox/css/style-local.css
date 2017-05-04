@@ -151,7 +151,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label spa
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
   width: 10px;
-  vertical-align: middle;
+  vertical-align: text-top;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
@@ -267,7 +267,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
     display: none;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
-    margin-top: 25px;
+    margin-top: 20px;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms {
     width: 100%;
