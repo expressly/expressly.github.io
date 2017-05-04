@@ -142,16 +142,17 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe input, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
   vertical-align: middle;
+  font-size: 10px;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
-  font-size: 13px;
+  font-size: 10px;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
-  width: 10px;
-  vertical-align: text-top;
+  width: 6.6px;
+  vertical-align: initial;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
