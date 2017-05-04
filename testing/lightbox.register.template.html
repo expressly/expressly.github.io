@@ -39,27 +39,27 @@
             <div class="half-width-container">
               <div class="form-item field text half-width-child" id="xly-firstName">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="text" class="field-element text required" name="firstName" placeholder="First Name">
+                <input type="text" class="field-element text required" name="firstName" placeholder="First Name" maxlength="35">
               </div>
               <div class="form-item field text half-width-child" id="xly-lastName">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="text" class="field-element text required" name="lastName" placeholder="Last Name">
+                <input type="text" class="field-element text required" name="lastName" placeholder="Last Name" maxlength="35">
               </div>
             </div>
             <div class="half-width-container">
               <div class="form-item field email half-width-child" id="xly-email">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="text" spellcheck="false" class="field-element required" readonly name="email" value="{emailAddress}" placeholder="Email">
+                <input type="text" spellcheck="false" class="field-element required" readonly name="email" value="{emailAddress}" placeholder="Email" maxlength="62">
               </div>
               <div class="form-item field text half-width-child" id="xly-phone">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="number" class="field-element text required" name="phone" placeholder="Phone">
+                <input type="number" class="field-element text required" name="phone" placeholder="Phone" maxlength="15">
               </div>
             </div>
             <div class="half-width-container">
               <div class="form-item field text half-width-child" id="xly-postcode">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="text" class="field-element text required" name="postcode" placeholder="Postcode">
+                <input type="text" class="field-element text required" name="postcode" placeholder="Postcode" maxlength="8">
               </div>
               <div class="form-item field text half-width-child" id="xly-look-up">
                 <button type="button" id="xly-addressLookup" class="field-element">Look Up Address</button>
@@ -68,11 +68,11 @@
             <div class="form-item field text" id="xly-address">
               <div class="xly-error" style="display:hidden;"></div>
               <span id="crafty_postcode_result_display"></span><br/>
-              <input type="text" class="field-element text required" name="address1" id="address1" placeholder="Address">
+              <input type="text" class="field-element text required" name="address1" id="address1" placeholder="Address" maxlength="95">
             </div>
             <div class="form-item field text" id="xly-town">
               <div class="xly-error" style="display:hidden;"></div>
-              <input type="text" class="field-element text required" name="town" placeholder="Town">
+              <input type="text" class="field-element text required" name="town" placeholder="Town" maxlength="35">
             </div>
             <div class="half-width-container">
               <div class="form-item field select">
