@@ -134,8 +134,8 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe, div.xly.
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
-  margin-top: 20px;
-  padding-bottom: 10px;
+  margin-top: 25px;
+  padding-bottom: 0px!important;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
@@ -303,10 +303,6 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
     margin-bottom: 7px!important;
     text-align: center;
     line-height: 13px!important;
-  }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
-    padding-bottom: 10px;
-    margin-top: 25px;
   }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
     padding-bottom: 0px!important;
