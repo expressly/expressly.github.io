@@ -151,17 +151,22 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label spa
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
-  width: 7px;
-  vertical-align: initial;
-  position: relative;
-  height: 9px;
-  top: 1px;
+
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
   font-size: 10px;
   color: #b2b2b2;
   font-weight: 400;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure .xly-secure-img {
+  width: 8px;
+  height: 10px;
+  display: inline-block;
+  background-image: url("../img/new-lock.png");
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a:last-child {
