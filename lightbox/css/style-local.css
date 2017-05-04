@@ -129,13 +129,17 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-content .xly-bottom
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
   width: 100%;
-  padding-bottom: 10px;
   font-size: 10px;
   color: #b2b2b2;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
   margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
+  padding-bottom: 10px;
   padding-left: 12px;
   text-indent: -12px;
 }
@@ -147,11 +151,11 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe input, di
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
   font-size: 10px;
+  font-weight: normal!important;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>img {
   display: inline-block;
-
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure>a {
@@ -275,9 +279,6 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-content .xly-bottom .text-clear {
     display: none;
   }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
-    margin-top: 20px;
-  }
   div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms {
     width: 100%;
     margin-top: 0;
@@ -303,13 +304,15 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
     text-align: center;
     line-height: 13px!important;
   }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
+  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
+    padding-bottom: 10px;
     margin-top: 25px;
   }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
+  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
     padding-bottom: 0px!important;
     padding-top: 5px!important;
   }
+
 }
 
 @media (max-width: 420px) {
