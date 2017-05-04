@@ -9,24 +9,37 @@ var xlyr = xlyr || {
                 document.body.insertBefore(content, document.body.firstChild);
             }
 
+            //Old jQuery functions commented out
+            // this.form = jQuery("#xly-submit-form");
+            // this.error = jQuery('#xly-globalError');
+            // this.firstNameField = jQuery('#xly-firstName').find('input');
+            // this.lastNameField = jQuery('#xly-lastName').find('input');
+            // this.emailField = jQuery('#xly-email').find('input');
+            // this.phoneField = jQuery('#xly-phone').find('input');
+            // this.postcodeField = jQuery('#xly-postcode').find('input');
+            // this.addressField = jQuery('#xly-address').find('input');
+            // this.townField = jQuery('#xly-town').find('input');
+            // this.dobField = jQuery('#xly-dob').find('input');
+            // this.submitButton = jQuery('#submitButton');
+            // this.subField = jQuery('#xly-subscribe-container').find('label');
+
             this.uuid = uuid;
             this.registerFunction = registerFunction;
-            this.form = jQuery("#xly-submit-form");
-            this.error = jQuery('#xly-globalError');
-            this.firstNameField = jQuery('#xly-firstName').find('input');
-            this.lastNameField = jQuery('#xly-lastName').find('input');
-            this.emailField = jQuery('#xly-email').find('input');
-            this.phoneField = jQuery('#xly-phone').find('input');
-            this.postcodeField = jQuery('#xly-postcode').find('input');
-            this.addressField = jQuery('#xly-address').find('input');
-            this.townField = jQuery('#xly-town').find('input');
-            this.dobField = jQuery('#xly-dob').find('input');
-            this.submitButton = jQuery('#submitButton');
-            this.subField = jQuery('#xly-subscribe-container').find('label');
+            this.form = document.getElementById('xly-submit-form');
+            this.error = document.getElementById('xly-globalError');
+            this.firstNameField = document.getElementById('xly-firstName').getElementsByTagName('input');
+            this.lastNameField = document.getElementById('xly-lastName').getElementsByTagName('input');
+            this.emailField = document.getElementById('xly-email').getElementsByTagName('input');
+            this.phoneField = document.getElementById('xly-phone').getElementsByTagName('input');
+            this.postcodeField = document.getElementById('xly-postcode').getElementsByTagName('input');
+            this.addressField = document.getElementById('xly-address').getElementsByTagName('input');
+            this.townField = document.getElementById('xly-town').getElementsByTagName('input');
+            this.dobField = document.getElementById('xly-dob').getElementsByTagName('input');
+            this.submitButton = document.getElementById('submitButton');
+            this.subField = document.getElementById('xly-subscribe-container').getElementsByTagName('label');
             this.newsletterCheck = document.getElementById('newsletter');
 
             this.initialiseAddressLookup();
-            //this.autofill();
             this.form.submit(this.register)
         },
 
