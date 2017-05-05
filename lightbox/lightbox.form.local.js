@@ -21,6 +21,7 @@ var xlyr = xlyr || {
     this.postcodeField = document.getElementById('xly-postcode').getElementsByTagName('input')[0];
     this.addressField = document.getElementById('xly-address').getElementsByTagName('input')[0];
     this.townField = document.getElementById('xly-town').getElementsByTagName('input')[0];
+    // this.dobField = document.getElementById('xly-dob').getElementsByTagName('input')[0];
     this.submitButton = document.getElementById('submitButton');
     this.subField = document.getElementById('xly-subscribe-container').getElementsByTagName('label')[0];
     this.newsletterCheck = document.getElementById('newsletter');
@@ -71,7 +72,8 @@ var xlyr = xlyr || {
         //address2: '',
         city: xlyr.townField.value,
         zip: xlyr.postcodeField.value,
-        dob: xlyr.dobField.value,
+        // Commented out as DOB is in terms and conditions and not validated here
+        // dob: xlyr.dobField.value,
         optout: !xlyr.newsletterCheck.checked
       });
     }
