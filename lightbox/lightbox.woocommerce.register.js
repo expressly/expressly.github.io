@@ -1,7 +1,7 @@
 var xlyrlwcr = xlyrlwcr || {
         milliseconds: new Date().getTime(),
 
-        register: function(data) {
+        registertest: function(data) {
             xlyrlwcr.baseFolder = '';
             xlyrlwcr.xlyGetNonceAndRegister(data);
         },

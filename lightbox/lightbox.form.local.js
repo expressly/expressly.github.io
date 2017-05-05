@@ -154,7 +154,7 @@ var xlyr = xlyr || {
     submitButton.style.display = "none";
     var closeButton = jQuery('.xly-decline')[0];
     var closeButton = document.querySelectorAll('.xly-decline')[0];
-    closeButton.style.cssText = 'display:none;'
+    closeButton.style.cssText = this.hideErrorStyle;
     var loader = document.querySelectorAll('.xly-loader')[0];
     loader.style.cssText = 'display:inline-block; float:right; margin-left:47px; padding-top:8px;';
   },
