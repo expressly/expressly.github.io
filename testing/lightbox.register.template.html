@@ -56,7 +56,7 @@
               </div>
               <div class="form-item field text half-width-child" id="xly-phone">
                 <div class="xly-error" style="display:hidden;"></div>
-                <input type="number" class="field-element text required" name="phone" placeholder="Phone" maxlength="15">
+                <input type="number" class="field-element text required" name="phone" placeholder="Phone" onkeypress="if(this.value.length==15) return false;">
               </div>
             </div>
             <div class="half-width-container">
