@@ -1,0 +1,85 @@
+<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/style-local.css?v={cssVersion}">
+<script src="https://expressly-local.com/assets/lightbox.pull.js"></script>
+<script src="https://expressly-local.com/assets/lightbox.laithwaites.register.js"></script>
+<script>
+   console.log("test 05");
+   var xlyrData = {
+       uuid: '{campaignCustomerUuid}',
+       registerFunction: function(data) { xlyreg.register(data);}
+   };
+</script>
+<div id="xly" class="xly xly-popup">
+  <div class="xly xly-container">
+    <div class="xly xly-row">
+      <div class="xly-item xly-content">
+        <div class="xly-top">
+          Welcome {firstName}
+        </div>
+        <div class="xly-bottom">
+          <div>
+            <span>{giverName}</span>
+            <span class="xly-regular"> will send</span>
+            <span>{takerName}</span>
+            <span class="text-clear"></span>
+            <span class="xly-regular">your name, address, email - less typing for you!</span>
+          </div>
+        </div>
+      </div>
+      <div class="xly-item xly-logo">
+        <div class="xly-cell xly-bordered">
+          <div style="background: url('{giverLogo}') no-repeat center; background-size: contain;"></div>
+        </div>
+        <div class="xly-cell">
+          <div class="xly-arrows"></div>
+        </div>
+        <div class="xly-cell xly-bordered">
+          <div style="background: url('{takerLogo}') no-repeat center; background-size: contain;"></div>
+        </div>
+      </div>
+      <div class="xly-item">
+        <div class="xly-secure">
+          <div class="xly-secure-img">
+
+          </div>
+          Secure data transfer <a href="https://buyexpressly.com/consumer" target="_blank">(learn more)</a>
+        </div>
+        <div class="xly-subscribe">
+          <div style="display:{displayOptout}">
+            <label for="subscribe"><input type="checkbox" id="subscribe"/> <span>I do not want to receive updates from {takerName}</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="xly-footer">
+        <div class="xly-item">
+          <div class="xly-actions">
+            <div class="firstBtn">
+              <a href="{migrationCancelledUrl}">
+                <div class="xly-decline">Cancel</div>
+              </a>
+            </div>
+            <div class="secondBtn">
+              <a onclick="expresslyContinue(this);return false;">
+                <div class="xly-accept">OK</div>
+              </a>
+              <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
+            </div>
+          </div>
+          <div class="xly-terms">
+            <div class="xly-policy">
+              <a class="xly-dot" href="{termsUrl}" target="_blank">Terms</a> |&#160;
+              <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy</a> |&#160;
+              <a href="{takerUrl}">Not {firstName}?</a>
+              <span class="text-clear-bottom"></span> Powered by
+              <span class="expressly">
+                                <a href="https://www.buyexpressly.com">
+                                    <img src="{assetsUrl}/img/expressly-gray.png" alt="expressly">
+                                </a>
+                            </span>
+            </div>
+          </div>
+          <div class="xly-clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
