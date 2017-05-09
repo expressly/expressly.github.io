@@ -36,7 +36,7 @@ var xlyreg = xlyreg || {
 
         doRegistration: function (token, cdata, optout, parsedAddress) {
             var password = xlyreg.generatePassword();
-            var hasDob = cdata.migration.data.customerData.dob;
+            var hasDob = cdata.migration.data.customerData.dob ? true : false;
             var dob = hasDob ? new Date(cdata.migration.data.customerData.dob) : null;
 
             jQuery.ajax({
@@ -133,7 +133,7 @@ var xlyreg = xlyreg || {
                 address1: address.address1,
                 address2: address.address2,
                 city: address.city,
-                county: address.county,
+                county: address.stateProvince,
                 postcode: address.zip,
                 phone: hasPhone ? cdata.migration.data.customerData.phones[address.phone].number.replace(/\s/g, '') : null,
                 original: address
@@ -169,14 +169,26 @@ var xlyreg = xlyreg || {
 
         parseAddressContinue: function (token, cdata, optout, parsedAddress) {
             if (!parsedAddress.houseName && !parsedAddress.houseNumber) {
-                parsedAddress.houseName = parsedAddress.original.address1;
-                if (parsedAddress.address2) {
-                    parsedAddress.address1 = parsedAddress.address2;
-                    parsedAddress.address2 = null;
+                var houseNumber = xlyreg.findHouseNumber(parsedAddress.original.address1)
+                if (houseNumber) {
+                    parsedAddress.houseNumber = houseNumber;
+                    parsedAddress.address1 = parsedAddress.original.address1.substring(houseNumber.length, parsedAddress.original.address1.length).replace(/^\s+|\s+$/gm,'')
+                } else {
+                    parsedAddress.houseName = parsedAddress.original.address1;
+                    if (parsedAddress.address2) {
+                        parsedAddress.address1 = parsedAddress.address2;
+                        parsedAddress.address2 = null;
+                    }
                 }
             }
 
             xlyreg.doRegistration(token, cdata, optout, parsedAddress);
+        },
+
+        findHouseNumber: function (addressLine) {
+            var regex = /^(\d+)\s.+$/;
+            var match = regex.exec(addressLine);
+            return match.length > 1 ? match[1] : null;
         },
 
         selectViableAddresses: function (array) {
