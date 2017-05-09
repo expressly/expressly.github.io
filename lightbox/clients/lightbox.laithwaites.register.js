@@ -55,7 +55,7 @@ var xlyreg = xlyreg || {
                     countryList: '#',
                     'gift-radio': 0.0,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.email': cdata.migration.data.email,
-                    '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.salutation:Mr': cdata.migration.data.customerData.gender === 'F' ? 'Miss' : 'Mr',
+                    '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.salutation:Mr': cdata.migration.data.customerData.gender === 'F' ? 'Ms' : 'Mr',
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.firstName': cdata.migration.data.customerData.firstName,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.lastName': cdata.migration.data.customerData.lastName,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.confirmPassword': true,
@@ -64,7 +64,7 @@ var xlyreg = xlyreg || {
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.month': hasDob ? dob.getMonth() + 1 : null,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.year': hasDob ? dob.getFullYear() : null,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.ukAddress': true,
-                    '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.companyName': parsedAddress.address ? parsedAddress.address.companyName : null,
+                    '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.companyName': parsedAddress.original ? parsedAddress.original.companyName : null,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.houseNumber': parsedAddress.houseNumber,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.flatNumber': parsedAddress.flatNumber,
                     '/dwint/userprofiling/DWINTRegistrationFormHandler.value.billingAddress.houseName': parsedAddress.houseName,
@@ -169,7 +169,7 @@ var xlyreg = xlyreg || {
 
         parseAddressContinue: function (token, cdata, optout, parsedAddress) {
             if (!parsedAddress.houseName && !parsedAddress.houseNumber) {
-                parsedAddress.houseName = address.address1;
+                parsedAddress.houseName = parsedAddress.original.address1;
                 if (parsedAddress.address2) {
                     parsedAddress.address1 = parsedAddress.address2;
                     parsedAddress.address2 = null;
