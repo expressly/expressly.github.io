@@ -2,7 +2,6 @@ var xlyr = xlyr || {
   milliseconds: new Date().getTime(),
 
   initialise: function(uuid, registerFunction) {
-    console.log("working Local" + uuid);
 
     var content = document.getElementById("xly");
     if (content) {
@@ -214,7 +213,6 @@ var xlyr = xlyr || {
   }
 };
 
-console.log("xlyr created");
 xlyr.ready(function() {
   xlyr.initialise(xlyrData.uuid, xlyrData.registerFunction);
 });

@@ -66,11 +66,10 @@ var xlyrlwcr = xlyrlwcr || {
                             action: 'edit_address'
                         },
                         success: function() {
-                            console.log('billing details added');
                             xlyrlwcr.xlyAddShippingDetails(cdata);
                         },
                         error: function() {
-                            console.log('error with address');
+                            console.log('error with billing address');
                             xlyrlwcr.xlySendMigrationSuccess(cdata.campaignCustomerUuid); // send the success because registration has been successful
                         }
                     });
@@ -105,11 +104,10 @@ var xlyrlwcr = xlyrlwcr || {
                             action: 'edit_address'
                         },
                         success: function() {
-                            console.log('Shipping details added');
                             xlyrlwcr.xlyAddAccountDetails(cdata);
                         },
                         error: function() {
-                            console.log('error with address');
+                            console.log('error with shipping address');
                             xlyrlwcr.xlySendMigrationSuccess(cdata.campaignCustomerUuid); // send the success because registration has been successful
                         }
                     });
@@ -136,11 +134,10 @@ var xlyrlwcr = xlyrlwcr || {
                             action: 'save_account_details'
                         },
                         success: function() {
-                            console.log('Account details added');
                             xlyrlwcr.xlySendMigrationSuccess(cdata.campaignCustomerUuid);
                         },
                         error: function() {
-                            console.log('error with address');
+                            console.log('error with acount details');
                             xlyrlwcr.xlySendMigrationSuccess(cdata.campaignCustomerUuid); // send the success because registration has been successful
                         }
                     });
@@ -152,11 +149,9 @@ var xlyrlwcr = xlyrlwcr || {
         xlyRegistrationSuccessful: function(output) {
             var emailCheck = jQuery(output).find('.woocommerce-error li').text();
             if (emailCheck !== 'Error: An account is already registered with your email address. Please login.') {
-                console.log('email doesnt exist, registration went forward');
                 return true;
             } else {
                 alert('You already have an account with this email address, redirecting you to login page');
-                console.log('Email exists and redirect to login page');
                 window.location.replace('/my-account/');
                 return false;
             }
@@ -189,7 +184,6 @@ var xlyrlwcr = xlyrlwcr || {
         },
 
         xlySendMigrationSuccess: function(uuid) {
-            console.log('Migration success');
             window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + uuid + '/success');
         }
 };
