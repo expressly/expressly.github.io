@@ -130,7 +130,6 @@ var xlyr = xlyr || {
         }
     };
 
-console.log("xlyr created");
 xlyr.ready(function () {
     xlyr.initialise(xlyrData.uuid, xlyrData.registerFunction);
 });
