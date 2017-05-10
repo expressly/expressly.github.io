@@ -205,7 +205,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 52px;
+  max-width: 70px;
   position: relative;
   top: 3px;
 }
