@@ -21,9 +21,9 @@ var xlyr = xlyr || {
             this.addressField = jQuery('#xly-address').find('input');
             this.townField = jQuery('#xly-town').find('input');
             this.dobField = jQuery('#xly-dob').find('input');
-            this.submitButton = jQuery('#submitButton');
+            this.submitButton = jQuery('#xly-submitButton');
             this.subField = jQuery('#xly-subscribe-container').find('label');
-            this.newsletterCheck = document.getElementById('newsletter');
+            this.newsletterCheck = document.getElementById('xly-newsletter');
 
             this.initialiseAddressLookup();
             //this.autofill();
@@ -67,7 +67,7 @@ var xlyr = xlyr || {
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
                     dob: xlyr.dobField.val(),
-                    optout: !xlyr.newsletterCheck.checked
+                    optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
             }
         },
@@ -210,7 +210,6 @@ var xlyr = xlyr || {
         }
     };
 
-console.log("xlyr created");
 xlyr.ready(function () {
     xlyr.initialise(xlyrData.uuid, xlyrData.registerFunction);
 });
