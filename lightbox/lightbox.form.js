@@ -145,7 +145,7 @@ var xlyr = xlyr || {
         },
 
         expresslyContinue: function(event) {
-            xlyr.submitButton.style.display = "none";
+            xlyr.submitButton[0].style.display = "none";
             var closeButton = jQuery('.xly-decline')[0];
             jQuery(closeButton).css({'display': 'none'});
             var loader = jQuery('.xly-loader');
