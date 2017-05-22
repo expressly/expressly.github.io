@@ -377,6 +377,7 @@ div.xly.xly-popup .expressly img {
 }
 
 div.xly.xly-popup .xly-dot {
+    font-weight: 500;
     margin-right: 5px;
     font-size: 14px;
 }
@@ -575,7 +576,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
   white-space: nowrap;
   max-width: 120px;
   position: relative;
-  top: 15px;
+  top: 14px;
   margin-right: -3px;
   height: 30px;
 }
