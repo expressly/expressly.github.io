@@ -1,0 +1,137 @@
+<link rel="stylesheet" type="text/css" href="{assetsUrl}/lightbox/css/client-style.css?v={cssVersion}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
+<script src="{assetsUrl}/lightbox/assets/lightbox.form.js"></script>
+<script src="{assetsUrl}/lightbox/assets/lightbox.api.push.js"></script>
+<script>
+   var xlyrData = {
+       uuid: '{campaignCustomerUuid}',
+       registerFunction: function(data) { xlylap.push(data);}
+   };
+</script>
+<div id="xly" class="xly xly-popup">
+  <div class="xly xly-container">
+    <div class="xly xly-row">
+      <div class="xly-item xly-content">
+        <div class="xly-top">
+          Noxu Home
+          <button class="xly-discover-button">
+            <a href="https://noxuhome.com/" target="_blank">Discover Here</a>
+          </button>
+        </div>
+        <div class="xly-offer-image">
+
+        </div>
+        <div class="xly-bottom">
+          <div>
+            <span class="xly-regular">Fill in the form below to join Noxu Home and a chance to win £1000, in high quality designer furniture.</span>
+          </div>
+        </div>
+      </div>
+      <div class="xly-item xly-form">
+        <form autocomplete="off" method="post" name="address" id="xly-submit-form">
+          <div id="xly-submit-form-fields">
+            <div class="form-item field email">
+              <div class="xly-error" style="display:none;" id="xly-globalError"></div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field text half-width-child" id="xly-firstName">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="text" class="field-element text required" name="firstName" placeholder="First Name" maxlength="35">
+              </div>
+              <div class="form-item field text half-width-child" id="xly-lastName">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="text" class="field-element text required" name="lastName" placeholder="Last Name" maxlength="35">
+              </div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field email half-width-child" id="xly-email">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="text" spellcheck="false" class="field-element required" readonly name="email" placeholder="Email" maxlength="62">
+              </div>
+              <div class="form-item field text half-width-child" id="xly-phone">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="number" class="field-element text required" name="phone" placeholder="Phone" onkeypress="if(this.value.length===15) return false;">
+              </div>
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field text half-width-child" id="xly-postcode">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="text" class="field-element text required" name="postcode" placeholder="Postcode" maxlength="8">
+              </div>
+              <div class="form-item field text half-width-child" id="xly-look-up">
+                <button type="button" id="xly-addressLookup" class="field-element">Look Up Address</button>
+              </div>
+            </div>
+            <div class="form-item field text" id="xly-address">
+              <div class="xly-error" style="display:none;"></div>
+              <span id="crafty_postcode_result_display"></span><br/>
+              <input type="text" class="field-element text required" name="address1" id="address1" placeholder="Address" maxlength="95">
+            </div>
+            <div class="form-item field text" id="xly-town">
+              <div class="xly-error" style="display:none;"></div>
+              <input type="text" class="field-element text required" name="town" placeholder="Town" maxlength="35">
+            </div>
+            <div class="half-width-container">
+              <div class="form-item field select">
+                <select name="gender" class="field-element text half-width-child">
+                               <option selected="" value="" style="color:#fff;">Gender</option>
+                               <option value="Male">Male</option>
+                               <option value="Female">Female</option>
+                               <option value="Other">Other</option>
+                            </select>
+              </div>
+              <div class="form-item field text">
+                <div class="xly-error" style="display:none;"></div>
+                <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" id="xly-dob" placeholder="Date of Birth">
+              </div>
+            </div>
+          </div>
+
+          <div class="xly-clear"></div>
+          <div class="xly-item">
+            <div class="xly-subscribe">
+              <div id="xly-subscribe-container">
+                <p>
+                  <label for="subscribe"><input type="checkbox" id="subscribe" name="mc4wp-subscribe" value="1" />
+                    <span>I accept the competition
+                      <a class="xly-dot" href="{termsUrl}" target="_blank">T&amp;C's</a>and Expressly <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy Policy</a>from {takerName}</span>
+                  </label>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="xly-footer">
+            <div class="xly-item">
+              <div class="xly-actions">
+                  <input type="submit" id="submitButton" value="OK" class="xly-accept" />
+                <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
+                <a href="{migrationCancelledUrl}">
+                  <div class="xly-decline">Cancel</div>
+                </a>
+              </div>
+              <div class="xly-terms">
+                <div class="xly-policy">
+                  <a class="xly-dot" href="{termsUrl}" target="_blank">Terms</a> |&#160;
+                  <a class="xly-dot" href="{privacyUrl}" target="_blank">Privacy</a> |&#160;
+                  <div class="xly-not-name" title="Not {firstName}?">
+                    <a href="{takerUrl}">Not {firstName}</a>
+                  </div>
+                  ?
+                  <span class="text-clear-bottom"></span>
+                  <span class="xly-text-bottom">Powered by</span>
+                  <span class="expressly">
+                      <a href="https://www.buyexpressly.com">
+                          <img src="{assetsUrl}/img/expressly-gray.png" alt="expressly">
+                      </a>
+                  </span>
+                </div>
+              </div>
+              <div class="xly-clear"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
