@@ -21,9 +21,9 @@ var xlyr = xlyr || {
     this.addressField = document.getElementById('xly-address').getElementsByTagName('input')[0];
     this.townField = document.getElementById('xly-town').getElementsByTagName('input')[0];
     // this.dobField = document.getElementById('xly-dob').getElementsByTagName('input')[0];
-    this.submitButton = document.getElementById('submitButton');
+    this.submitButton = document.getElementById('xly-submitButton');
     this.subField = document.getElementById('xly-subscribe-container').getElementsByTagName('label')[0];
-    this.newsletterCheck = document.getElementById('newsletter');
+    this.newsletterCheck = document.getElementById('xly-newsletter');
 
     //Adding variable styles for error
     this.globalErrorStyle = 'display: block; margin-bottom: 5px; border-radius: 5px;';
