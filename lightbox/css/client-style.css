@@ -214,7 +214,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
-    margin: 18px 0;
+    margin: 0px 0;
     float: left;
 }
 
@@ -223,12 +223,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     width: 100%;
     overflow: hidden;
     font-size: 13px;
-    line-height: 44px;
+    line-height: 24px;
     color: #b3b3b3;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
-    font-size: 13px;
     color: #b3b3b3;
 }
 
@@ -379,7 +378,7 @@ div.xly.xly-popup .expressly img {
 
 div.xly.xly-popup .xly-dot {
     margin-right: 5px;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 div.xly.xly-popup .xly-dot:after {
@@ -491,7 +490,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image {
   margin: 0 auto;
-  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/5923075e03596eb13f378cad/1495467875094/Banner1.png?format=750w');
+  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/59231ec82e69cf390a49eaf5/1495473873486/Banner.png?format=750w');
   background-size: contain;
   background-repeat: no-repeat;
   width: 80%;
@@ -536,7 +535,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image-noxu {
   margin: 0 auto;
-  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/5923075e03596eb13f378cad/1495467875094/Banner1.png?format=750w');
+  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/59231ec82e69cf390a49eaf5/1495473873486/Banner.png?format=750w');
   background-size: contain;
   background-repeat: no-repeat;
   width: 80%;
@@ -567,4 +566,29 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-to
 }
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top .xly-discover-button a:hover {
   text-decoration: none;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+  position: relative;
+  top: 15px;
+  margin-right: -3px;
+  height: 30px;
+}
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name a {
+  font-size: 14px;
+  color: #b3b3b3;
+  font-weight: normal;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+  display: block;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-text-bottom {
+  text-align: left;
 }
