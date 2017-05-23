@@ -22,10 +22,11 @@ var xlyr = xlyr || {
     this.townField = document.getElementById('xly-town').getElementsByTagName('input')[0];
     // this.dobField = document.getElementById('xly-dob').getElementsByTagName('input')[0];
     this.submitButton = document.getElementById('xly-submitButton');
-    this.subField = document.getElementById('xly-subscribe-container').getElementsByTagName('label')[0];
+    this.subField = document.getElementById('subscribe');
     this.newsletterCheck = document.getElementById('xly-newsletter');
+    this.postcodeButton = document.getElementById('xly-addressLookup');
 
-    //Adding variable styles for error
+    //Adding variable styles for error fields
     this.globalErrorStyle = 'display: block; margin-bottom: 5px; border-radius: 5px;';
     this.fieldErrorStyle = 'border: 1px solid red!important';
     this.hideErrorStyle = 'display: none;'
@@ -38,6 +39,7 @@ var xlyr = xlyr || {
 
   initialiseAddressLookup: function() {
     var cp_obj = CraftyPostcodeCreate();
+    this.autofill();
     cp_obj.set("access_token", "f8aec-d8058-824ff-015f6"); // your token here
     cp_obj.set("result_elem_id", "crafty_postcode_result_display");
     cp_obj.set("form", "address");
@@ -47,7 +49,10 @@ var xlyr = xlyr || {
     cp_obj.set("elem_street3", "address3");
     cp_obj.set("elem_town", "town");
     cp_obj.set("elem_postcode", "postcode");
-    jQuery('#xly-addressLookup').click(function() {
+    // jQuery('xly-addressLookup').click(function() {
+    //   cp_obj.doLookup();
+    // });
+    this.postcodeButton.addEventListener('click', event => {
       cp_obj.doLookup();
     });
   },
@@ -109,7 +114,7 @@ var xlyr = xlyr || {
     if (!rePostcode.test(this.postcodeField.value)) {
       this.error.style.cssText = this.globalErrorStyle;
       this.error.innerHTML = 'Please enter a valid postcode';
-      this.postcodeField.style.cssText = this.fieldErrorStyle;
+      this.postcodeField.style.cssText = fieldErrorStyle;
       return false;
     }
     return true;
@@ -120,8 +125,8 @@ var xlyr = xlyr || {
     if (!re.test(this.emailField.value)) {
       this.error.style.cssText = this.globalErrorStyle;
       this.error.innerHTML = 'Please enter a valid email address';
-      this.emailField.style.cssText = this.fieldErrorStyle;
-      return false;
+      this.emailField.style.cssText = 'border: 1px solid red!important';
+      return true;
     }
     return true;
   },
@@ -150,7 +155,7 @@ var xlyr = xlyr || {
   },
 
   expresslyContinue: function(event) {
-    submitButton.style.display = "none";
+    this.submitButton.style.display = "none";
     var closeButton = document.querySelectorAll('.xly-decline')[0];
     closeButton.style.cssText = this.hideErrorStyle;
     var loader = document.querySelectorAll('.xly-loader')[0];

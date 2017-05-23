@@ -48,3 +48,21 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-text-bottom {
   text-align: left;
 }
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
+  margin-top: 5px;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
+  line-height: 23px;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name a {
+  font-size: 13px;
+}
