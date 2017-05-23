@@ -1,0 +1,61 @@
+/* Pop up testing flow 1 style */
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image-noxu {
+  margin: 0 auto;
+  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/59231ec82e69cf390a49eaf5/1495473873486/Banner.png?format=750w');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80%;
+  height: 80px;
+  margin-bottom: 10px;
+  background-position: center;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top .xly-discover-button {
+  height: -6px;
+  line-height: 0px;
+  /* padding-top: 13px; */
+  text-align: center;
+  vertical-align: text-top;
+  border-radius: 5px;
+  padding: 15px 10px;
+  border: 0px solid black;
+  background-color: #3E7EA1;
+  color: #fff;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top .xly-discover-button:hover {
+  background-color: #4891b9;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top .xly-discover-button a {
+  color: #fff;
+}
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top .xly-discover-button a:hover {
+  text-decoration: none;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+  position: relative;
+  top: 14px;
+  margin-right: -3px;
+  height: 30px;
+}
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name a {
+  font-size: 14px;
+  color: #b3b3b3;
+  font-weight: normal;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+  display: block;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-text-bottom {
+  text-align: left;
+}
