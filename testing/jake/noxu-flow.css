@@ -2,7 +2,7 @@
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image-noxu {
   margin: 0 auto;
-  background-image:URL('https://static1.squarespace.com/static/56940f2440667aed163c6675/58d3d71ed482e9f59600d337/59231ec82e69cf390a49eaf5/1495473873486/Banner.png?format=750w');
+  background-image:URL('{assetsUrl}/lightbox/img/noxu-banner.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 80%;
