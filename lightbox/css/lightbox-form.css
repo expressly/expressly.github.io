@@ -214,22 +214,26 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
-    margin: 18px 0;
-    float: left;
+  float: left;
+  margin-top: 16px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
-    text-align: center;
+    text-align: left;
     width: 100%;
     overflow: hidden;
     font-size: 13px;
-    line-height: 44px;
+    line-height: 23px;
     color: #b3b3b3;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
     font-size: 13px;
     color: #b3b3b3;
+}
+
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+  display: block;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
@@ -319,7 +323,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a div {
-        width: 100px;
+        width: 50px;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .firstBtn {
@@ -330,6 +334,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .secondBtn {
         margin: 0 auto;
         display: inline-block;
+    }
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
+      line-height: 23px;
+      text-align: center;
     }
 }
 
@@ -348,6 +356,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type > div {
         margin-right: 0;
         margin-bottom: 8px;
+        float: right;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
@@ -492,12 +501,17 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image {
   margin: 0 auto;
-  background-image:URL('{assetsUrl}/lightbox/img/noxu-banner.png');
   background-size: contain;
   background-repeat: no-repeat;
   height: 80px;
   margin-bottom: 10px;
   background-position: center;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image a {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #crafty_postcode_result_display {
