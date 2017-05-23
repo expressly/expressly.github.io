@@ -56,11 +56,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-of
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
-  margin-top: 5px;
+  margin-top: 16px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy {
   line-height: 23px;
+  text-align: left;
 }
 
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .xly-not-name a {

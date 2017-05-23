@@ -125,8 +125,8 @@ var xlyr = xlyr || {
     if (!re.test(this.emailField.value)) {
       this.error.style.cssText = this.globalErrorStyle;
       this.error.innerHTML = 'Please enter a valid email address';
-      this.emailField.style.cssText = 'border: 1px solid red!important';
-      return true;
+      this.emailField.style.cssText = this.fieldErrorStyle;
+      return false;
     }
     return true;
   },
