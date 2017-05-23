@@ -7,7 +7,6 @@ var xlyr = xlyr || {
     if (content) {
       document.body.insertBefore(content, document.body.firstChild);
     }
-
     this.uuid = uuid;
     this.registerFunction = registerFunction;
     // Vanilla js
