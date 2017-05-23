@@ -214,7 +214,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
-    margin: 0px 0;
+    margin: 18px 0;
     float: left;
 }
 
@@ -223,11 +223,12 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     width: 100%;
     overflow: hidden;
     font-size: 13px;
-    line-height: 24px;
+    line-height: 44px;
     color: #b3b3b3;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
+    font-size: 13px;
     color: #b3b3b3;
 }
 
