@@ -20,7 +20,7 @@ var xlyr = xlyr || {
             this.postcodeField = jQuery('#xly-postcode').find('input');
             this.addressField = jQuery('#xly-address').find('input');
             this.townField = jQuery('#xly-town').find('input');
-            this.gender = jQuery('#xly-gender');
+            this.genderField = jQuery('#xly-gender');
             this.dobField = jQuery('#xly-dob');
             this.submitButton = jQuery('#xly-submitButton');
             this.subField = jQuery('#xly-subscribe-container').find('label');
@@ -68,7 +68,7 @@ var xlyr = xlyr || {
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
                     dob: xlyr.dobField.val(),
-                    gender: xlyr.gender.val(),
+                    gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
             }
@@ -144,8 +144,8 @@ var xlyr = xlyr || {
             this.postcodeField.val('Cf64 1AZ');
             this.addressField.val('11 Church Avenue');
             this.townField.val('Penarth');
-            this.gender.val('M');
-            this.dobField.val('14/07/1985');
+            this.genderField.val('Male');
+            this.dobField.val('1985-13-07');
         },
 
         expresslyContinue: function(event) {
