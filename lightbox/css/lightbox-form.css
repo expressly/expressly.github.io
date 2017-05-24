@@ -134,6 +134,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
     font-size: 14px !important;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
+  display: block;
+}
+
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-regular {
     font-family: "Graphik-Regular", Arial, sans-serif;
     font-weight: normal
@@ -146,8 +150,22 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
 }
 
 @media (max-width: 480px) {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
+      width: 90%;
+      padding-top: 10px;
+    }
+
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
-        width: auto;
+      width: auto;
+      margin: 0px;
+
+    }
+
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom {
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+      font-size: 14px !important;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span {
@@ -167,13 +185,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-ter
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     width: 100%;
     padding-bottom: 10px;
-    font-size: 13px;
+    font-size: 14px;
     color: #b2b2b2;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-    padding-top: 22px;
-    padding-bottom: 22px;
+    padding-top: 14px;
+    padding-bottom: 14px;
     padding-left: 10px;
     text-indent: -12px;
     text-align: left;
@@ -188,8 +206,9 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-ter
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: normal;
+    line-height: 11px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > img {
@@ -198,7 +217,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > img {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
-    font-size: 13px;
+    font-size: 14px;
     color: #b2b2b2;
     font-weight: 400;
 }
@@ -223,13 +242,13 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     text-align: left;
     width: 100%;
     overflow: hidden;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 23px;
     color: #b3b3b3;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
-    font-size: 13px;
+    font-size: 14px;
     color: #b3b3b3;
 }
 
@@ -306,23 +325,22 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 @media (max-width: 768px) {
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
         font-size: 1.4em !important;
-    }
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-        margin-top: 25px;
+        margin: 0 auto;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
         width: 100%;
         margin-top: 0;
-        margin-bottom: 11px;
+        margin-bottom: 0px;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-        width: 100%;
-        margin-bottom: 8px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-accept {
@@ -415,7 +433,7 @@ div.xly.xly-popup [type="checkbox"]:checked {
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe a {
   color: inherit;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form {
@@ -450,7 +468,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   border: 1px solid #E99292;
   border-radius: 10px 10px 0 0;
   font-family: "Graphik-Regular", Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: #FFFFFF;
   margin-top: 10px;
   line-height: 28px;

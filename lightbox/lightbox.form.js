@@ -97,9 +97,9 @@ var xlyr = xlyr || {
                 if (isValid) {
                     isValid = this.xlyValidatePostCode();
                 }
-                if (isValid) {
-                    isValid = this.xlyValidateAge();
-                }
+                  if (isValid) {
+                      isValid = this.xlyValidateAge();
+                  }
             } else {
                 this.error.text('Please fill all fields');
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -130,6 +130,20 @@ var xlyr = xlyr || {
             return true;
         },
 
+        xlyValidateAge: function() {
+          var dob = this.dobField.val();
+          var formattedDob = xlyr.xlyFormattedDate(dob);
+          var age = xlyr.xlyGetAge(formattedDob);
+
+          if (age < 18) {
+            this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+            this.error.text('You must be over 18 to enter');
+            this.dobField.css({'border': '1px solid red'});
+            return false;
+          }
+          return true;
+        },
+
         xlyGetAge: function(dateString) {
           var today = new Date();
           var birthDate = new Date(dateString);
@@ -145,21 +159,6 @@ var xlyr = xlyr || {
           var formattedDob = dob.replace(/(\d{2})(\d{2})(\d{4})/, "$1-$2-$3");
           var newDob = formattedDob.split("-").reverse().join("-");
           return newDob;
-        },
-
-        xlyValidateAge: function() {
-          var dob = this.dobField.val();
-          var formattedDob = xlyr.xlyFormattedDate(dob);
-          var age = xlyr.xlyGetAge(formattedDob);
-
-          if (age < 18) {
-            this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
-            this.error.text('You must be over 18 to enter');
-            this.dobField.css({'border': '1px solid red'});
-            return false;
-          }
-          return true;
-
         },
 
         xlyCheckTerms: function xlyCheckTerms() {
