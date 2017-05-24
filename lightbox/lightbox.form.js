@@ -105,7 +105,7 @@ var xlyr = xlyr || {
         },
 
         xlyValidatePostCode: function () {
-            var rePostcode = /^([a-zA-Z]){1}([0-9][0-9]|[0-9]|[a-zA-Z][0-9][a-zA-Z]|[a-zA-Z][0-9][0-9]|[a-zA-Z][0-9]){1}([ ])([0-9][a-zA-z][a-zA-z]){1}$/;
+            var rePostcode = /^((?:(?:gir)|(?:[a-pr-uwyz])(?:(?:[0-9](?:[a-hjkpstuw]|[0-9])?)|(?:[a-hk-y][0-9](?:[0-9]|[abehmnprv-y])?)))) ?([0-9][abd-hjlnp-uw-z]{2})$/i;
             if (!rePostcode.test(this.postcodeField.val())) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Please enter a valid postcode');
