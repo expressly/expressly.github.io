@@ -87,7 +87,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
       float: none;
     }
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
-      margin-right: 0px;
+      margin-right: 0;
     }
 }
 
@@ -157,7 +157,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
       width: auto;
-      margin: 0px;
+      margin: 0;
 
     }
 
@@ -170,7 +170,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span {
         display: block;
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     div.xly.xly-popup [type="checkbox"]:not(:checked), div.xly.xly-popup [type="checkbox"]:checked {
@@ -203,7 +203,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe input,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms input,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span, {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
     vertical-align: middle;
 }
 
@@ -334,7 +334,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms {
         width: 100%;
         margin-top: 0;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
@@ -451,7 +451,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   font-family: "Graphik-Regular", Arial, sans-serif;
   font-size: 14px;
   color: #837575;
-  border: 0px;
+  border: 0;
   width: 100%;
   padding-left: 10px;
   height: 40px;
@@ -461,7 +461,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item .xly-error {
   display: none;
   height: 30px;
-  background-color: #000;
   margin-bottom: -10px;
   background: #E99292;
   border: 1px solid #E99292;
@@ -518,12 +517,10 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image {
-  margin: 0 auto;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 80px;
-  margin-bottom: 10px;
-  background-position: center;
+    background-size: contain;
+    height: 80px;
+    margin: 0 auto 10px;
+    background: no-repeat center;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-offer-image a {
@@ -534,29 +531,22 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-of
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #crafty_postcode_result_display {
   width: 100%;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #crafty_postcode_result_display #crafty_postcode_lookup_result_option1 {
-  width: 100%!important;
+  width: 100% !important;
   background: #E4E4E5;
   border-radius: 5px;
   font-family: "Graphik-Regular", Arial, sans-serif;
   font-size: 14px;
   color: #837575;
-  border: 0px;
-  width: 100%;
+  border: 0;
   padding-left: 10px;
   height: 40px;
   margin-top: 10px;
 }
 
-::-webkit-datetime-edit-fields-wrapper {
-}
-::-webkit-datetime-edit-text {
-}
-::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-year-field {
-}
 ::-webkit-inner-spin-button {
     display: none;
 }

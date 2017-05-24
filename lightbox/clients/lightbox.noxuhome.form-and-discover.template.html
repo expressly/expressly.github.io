@@ -3,10 +3,6 @@
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
 <script src="{assetsUrl}/lightbox/lightbox.form.js"></script>
 <script src="{assetsUrl}/lightbox/lightbox.api.push.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="http://www.wip4.adobe.com:8888/lightbox/css/lightbox-form.css?v={cssVersion}">
-<script src="http://www.wip4.adobe.com:8888/lightbox/lightbox.form.js"></script> -->
 <script>
    var xlyrData = {
        uuid: '{campaignCustomerUuid}',
@@ -20,7 +16,7 @@
         <div class="xly-top">
           Win &pound;1,000 to spend in designer furniture
         </div>
-        <div class="xly-offer-image" style="background-image:URL('{assetsUrl}/lightbox/img/noxu-banner.png');">
+        <div class="xly-offer-image" style="background-image:url('{assetsUrl}/lightbox/img/noxu-banner.png');">
           <a href="https://noxuhome.com/" target="_blank"></a>
         </div>
         <div class="xly-bottom">
@@ -84,8 +80,7 @@
               </div>
               <div class="form-item field text">
                 <div class="xly-error" style="display:none;"></div>
-                <!-- <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" id="xly-dob" placeholder="Date of Birth"> -->
-                <input type="number" class="field-element text half-width-child" name="dob" min="1900-01-01" onkeypress="if(this.value.length===10) return false;" id="xly-dob" placeholder="dd/mm/yyyy">
+                <input type="text" class="field-element text half-width-child" maxlength="10" name="dob" id="xly-dob" placeholder="dd/mm/yyyy">
               </div>
             </div>
           </div>
