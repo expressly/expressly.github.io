@@ -138,7 +138,7 @@ var xlyr = xlyr || {
 
             var p = dob.split("/");
             var dobDate = new Date(xlyr.xlyFormattedDate(dob));
-            if (isNaN(dobDate)) {
+            if (isNaN(dobDate) || dobDate.getFullYear() < 1900) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Invalid date of birth');
                 this.dobField.css({'border': '1px solid red'});
