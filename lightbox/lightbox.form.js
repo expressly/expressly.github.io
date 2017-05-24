@@ -54,9 +54,6 @@ var xlyr = xlyr || {
 
 
         xlyValidateAndChecked: function () {
-            var dob = this.dobField.val();
-            var payloadDob = xlyr.xlyFormattedDate(dob);
-
             if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms() && xlyr.xlyValidateAge()) {
                 xlyr.expresslyContinue();
                 xlyr.registerFunction({
@@ -70,8 +67,7 @@ var xlyr = xlyr || {
                     //address2: '',
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
-                    // dob: xlyr.dobField.val(),
-                    dob: payloadDob,
+                    dob: xlyr.xlyFormattedDate(this.dobField.val()),
                     gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
@@ -97,9 +93,9 @@ var xlyr = xlyr || {
                 if (isValid) {
                     isValid = this.xlyValidatePostCode();
                 }
-                  if (isValid) {
-                      isValid = this.xlyValidateAge();
-                  }
+                if (isValid) {
+                    isValid = this.xlyValidateAge();
+                }
             } else {
                 this.error.text('Please fill all fields');
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
@@ -130,35 +126,47 @@ var xlyr = xlyr || {
             return true;
         },
 
-        xlyValidateAge: function() {
-          var dob = this.dobField.val();
-          var formattedDob = xlyr.xlyFormattedDate(dob);
-          var age = xlyr.xlyGetAge(formattedDob);
+        xlyValidateAge: function () {
+            var dob = this.dobField.val();
+            var re = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+            if (!re.test(dob)) {
+                this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+                this.error.text('Invalid date of birth');
+                this.dobField.css({'border': '1px solid red'});
+                return false;
+            }
 
-          if (age < 18) {
-            this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
-            this.error.text('You must be over 18 to enter');
-            this.dobField.css({'border': '1px solid red'});
-            return false;
-          }
-          return true;
+            var p = dob.split("/");
+            var dobDate = new Date(xlyr.xlyFormattedDate(dob));
+            if (isNaN(dobDate)) {
+                this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+                this.error.text('Invalid date of birth');
+                this.dobField.css({'border': '1px solid red'});
+                return false;
+            }
+
+            var age = xlyr.xlyGetAge(dobDate);
+            if (age < 18) {
+                this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+                this.error.text('You must be over 18 to enter');
+                this.dobField.css({'border': '1px solid red'});
+                return false;
+            }
+            return true;
         },
 
-        xlyGetAge: function(dateString) {
-          var today = new Date();
-          var birthDate = new Date(dateString);
-          var age = today.getFullYear() - birthDate.getFullYear();
-          var m = today.getMonth() - birthDate.getMonth();
-          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-          }
-          return age;
+        xlyGetAge: function (birthDate) {
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
         },
 
-        xlyFormattedDate: function(dob) {
-          var formattedDob = dob.replace(/(\d{2})(\d{2})(\d{4})/, "$1-$2-$3");
-          var newDob = formattedDob.split("-").reverse().join("-");
-          return newDob;
+        xlyFormattedDate: function (dob) {
+            return dob.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1");
         },
 
         xlyCheckTerms: function xlyCheckTerms() {
@@ -186,14 +194,19 @@ var xlyr = xlyr || {
             this.dobField.val('24052001');
         },
 
-        expresslyContinue: function(event) {
+        expresslyContinue: function (event) {
             xlyr.submitButton[0].style.display = "none";
             var closeButton = jQuery('.xly-decline')[0];
             jQuery(closeButton).css({'display': 'none'});
             var loader = jQuery('.xly-loader');
             jQuery(loader).css({'display': 'inline-block'});
             var xlyLoader = jQuery('.xly-loader')[0];
-            jQuery(xlyLoader).css({'display': 'inline-block', 'float': 'right', 'margin-left': '47px', 'padding-top': '8px'});
+            jQuery(xlyLoader).css({
+                'display': 'inline-block',
+                'float': 'right',
+                'margin-left': '47px',
+                'padding-top': '8px'
+            });
         },
 
         ready: function (callback) {
