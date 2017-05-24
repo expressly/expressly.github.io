@@ -81,7 +81,6 @@ var xlyr = xlyr || {
                 if (field.val() === '') {
                     isValid = false;
                     field.attr('style', 'border: 1px solid red!important');
-                    //field.css({'border': '1px solid red'});
                 } else {
                     field.css({'border': 'none'});
                 }
@@ -109,7 +108,7 @@ var xlyr = xlyr || {
             if (!rePostcode.test(this.postcodeField.val())) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Please enter a valid postcode');
-                this.postcodeField.attr('style', 'border: 1px solid red!important');
+                this.postcodeField.attr('style', 'border: 1px solid red !important');
                 return false;
             }
             return true;
@@ -120,7 +119,7 @@ var xlyr = xlyr || {
             if (!re.test(this.emailField.val())) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Not a valid email address');
-                this.emailField.css({'border': '1px solid red'});
+                this.emailField.css({'border': '1px solid red !important'});
                 return false;
             }
             return true;
@@ -132,7 +131,7 @@ var xlyr = xlyr || {
             if (!re.test(dob)) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Please insert date as dd/mm/yyyy');
-                this.dobField.css({'border': '1px solid red'});
+                this.dobField.css({'border': '1px solid red !important'});
                 return false;
             }
 
@@ -141,7 +140,7 @@ var xlyr = xlyr || {
             if (isNaN(dobDate) || dobDate.getFullYear() < 1900) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Please insert date as dd/mm/yyyy');
-                this.dobField.css({'border': '1px solid red'});
+                this.dobField.css({'border': '1px solid red !important'});
                 return false;
             }
 
@@ -149,7 +148,7 @@ var xlyr = xlyr || {
             if (age < 18) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('You must be over 18 to enter');
-                this.dobField.css({'border': '1px solid red'});
+                this.dobField.css({'border': '1px solid red !important'});
                 return false;
             }
             return true;
