@@ -26,7 +26,7 @@ var xlyr = xlyr || {
             this.subField = jQuery('#xly-subscribe-container').find('label');
             this.newsletterCheck = document.getElementById('xly-newsletter');
 
-            this.initialiseAddressLookup();
+        //     this.initialiseAddressLookup();
             //this.autofill();
             this.form.submit(this.register)
         },
@@ -54,7 +54,10 @@ var xlyr = xlyr || {
 
 
         xlyValidateAndChecked: function () {
-            if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms()) {
+            var dob = this.dobField.val();
+            var payloadDob = xlyr.xlyFormattedDate(dob);
+
+            if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms() && xlyr.xlyValidateAge()) {
                 xlyr.expresslyContinue();
                 xlyr.registerFunction({
                     campaignCustomerUuid: xlyr.uuid,
@@ -67,7 +70,8 @@ var xlyr = xlyr || {
                     //address2: '',
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
-                    dob: xlyr.dobField.val(),
+                    // dob: xlyr.dobField.val(),
+                    dob: payloadDob,
                     gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
@@ -93,8 +97,11 @@ var xlyr = xlyr || {
                 if (isValid) {
                     isValid = this.xlyValidatePostCode();
                 }
+                if (isValid) {
+                    isValid = this.xlyValidateAge();
+                }
             } else {
-                this.error.text('Please ensure all fields are filled');
+                this.error.text('Please fill all fields');
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
             }
 
@@ -123,6 +130,38 @@ var xlyr = xlyr || {
             return true;
         },
 
+        xlyGetAge: function(dateString) {
+          var today = new Date();
+          var birthDate = new Date(dateString);
+          var age = today.getFullYear() - birthDate.getFullYear();
+          var m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        },
+
+        xlyFormattedDate: function(dob) {
+          var formattedDob = dob.replace(/(\d{2})(\d{2})(\d{4})/, "$1-$2-$3");
+          var newDob = formattedDob.split("-").reverse().join("-");
+          return newDob;
+        },
+
+        xlyValidateAge: function() {
+          var dob = this.dobField.val();
+          var formattedDob = xlyr.xlyFormattedDate(dob);
+          var age = xlyr.xlyGetAge(formattedDob);
+
+          if (age < 18) {
+            this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
+            this.error.text('You must be over 18 to enter');
+            this.dobField.css({'border': '1px solid red'});
+            return false;
+          }
+          return true;
+
+        },
+
         xlyCheckTerms: function xlyCheckTerms() {
             var check = document.getElementById('subscribe');
             if (!check.checked) {
@@ -145,7 +184,7 @@ var xlyr = xlyr || {
             this.addressField.val('11 Church Avenue');
             this.townField.val('Penarth');
             this.genderField.val('Male');
-            this.dobField.val('1985-13-07');
+            this.dobField.val('24052001');
         },
 
         expresslyContinue: function(event) {

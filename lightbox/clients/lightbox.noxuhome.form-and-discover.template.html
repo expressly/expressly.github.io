@@ -3,6 +3,10 @@
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
 <script src="{assetsUrl}/lightbox/lightbox.form.js"></script>
 <script src="{assetsUrl}/lightbox/lightbox.api.push.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="http://www.wip4.adobe.com:8888/lightbox/css/lightbox-form.css?v={cssVersion}">
+<script src="http://www.wip4.adobe.com:8888/lightbox/lightbox.form.js"></script> -->
 <script>
    var xlyrData = {
        uuid: '{campaignCustomerUuid}',
@@ -80,7 +84,8 @@
               </div>
               <div class="form-item field text">
                 <div class="xly-error" style="display:none;"></div>
-                <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" id="xly-dob" placeholder="Date of Birth">
+                <!-- <input type="date" class="field-element text half-width-child" name="dob" min="1900-01-01" id="xly-dob" placeholder="Date of Birth"> -->
+                <input type="number" class="field-element text half-width-child" name="dob" min="1900-01-01" onkeypress="if(this.value.length===) return false;" id="xly-dob" placeholder="DD/MM/YYYY">
               </div>
             </div>
           </div>
