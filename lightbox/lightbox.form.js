@@ -191,7 +191,7 @@ var xlyr = xlyr || {
             this.addressField.val('11 Church Avenue');
             this.townField.val('Penarth');
             this.genderField.val('Male');
-            this.dobField.val('24052001');
+            this.dobField.val('24/05/2001');
         },
 
         expresslyContinue: function (event) {
