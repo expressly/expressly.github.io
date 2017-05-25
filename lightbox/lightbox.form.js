@@ -26,7 +26,7 @@ var xlyr = xlyr || {
             this.subField = jQuery('#xly-subscribe-container').find('label');
             this.newsletterCheck = document.getElementById('xly-newsletter');
 
-            this.initialiseAddressLookup();
+        //     this.initialiseAddressLookup();
             //this.autofill();
             this.form.submit(this.register)
         },
@@ -71,7 +71,9 @@ var xlyr = xlyr || {
                     gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
-                xlyr.xlyThankYou();
+                if (xlyrData.successMessage) {
+                   alert(xlyrData.successMessage); 
+                }
             }
         },
 
@@ -191,7 +193,7 @@ var xlyr = xlyr || {
             this.addressField.val('11 Church Avenue');
             this.townField.val('Penarth');
             this.genderField.val('Male');
-            this.dobField.val('24/05/2001');
+            this.dobField.val('24/05/1992');
         },
 
         expresslyContinue: function (event) {
@@ -207,11 +209,6 @@ var xlyr = xlyr || {
                 'margin-left': '47px',
                 'padding-top': '8px'
             });
-        },
-
-        xlyThankYou: function() {
-          alert('Thank you for entering the competition! We\'ll be in touch in early June if you are the lucky winner. \n
-          Now, enjoy your registered account at Noxu Home and use code NOXU20 for immediate £20 off!');
         },
 
         ready: function (callback) {
