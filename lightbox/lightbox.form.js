@@ -56,6 +56,7 @@ var xlyr = xlyr || {
         xlyValidateAndChecked: function () {
             if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms() && xlyr.xlyValidateAge()) {
                 xlyr.expresslyContinue();
+                xlyr.xlyThankYou();
                 xlyr.registerFunction({
                     campaignCustomerUuid: xlyr.uuid,
                     firstName: xlyr.firstNameField.val(),
@@ -208,6 +209,9 @@ var xlyr = xlyr || {
             });
         },
 
+        xlyThankYou: function() {
+          alert('Thanks for entering the competition! We\'ll be in touch if you are the lucky winner!');
+        },
         ready: function (callback) {
             var ready = false;
 
