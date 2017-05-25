@@ -72,7 +72,7 @@ var xlyr = xlyr || {
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
                 if (xlyrData.successMessage) {
-                   alert(xlyrData.successMessage); 
+                   alert(xlyrData.successMessage);
                 }
             }
         },
