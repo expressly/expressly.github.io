@@ -52,6 +52,11 @@ var xlyr = xlyr || {
             xlyr.xlyValidateAndChecked();
         },
 
+        decodeHtml: function(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        },
 
         xlyValidateAndChecked: function () {
             if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms() && xlyr.xlyValidateAge()) {
@@ -72,7 +77,7 @@ var xlyr = xlyr || {
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
                 if (xlyrData.successMessage) {
-                   alert(xlyrData.successMessage);
+                   alert(xlyr.decodeHtml(xlyrData.successMessage));
                 }
             }
         },
