@@ -56,7 +56,6 @@ var xlyr = xlyr || {
         xlyValidateAndChecked: function () {
             if (xlyr.xlyFormValidate() && xlyr.xlyCheckTerms() && xlyr.xlyValidateAge()) {
                 xlyr.expresslyContinue();
-                xlyr.xlyThankYou();
                 xlyr.registerFunction({
                     campaignCustomerUuid: xlyr.uuid,
                     firstName: xlyr.firstNameField.val(),
@@ -195,6 +194,7 @@ var xlyr = xlyr || {
         },
 
         expresslyContinue: function (event) {
+            // xlyr.xlyThankYou();
             xlyr.submitButton[0].style.display = "none";
             var closeButton = jQuery('.xly-decline')[0];
             jQuery(closeButton).css({'display': 'none'});
@@ -212,6 +212,7 @@ var xlyr = xlyr || {
         xlyThankYou: function() {
           alert('Thanks for entering the competition! We\'ll be in touch if you are the lucky winner!');
         },
+
         ready: function (callback) {
             var ready = false;
 
