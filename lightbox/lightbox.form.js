@@ -71,6 +71,7 @@ var xlyr = xlyr || {
                     gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
                 });
+                xlyr.xlyThankYou();
             }
         },
 
@@ -194,7 +195,6 @@ var xlyr = xlyr || {
         },
 
         expresslyContinue: function (event) {
-            // xlyr.xlyThankYou();
             xlyr.submitButton[0].style.display = "none";
             var closeButton = jQuery('.xly-decline')[0];
             jQuery(closeButton).css({'display': 'none'});
@@ -210,7 +210,8 @@ var xlyr = xlyr || {
         },
 
         xlyThankYou: function() {
-          alert('Thanks for entering the competition! We\'ll be in touch if you are the lucky winner!');
+          alert('Thank you for entering the competition! We\'ll be in touch in early June if you are the lucky winner. \n
+          Now, enjoy your registered account at Noxu Home and use code NOXU20 for immediate £20 off!');
         },
 
         ready: function (callback) {

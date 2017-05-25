@@ -47,7 +47,6 @@ var xlylap = xlylap || {
                 if (json.error) {
                     console.log("xly:" + json.error);
                 }
-                alert('Thanks for entering the competition! We\'ll be in touch if you are the lucky winner!');
                 window.location.replace(json.redirectUrl)
             });
         }
