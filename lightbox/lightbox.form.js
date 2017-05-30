@@ -19,6 +19,7 @@ var xlyr = xlyr || {
             this.phoneField = jQuery('#xly-phone').find('input');
             this.postcodeField = jQuery('#xly-postcode').find('input');
             this.addressField = jQuery('#xly-address').find('input');
+            this.address2Field = jQuery('#xly-address2').find('input');
             this.townField = jQuery('#xly-town').find('input');
             this.genderField = jQuery('#xly-gender');
             this.dobField = jQuery('#xly-dob');
@@ -69,7 +70,7 @@ var xlyr = xlyr || {
                     phone: xlyr.phoneField.val(),
                     country: 'GBR',
                     address1: xlyr.addressField.val(),
-                    //address2: '',
+                    address2: xlyr.address2Field ? xlyr.address2Field.val() : null,
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
                     dob: xlyr.xlyFormattedDate(this.dobField.val()),
