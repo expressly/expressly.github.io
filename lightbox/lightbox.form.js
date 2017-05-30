@@ -177,7 +177,10 @@ var xlyr = xlyr || {
         },
 
         xlyCheckTerms: function xlyCheckTerms() {
-            var check = document.getElementById('subscribe');
+            var check = document.getElementById('xly-subscribe');
+            if (!check) {
+                check = document.getElementById('subscribe'); // backwards compatibility
+            }
             if (!check.checked) {
                 this.error.css({'display': 'block', 'margin-bottom': '5px', 'border-radius': '5px'});
                 this.error.text('Please accept the terms and conditions');
