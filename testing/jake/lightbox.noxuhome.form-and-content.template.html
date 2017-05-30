@@ -3,52 +3,37 @@
 <script src="{assetsUrl}/js/crafty_postcode.class.js"></script>
 <script src="{assetsUrl}/lightbox/lightbox.form.js?v={cssVersion}"></script>
 <script src="{assetsUrl}/lightbox/lightbox.api.push.js?v={cssVersion}"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../../lightbox/css/lightbox-form.css?v={css"> -->
 
-<!-- TODO: Remove local links -->
+<style>
+  .xly-show-less {
+    display: none;
+  }
+</style>
 
 <script>
-   var xlyrData = {
-       uuid: '{campaignCustomerUuid}',
-       registerFunction: function(data) { xlylap.push(data);},
-       successMessage:'Thank you for entering the competition! We\'ll be in touch by 30 June if you are the lucky winner. \n\nYour Noxu Home account is ready, use code NOXU20 to get &pound;20 off your first order!',
-   };
+  var xlyrData = {
+    uuid: '{campaignCustomerUuid}',
+    registerFunction: function(data) {
+      xlylap.push(data);
+    },
+    successMessage: 'Thank you for entering the competition! We\'ll be in touch by 30 June if you are the lucky winner. \n\nYour Noxu Home account is ready, use code NOXU20 to get &pound;20 off your first order!',
+  };
 
-   var status = "less";
+  var status = "less";
 
-   function toggleText() {
-       var text=`
-        Transform your home with &pound;1,000 worth of designer furniture from Noxuhome.com
-        <br />
-        <br  />
-        At NOXU Home they specialise in designer furniture made simple – whatever your style there will be the perfect piece for you.
-        <br />
-        <br  />
-        <img src="{assetsUrl}/lightbox/img/noxu-lamp.jpg" style="margin: 0 auto;"/>
-        <br />
-        <br  />
-        NOXU Home seeks out the best design talent from international award winners, as well as new creatives, showcasing their most stunning furniture pieces. With an abundance of trends and styles there’s something for everyone in their premium-quality range.
-        <br />
-        <br  />
-        Designer made simple at NOXU Home. Homeware directly from the designers to your door.
-        <br />
-        <br  />
-       `;
+  function xlyToggleContent() {
 
-      var smallText=`
-      Transform your; home with £1,000 worth of designer furniture from Noxuhome.com...
-      `;
-
-       if (status == "less") {
-           document.getElementById("textArea").innerHTML=text;
-           document.getElementById("toggleButton").innerText = "less information";
-           status = "more";
-       } else if (status == "more") {
-           document.getElementById("textArea").innerHTML = smallText;
-           document.getElementById("toggleButton").innerText = "more information";
-           status = "less"
-       }
-   }
-
+    if (status == "less") {
+      document.querySelector('.xly-content-text').classList.remove('xly-show-less');
+      document.getElementById("xlyToggleButton").innerText = "less information";
+      status = "more";
+    } else if (status == "more") {
+      document.querySelector('.xly-content-text').classList.add('xly-show-less');
+      document.getElementById("xlyToggleButton").innerText = "...more information";
+      status = "less";
+    }
+  }
 </script>
 <div id="xly" class="xly xly-popup">
   <div class="xly xly-container">
@@ -62,9 +47,27 @@
         </div>
         <div class="xly-bottom">
           <div>
-            <span class="xly-regular" id="textArea">Transform your home with £1,000 worth of designer furniture from Noxuhome.com... </span><a id="toggleButton" onclick="toggleText();" href="javascript:void(0);">more information</a>
+            <span class="xly-regular">Transform your home with £1,000 worth of designer furniture from Noxuhome.com </span>
+            <span class="xly-regular xly-show-less xly-content-text">
+              Transform your home with &pound;1,000 worth of designer furniture from Noxuhome.com
+              <br />
+              <br  />
+              At NOXU Home they specialise in designer furniture made simple – whatever your style there will be the perfect piece for you.
+              <br />
+              <br  />
+              <img src="{assetsUrl}/lightbox/img/noxu-lamp.jpg" style="margin: 0 auto;"/>
+              <br />
+              <br  />
+              NOXU Home seeks out the best design talent from international award winners, as well as new creatives, showcasing their most stunning furniture pieces. With an abundance of trends and styles there’s something for everyone in their premium-quality range.
+              <br />
+              <br  />
+              Designer made simple at NOXU Home. Homeware directly from the designers to your door.
+              <br />
+              <br  />
+            </span>
+            <a id="xlyToggleButton" onclick="xlyToggleContent();" href="javascript:void(0);">...more information</a>
             <span class="text-clear"></span>
-            <br  />
+            <br />
             <span class="xly-regular">To win, simply fill the form below.</span>
           </div>
         </div>
@@ -146,7 +149,7 @@
           <div class="xly-footer">
             <div class="xly-item">
               <div class="xly-actions">
-                  <input type="submit" id="xly-submitButton" value="OK" class="xly-accept" />
+                <input type="submit" id="xly-submitButton" value="OK" class="xly-accept" />
                 <div class="xly-loader"><img src="{assetsUrl}/lightbox/img/ajax-loader.gif"></div>
                 <a href="{migrationCancelledUrl}">
                   <div class="xly-decline">Cancel</div>
