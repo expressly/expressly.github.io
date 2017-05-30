@@ -21,6 +21,7 @@ var xlyr = xlyr || {
             this.addressField = jQuery('#xly-address').find('input');
             this.address2Field = jQuery('#xly-address2').find('input');
             this.townField = jQuery('#xly-town').find('input');
+            this.provinceField = jQuery('#xly-province').find('input');
             this.genderField = jQuery('#xly-gender');
             this.dobField = jQuery('#xly-dob');
             this.submitButton = jQuery('#xly-submitButton');
@@ -73,6 +74,7 @@ var xlyr = xlyr || {
                     address2: xlyr.address2Field ? xlyr.address2Field.val() : null,
                     city: xlyr.townField.val(),
                     zip: xlyr.postcodeField.val(),
+                    province: xlyr.provinceField ? xlyr.provinceField.val() : null,
                     dob: xlyr.xlyFormattedDate(this.dobField.val()),
                     gender: xlyr.genderField.val(),
                     optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
