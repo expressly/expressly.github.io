@@ -1,82 +1,16 @@
-div.xly * {
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    font-family: "Graphik-Regular", Arial, sans-serif;
-}
-
-div.xly.xly-popup {
-    overflow: auto;
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-    font-family: "Graphik-Regular", Arial, sans-serif;
-    font-weight: normal;
-    z-index: 9999999999999999999;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-div.xly.xly-popup > div.xly.xly-container {
-    width: 90.90909%;
-    float: left;
-    margin-right: -100%;
-    margin-left: 4.54545%;
-    clear: none;
-    margin-top: 3%
-}
+@import 'lightbox-common.css';
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
-    width: 100%;
     max-width: 615px;
-    margin: 0 auto;
-    padding-top: 10px;
-    background-color: white;
-    border: 1px solid #7e7e7e;
-    border-radius: 6px;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-item {
-    position: relative;
-    margin-left: 33px;
-    margin-right: 33px
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row span.xly-center-element {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo {
-    display: table;
     width: 65%;
-    margin: 0 auto;
     padding-top: 55px
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell {
-    display: table-cell;
-    padding: 3%
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell:first-child, div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell:last-child {
     width: 43%
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell.xly-bordered {
-    border: 1px solid #dadada;
-    border-radius: 10px;
-    background-color: #ffffff;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div {
-    height: 100px;
-    background: transparent no-repeat center;
-    background-size: contain
 }
 
 @media (max-width: 768px) {
@@ -107,46 +41,14 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell 
     }
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-logo .xly-cell div.xly-arrows {
-    background-image: url("https://assets01.buyexpressly.com/lightbox/img/flow.png");
-    background-size: auto;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content {
-    width: 90%;
-    display: inline-block;
-    margin-top: 20px;
-    color: #808080;
-    font-family: "Graphik-Medium", Arial, sans-serif;
-    font-weight: bold;
-}
-
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-top {
     margin-bottom: 18px;
-    font-size: 2em !important;
-    font-weight: normal;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom {
     margin: 0 auto;
     text-align: center;
     width: 80%;
-    font-size: 14px !important;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom .text-clear {
-  display: block;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-regular {
-    font-family: "Graphik-Regular", Arial, sans-serif;
-    font-weight: normal
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom div {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 5px
 }
 
 @media (max-width: 480px) {
@@ -188,7 +90,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-ter
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     width: 100%;
     padding-bottom: 10px;
-    font-size: 14px;
+    font-size: 14px !important;
     color: #b2b2b2;
 }
 
@@ -209,7 +111,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-ter
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: normal;
     line-height: 11px;
 }
@@ -220,7 +122,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > img {
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure > a {
-    font-size: 14px;
+    font-size: 14px !important;
     color: #b2b2b2;
     font-weight: 400;
 }
@@ -245,79 +147,41 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
     text-align: left;
     width: 100%;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 14px !important;
     line-height: 23px;
     color: #b3b3b3;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy > a {
-    font-size: 14px;
+    font-size: 14px !important;
     color: #b3b3b3;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
-  display: block;
-}
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-    display: inline-block;
     width: 200px;
-    margin: 21px 0 21px;
-    text-align: right;
-    float: right;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a {
-    float: right;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:hover {
-    text-decoration: none;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
-    margin-left: 10px
+div.xly.xly-popup .xly-actions .xly-accept,
+div.xly.xly-popup .xly-actions .xly-decline {
+    line-height: 24px !important;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div {
-    display: inline-block;
-    border-radius: 4px;
     padding: 11px 17px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-}
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-decline{
-  background-color: #666560;
-}
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-decline:hover {
-    background-color: #777670;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-accept {
-    background-color: #3E7EA1;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-accept:hover {
-  background-color: #4891b9;
+    font-size: 16px !important;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-accept {
     display: inline-block;
     border-radius: 4px;
     padding: 11px 17px;
-    font-size: 16px;
+    font-size: 16px !important;
     color: white;
     cursor: pointer;
     border: none;
     float: right;
     margin-left: 5px;
-}
-
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader {
-    display: none;
-    margin: 7px auto;
-    color: white;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
@@ -382,57 +246,19 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     }
 }
 
-div.xly.xly-popup a {
-    text-decoration: none;
-    color: #666560
-}
-
-div.xly.xly-popup a:hover {
-    text-decoration: underline
-}
-
-div.xly.xly-popup .expressly {
-    font-family: "Graphik-Medium", Arial, sans-serif;
-    font-weight: bold;
-    font-style: italic;
-    vertical-align: middle
-}
-
 div.xly.xly-popup .expressly img {
-    display: inline;
-    vertical-align: middle;
     max-width: 64px
 }
 
 div.xly.xly-popup .xly-dot {
     font-weight: 500;
     margin-right: 5px;
-    font-size: 14px;
-}
-
-div.xly.xly-popup .xly-dot:after {
-    position: absolute;
-    margin-top: 8px;
-    margin-left: 7px;
-    width: 2px;
-    height: 2px;
-    content: "";
-    border-radius: 10px
-}
-
-.xly-clear {
-    clear: both
-}
-
-div.xly.xly-popup [type="checkbox"]:not(:checked),
-div.xly.xly-popup [type="checkbox"]:checked {
-    position: initial;
-    opacity: 100;
+    font-size: 14px !important;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe a {
   color: inherit;
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form {
@@ -448,8 +274,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form #xly-submi
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item .field-element {
   background: #E4E4E5;
   border-radius: 5px;
-  font-family: "Graphik-Regular", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 14px !important;
   color: #837575;
   border: 0;
   width: 100%;
@@ -465,8 +290,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   background: #E99292;
   border: 1px solid #E99292;
   border-radius: 10px 10px 0 0;
-  font-family: "Graphik-Regular", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 14px !important;
   color: #FFFFFF;
   margin-top: 10px;
   line-height: 28px;
@@ -481,7 +305,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-widt
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container .form-item #xly-enter-address span {
   text-decoration: underline;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 12px !important;
   color: #43454b;
 }
 
@@ -539,8 +363,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   width: 100% !important;
   background: #E4E4E5;
   border-radius: 5px;
-  font-family: "Graphik-Regular", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 14px !important;
   color: #837575;
   border: 0;
   padding-left: 10px;
