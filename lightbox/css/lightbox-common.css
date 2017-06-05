@@ -226,3 +226,14 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
     display: block;
 }
+
+/* inputs */
+
+div.xly input:focus {
+    border-color: rgba(82, 168, 236, 0.8) !important;
+    outline: 0 !important;
+    outline: thin dotted \9  !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+}
