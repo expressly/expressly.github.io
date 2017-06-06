@@ -104,10 +104,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
   font-weight: normal;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions .firstBtn {
-  float: left;
-}
-
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions .firstBtn,
 div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions .secondBtn {
   float: left;
 }

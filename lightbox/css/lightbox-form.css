@@ -48,7 +48,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-to
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bottom {
     margin: 0 auto;
     text-align: center;
-    width: 80%;
 }
 
 @media (max-width: 480px) {
@@ -70,6 +69,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
       font-size: 14px !important;
     }
 
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
     div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span {
         display: block;
         margin-left: 0;
@@ -85,23 +85,24 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
     }
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     width: 100%;
-    padding-bottom: 10px;
     font-size: 14px !important;
     color: #b2b2b2;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
-    padding-top: 14px;
-    padding-bottom: 14px;
     padding-left: 10px;
     text-indent: -12px;
     text-align: left;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper input,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe input,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms input,
@@ -109,6 +110,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-ter
     vertical-align: middle;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
     font-size: 14px !important;
@@ -158,10 +160,6 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-ter
 }
 
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
-    width: 200px;
-}
-
 div.xly.xly-popup .xly-actions .xly-accept,
 div.xly.xly-popup .xly-actions .xly-decline {
     line-height: 24px !important;
@@ -181,7 +179,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
     cursor: pointer;
     border: none;
     float: right;
-    margin-left: 5px;
+    /*margin-left: 5px;*/
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
@@ -256,6 +254,7 @@ div.xly.xly-popup .xly-dot {
     font-size: 14px !important;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper a,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe a {
   color: inherit;
   font-size: 14px !important;

@@ -2,11 +2,9 @@ var xlyr = xlyr || {
         milliseconds: new Date().getTime(),
 
         initialise: function (uuid, registerFunction) {
-            console.log("working " + uuid);
-
-            var content = document.getElementById("xly");
-            if (content) {
-                document.body.insertBefore(content, document.body.firstChild);
+            this.content = document.getElementById("xly");
+            if (this.content && this.content !== document.body.firstChild) {
+                document.body.insertBefore(this.content, document.body.firstChild);
             }
 
             this.uuid = uuid;
@@ -30,10 +28,14 @@ var xlyr = xlyr || {
 
             this.initialiseAddressLookup();
             //this.autofill();
-            this.form.submit(this.register)
+            document.getElementById("xly-accept-link").addEventListener('click', xlyr.register);
         },
 
         initialiseAddressLookup: function () {
+            if('undefined' === typeof CraftyPostcodeCreate) {
+                setTimeout(xlyr.initialiseAddressLookup, 60);
+                return;
+            }
             var cp_obj = CraftyPostcodeCreate();
             cp_obj.set("access_token", "f8aec-d8058-824ff-015f6"); // your token here
             cp_obj.set("result_elem_id", "crafty_postcode_result_display");
@@ -77,7 +79,7 @@ var xlyr = xlyr || {
                     province: xlyr.provinceField ? xlyr.provinceField.val() : null,
                     dob: xlyr.xlyFormattedDate(this.dobField.val()),
                     gender: xlyr.genderField.val(),
-                    optout: xlyr.newsletterCheck && !xlyr.newsletterCheck.checked
+                    optout: xlyr.newsletterCheck !== null && xlyr.newsletterCheck.checked
                 });
                 if (xlyrData.successMessage) {
                    alert(xlyr.decodeHtml(xlyrData.successMessage));
@@ -87,7 +89,7 @@ var xlyr = xlyr || {
 
         xlyFormValidate: function () {
             var isValid = true;
-            jQuery(".required").each(function () {
+            jQuery(".xly-required").each(function () {
                 var field = jQuery(this);
                 if (field.val() === '') {
                     isValid = false;
@@ -180,7 +182,7 @@ var xlyr = xlyr || {
         },
 
         xlyCheckTerms: function xlyCheckTerms() {
-            var check = document.getElementById('xly-subscribe');
+            var check = document.getElementById('xly-subscribe-input');
             if (!check) {
                 check = document.getElementById('subscribe'); // backwards compatibility
             }
@@ -208,18 +210,7 @@ var xlyr = xlyr || {
         },
 
         expresslyContinue: function (event) {
-            xlyr.submitButton[0].style.display = "none";
-            var closeButton = jQuery('.xly-decline')[0];
-            jQuery(closeButton).css({'display': 'none'});
-            var loader = jQuery('.xly-loader');
-            jQuery(loader).css({'display': 'inline-block'});
-            var xlyLoader = jQuery('.xly-loader')[0];
-            jQuery(xlyLoader).css({
-                'display': 'inline-block',
-                'float': 'right',
-                'margin-left': '47px',
-                'padding-top': '8px'
-            });
+            xlyr.content.classList.add('xly-busy');
         },
 
         ready: function (callback) {

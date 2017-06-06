@@ -164,6 +164,11 @@ div.xly.xly-popup [type="checkbox"]:checked {
 
 /* start action buttons */
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions #xly-decline-wrapper,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions #xly-accept-wrapper {
+    float: left;
+}
+
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div.xly-decline {
     background-color: #d5d5d5;
     color: #949492;
@@ -200,7 +205,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a:first-of-type {
-    margin-left: 10px
+    margin-left: 7px
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a > div {
@@ -212,9 +217,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader {
-    display: none;
     margin: 7px auto;
-    color: white;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions .xly-loader img {
@@ -223,7 +226,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 
 /* end action buttons */
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-terms .xly-policy .text-clear-bottom {
     display: block;
 }
 
@@ -232,8 +235,26 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-terms .
 div.xly input:focus {
     border-color: rgba(82, 168, 236, 0.8) !important;
     outline: 0 !important;
-    outline: thin dotted \9  !important;
+    outline: thin dotted \9 !important;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+}
+
+/* busy */
+
+div.xly.xly-busy .xly-hide-when-busy,
+div.xly .xly-show-when-busy {
+    display: none !important;
+}
+
+div.xly.xly-busy .xly-show-when-busy {
+    display: block !important;
+}
+
+/* padding */
+
+div.xly .xly-padding-vertical-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
