@@ -1,0 +1,9 @@
+{% include "../pebbles/lightbox.confirm.html" %}
+<script>
+    var xlyrData = {
+        uuid: '{campaignCustomerUuid}',
+        registerFunction: function(data, optout) { xlyreg.register(data, optout);}
+    };
+</script>
+<script src="{assetsUrl}/lightbox/js/lightbox.pull.js"></script>
+<script src="{assetsUrl}/lightbox/clients/lightbox.laithwaites.register.js"></script>
