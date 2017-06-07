@@ -116,7 +116,8 @@ var xly = xly || {
                         {
                             ppid: ppid,
                             width: img.getAttribute("width"),
-                            height: img.getAttribute("height")
+                            height: img.getAttribute("height"),
+                            source: this.getXlyAttr('source')
                         }
                     );
                 } else if (merchant) {
@@ -128,8 +129,11 @@ var xly = xly || {
                                 merchantUuid: merchant,
                                 width: img.getAttribute("width"),
                                 height: img.getAttribute("height"),
+                                source: this.getXlyAttr('source'),
                                 email:  email,
                                 fullName: fullName,
+                                forename: this.getXlyAttr('cforename'),
+                                surname: this.getXlyAttr('csurname'),
                                 address1: this.getXlyAttr('caddress1'),
                                 address2: this.getXlyAttr('caddress2'),
                                 city: this.getXlyAttr('ccity'),
@@ -146,7 +150,8 @@ var xly = xly || {
                             {
                                 merchantUuid: merchant,
                                 width: img.getAttribute("width"),
-                                height: img.getAttribute("height")
+                                height: img.getAttribute("height"),
+                                source: this.getXlyAttr('source')
                             }
                         );
                     }
