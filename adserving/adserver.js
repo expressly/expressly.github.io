@@ -60,6 +60,7 @@ var xly = xly || {
 
             xhr.open('POST', "https://prod.expresslyapp.com/api/adserver/banner" + path, true);
             xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.withCredentials = true;
             xhr.send(JSON.stringify(data));
         },
 
@@ -111,12 +112,16 @@ var xly = xly || {
                 var img = link.querySelector("img");
                 var ppid = this.getPpid();
                 var merchant = this.getMerchant();
+                var campaigns = link.getAttribute('data-campaigns');
+                campaigns = campaigns ? campaigns.split(",") : null;
+                console.log(campaigns);
                 if (ppid) {
                     this.callExpressly('', this.xlyRenderCreative, link,
                         {
                             ppid: ppid,
                             width: img.getAttribute("width"),
                             height: img.getAttribute("height"),
+                            campaigns: campaigns,
                             source: this.getXlyAttr('source')
                         }
                     );
@@ -129,6 +134,7 @@ var xly = xly || {
                                 merchantUuid: merchant,
                                 width: img.getAttribute("width"),
                                 height: img.getAttribute("height"),
+                                campaigns: campaigns,
                                 source: this.getXlyAttr('source'),
                                 email:  email,
                                 fullName: fullName,
@@ -151,6 +157,7 @@ var xly = xly || {
                                 merchantUuid: merchant,
                                 width: img.getAttribute("width"),
                                 height: img.getAttribute("height"),
+                                campaigns: campaigns,
                                 source: this.getXlyAttr('source')
                             }
                         );

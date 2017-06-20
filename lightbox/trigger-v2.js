@@ -37,6 +37,7 @@ var xlyt = xlyt || {
             }
 
             xhr.open('GET', "https://prod.expresslyapp.com/api/v2/migration/" + uuid + "/ajax", true);
+            xhr.withCredentials = true;
             xhr.send('');
         },
 
