@@ -1,0 +1,11 @@
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=1">
+<div id="xly" class="xly xly-popup">
+    <div class="xly xly-container">
+        <div class="xly xly-row">
+            <div class="xly-item xly-content">
+                {% block content %}{% endblock %}
+            </div>
+            {% include "./lightbox.footer.html" %}
+        </div>
+    </div>
+</div>
