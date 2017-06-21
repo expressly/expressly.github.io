@@ -1,5 +1,4 @@
 {% extends "./pebbles/lightbox.message.html" %}
 {% block content %}
-    <h1>You've alread got an account</h1>
-    <h3>Your email address has already been registered on this store. Please login with your credentials.</h3>
+    {{ lightboxExistsMessage | raw }}
 {% endblock %}
