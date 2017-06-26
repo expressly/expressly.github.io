@@ -1,7 +1,7 @@
 {% include "./pebbles/lightbox.confirm.html" %}
-
+<script src="{{ assetsUrl }}/js/domready.js"></script>
 <script type="text/javascript">
-    (function() {
+    DomReady.ready(function() {
         var content = document.getElementById("xly");
         if (content && content !== document.body.firstChild) {
             document.body.insertBefore(content, document.body.firstChild);
@@ -19,5 +19,5 @@
                 window.location.replace(url);
             });
         }
-    })();
+    });
 </script>
