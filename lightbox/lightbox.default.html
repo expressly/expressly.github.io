@@ -1,0 +1,12 @@
+{% include "./pebbles/lightbox.confirm.html" %}
+<script>
+    var xlyrData = {
+        uuid: '{{ campaignCustomerUuid }}',
+        lightbox: '{{ lightbox }}',
+        registration: '{{ registration }}'
+        {% if registration == 'api' and migrationInitiateUrl != null %},migrationInitiateUrl: '{{ migrationInitiateUrl }}'{% endif %}
+        {% if loginUrl != null %},loginUrl: '{{ loginUrl }}'{% endif %}
+        {% if registration == 'js' and registrationSteps != null %},registrationSteps: {{ registrationSteps | raw }}{% endif %}
+    };
+    console.log(xlyrData);
+</script>
