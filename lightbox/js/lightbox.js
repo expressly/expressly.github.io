@@ -597,7 +597,7 @@ XlyLightbox.prototype.parseAddress = function(context, type, continueFn) {
     var findHouseNumber = function (addressLine) {
         var regex = /^(\d+)\s.+$/;
         var match = regex.exec(addressLine);
-        return match.length > 1 ? match[1] : null;
+        return match && match.length > 1 ? match[1] : null;
     };
 
     var parseAddressContinue = function (address) {
