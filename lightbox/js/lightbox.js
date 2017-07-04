@@ -74,50 +74,71 @@ XlyLightbox.prototype.migrateJs = function() {
     var that = this;
     this.pull(function(data) {
         var context = that.buildContext(data);
-        var steps = that.config.registrationSteps;
-
-        var executeStep = function(step, context, remainingSteps) {
-
-            var xhr = that.xhr(function(xhr) {
-                if (step.existsCheck && that.checkContent(step.existsCheck, xhr.responseText)) {
-                    var loginUrlParam = typeof that.config.loginUrl !== 'undefined' && that.config.loginUrl
-                        ? '?loginUrl=' + encodeURIComponent(that.config.loginUrl)
-                        : '';
-                    window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/exists' + loginUrlParam);
-                    return;
-                }
-
-                if (step.failedCheck && that.checkContent(step.failedCheck, xhr.responseText)) {
-                    window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/failed');
-                    return;
-                }
-
-                if (step.successCheck && !that.checkContent(step.successCheck, xhr.responseText)) {
-                    window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/failed');
-                    return;
-                }
-
-                if (step.store) {
-                    that.storeToContext(step.store, xhr.responseText, context);
-                }
-
-                if (remainingSteps.length > 0) {
-                    executeStep(remainingSteps.shift(), context, remainingSteps);
-                } else {
-                    window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/success');
-                }
-            });
-
-            xhr.open(step.method, step.url, true);
-            xhr.withCredentials = true;
-            if (step.data) {
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            }
-            xhr.send(that.getStepData(step.data, context));
-        };
-
-        executeStep(steps.shift(), context, steps);
+        if (that.config.parseAddressTypes && that.config.parseAddressTypes.length > 0) {
+            that.executeAddressParsing(context);
+        } else {
+            that.executeSteps(context);
+        }
     });
+};
+
+XlyLightbox.prototype.executeAddressParsing = function(context) {
+    var that = this;
+    var parseAddressTypes = this.config.parseAddressTypes || [];
+    var execute = function(type, context, remainingTypes) {
+        that.parseAddress(context, type, function() {
+            if (remainingTypes.length === 0) {
+                that.executeSteps(context);
+            } else {
+                execute(remainingTypes.shift(), context, remainingTypes);
+            }
+        });
+    };
+    execute(parseAddressTypes.shift(), context, parseAddressTypes);
+};
+
+XlyLightbox.prototype.executeSteps = function(context) {
+    var that = this;
+    var steps = that.config.registrationSteps || [];
+    var executeStep = function(step, context, remainingSteps) {
+        var xhr = that.xhr(function(xhr) {
+            if (step.existsCheck && that.checkContent(step.existsCheck, xhr.responseText)) {
+                var loginUrlParam = typeof that.config.loginUrl !== 'undefined' && that.config.loginUrl
+                    ? '?loginUrl=' + encodeURIComponent(that.config.loginUrl)
+                    : '';
+                window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/exists' + loginUrlParam);
+                return;
+            }
+
+            if (step.failedCheck && that.checkContent(step.failedCheck, xhr.responseText)) {
+                window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/failed');
+                return;
+            }
+
+            if (step.successCheck && !that.checkContent(step.successCheck, xhr.responseText)) {
+                window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/failed');
+                return;
+            }
+
+            if (step.store) {
+                that.storeToContext(step.store, xhr.responseText, context);
+            }
+
+            if (remainingSteps.length > 0) {
+                executeStep(remainingSteps.shift(), context, remainingSteps);
+            } else {
+                window.location.replace('https://prod.expresslyapp.com/api/redirect/migration/' + that.config.uuid + '/success');
+            }
+        });
+
+        xhr.open(step.method, step.url, true);
+        xhr.withCredentials = true;
+        if (step.data) {
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        }
+        xhr.send(that.getStepData(step.data, context));
+    };
+    executeStep(steps.shift(), context, steps);
 };
 
 XlyLightbox.prototype.checkContent = function(check, content) {
@@ -198,9 +219,11 @@ XlyLightbox.prototype.buildContext = function(data) {
     if (!billingAddress) {
         billingAddress = shippingAddress;
     }
+    var anyAddress = billingAddress ? billingAddress : (cd.addresses.length > 0 ? cd.addresses[0] : null);
     var phone = cd.phones && cd.phones.length > 0
         ? cd.phones[billingAddress && typeof billingAddress.phone !== 'undefined' ? billingAddress.phone : 0].number
         : null;
+    var dob = cd.dob ? new Date(cd.dob) : null;
 
     var context = {
         uuid: this.config.uuid,
@@ -211,6 +234,9 @@ XlyLightbox.prototype.buildContext = function(data) {
         lastName: cd.lastName,
         company: cd.company,
         dob: cd.dob,
+        dobDay: dob ? dob.getDate() : null,
+        dobMonth: dob ? dob.getMonth() + 1 : null,
+        dobYear: dob ? dob.getFullYear() : null,
         taxNumber: cd.taxNumber,
         gender: cd.gender,
         optout: this.hasOptedOutOfNewsletter()
@@ -240,6 +266,19 @@ XlyLightbox.prototype.buildContext = function(data) {
         context.shippingPostcode = shippingAddress.zip;
         context.shippingProvince = shippingAddress.stateProvince;
         context.shippingCountry = shippingAddress.country;
+    }
+    
+    if (anyAddress) {
+        context.anyFirstName = anyAddress.firstName ?  anyAddress.firstName : cd.firstName;
+        context.anyLastName = anyAddress.lastName ?  anyAddress.lastName : cd.lastName;
+        context.anyCompany = anyAddress.companyName ?  anyAddress.companyName : cd.company;
+        context.anyPhone = typeof anyAddress.phone !== 'undefined' ?  cd.phones[anyAddress.phone].number: phone;
+        context.anyAddress1 = anyAddress.address1;
+        context.anyAddress2 = anyAddress.address2;
+        context.anyCity = anyAddress.city;
+        context.anyPostcode = anyAddress.zip;
+        context.anyProvince = anyAddress.stateProvince;
+        context.anyCountry = anyAddress.country;        
     }
 
     return context;
@@ -445,7 +484,7 @@ XlyLightbox.prototype.toArray = function toArray(htmlCollection) {
     return a;
 };
 
-XlyLightbox.prototype.xhr = function(callback) {
+XlyLightbox.prototype.xhr = function(callback, failedCallback) {
     var that = this;
     var xhr;
     if (typeof XMLHttpRequest !== 'undefined') {
@@ -474,6 +513,9 @@ XlyLightbox.prototype.xhr = function(callback) {
             }
 
             if (xhr.status !== 200) {
+                if (failedCallback) {
+                    failedCallback(xhr);
+                }
                 return;
             }
 
@@ -517,6 +559,98 @@ XlyLightbox.prototype.generatePassword = function(len) {
     return password;
 };
 
+XlyLightbox.prototype.parseAddress = function(context, type, continueFn) {
+    if (typeof context[type + 'Address1'] === 'undefined' || !context[type + 'Address1']) {
+        continueFn();
+        return;
+    }
+
+    var originalAddress1 = context[type + 'Address1'];
+    var address = {
+        address1: originalAddress1,
+        address2: context[type + 'Address2'],
+        city: context[type + 'City'],
+        postcode: context[type + 'Postcode']
+    };
+
+    var cleanArray = function (array) {
+        for (var i = 0; i < array.length; i++) {
+            if (!array[i]) {
+                array.splice(i, 1);
+                i--;
+            }
+        }
+        return array;
+    };
+
+    var selectViableAddresses = function (array) {
+        for (var i = 0; i < array.length; i++) {
+            var result = array[i];
+            if (result.types.indexOf('subpremise') < 0 && result.types.indexOf('premise') < 0 && result.types.indexOf('street_address') < 0) {
+                array.splice(i, 1);
+                i--;
+            }
+        }
+        return array;
+    };
+
+    var findHouseNumber = function (addressLine) {
+        var regex = /^(\d+)\s.+$/;
+        var match = regex.exec(addressLine);
+        return match.length > 1 ? match[1] : null;
+    };
+
+    var parseAddressContinue = function (address) {
+        if (!address.houseName && !address.houseNumber) {
+            var houseNumber = findHouseNumber(originalAddress1);
+            if (houseNumber) {
+                address.houseNumber = houseNumber;
+                address.address1 = originalAddress1.substring(houseNumber.length, originalAddress1.length).replace(/^\s+|\s+$/gm, '')
+            } else {
+                address.houseName = originalAddress1;
+                if (address.address2) {
+                    address.address1 = address.address2;
+                    address.address2 = null;
+                }
+            }
+        }
+
+        context[type + 'FlatNumber'] = address.flatNumber;
+        context[type + 'HouseName'] = address.houseName;
+        context[type + 'HouseNumber'] = address.houseNumber;
+        context[type + 'Address1'] = address.address1;
+        context[type + 'Address2'] = address.address2;
+        continueFn();
+    };
+
+    var addressString = cleanArray([address.address1, address.address2, address.city, address.postcode]).join(' ,');
+    var xhr = this.xhr(
+        function(xhr) {
+            var json = JSON.parse(xhr.responseText);
+            var results = selectViableAddresses(json.results);
+            if (results.length === 1) {
+                for (var i = 0; i < results[0].address_components.length; ++i) {
+                    var component = results[0].address_components[i];
+                    if (component.types.indexOf('subpremise') > -1) {
+                        parsedAddress.flatNumber = component.short_name;
+                    } else if (component.types.indexOf('premise') > -1) {
+                        parsedAddress.houseName = component.short_name;
+                    } else if (component.types.indexOf('street_number') > -1) {
+                        parsedAddress.houseNumber = component.short_name;
+                    } else if (component.types.indexOf('route') > -1) {
+                        parsedAddress.address1 = component.short_name;
+                    }
+                }
+            }
+            parseAddressContinue(address);
+        },
+        function(xhr) {
+            parseAddressContinue(address);
+        });
+
+    xhr.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBDALF2fhX2DBT9ZddfjyaapsvjNuq4dc4&address=' + encodeURIComponent(addressString), true);
+    xhr.send('');
+};
 
 (function() {
     function load() {
