@@ -17,6 +17,17 @@ function XlyLightbox(config) {
     }
 
     if (this.config.lightbox === 'form') {
+
+        var ccEmailInput = document.getElementById('xly-campaignCustomer-email');
+        if (ccEmailInput) {
+            var ccEmail = ccEmailInput.value;
+            if (ccEmail.indexOf('@') > 0) {
+                var emailField = document.getElementById('xly-email-field');
+                emailField.value = ccEmail;
+                emailField.readOnly = true;
+            }
+        }
+
         var initAddressLookup = function() {
             if('undefined' === typeof CraftyPostcodeCreate) {
                 setTimeout(initAddressLookup, 60);
