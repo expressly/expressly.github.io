@@ -34,7 +34,7 @@
                     </div>
                     Secure data transfer <a href="https://buyexpressly.com/consumer" target="_blank">(learn more)</a>
                 </div>
-                <div class="xly-subscribe">
+                <div class="xly-checkbox-wrapper">
                     <div style="display:{{ displayOptout }}">
                         <label for="xly-subscribe-input"><input type="checkbox" id="xly-subscribe-input"/> <span>I do not want to receive updates from {{ takerName }}</span></label>
                     </div>
@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+{% block scripts %}{% endblock %}
+<script src="{{ assetsUrl }}/lightbox/js/lightbox.js?v={{ cssVersion }}"></script>

@@ -14,7 +14,8 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row {
   max-width: 380px;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-checkbox-wrapper,
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
   width: 100%;
   font-size: 10px !important;
   color: #b2b2b2;
@@ -25,19 +26,19 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-secure {
   padding-bottom: 0 !important;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-checkbox-wrapper {
   padding-bottom: 10px;
   padding-left: 12px;
   text-indent: -12px;
   padding-top: 5px;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe input, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-checkbox-wrapper input, div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
   vertical-align: middle;
   font-size: 10px !important;
 }
 
-div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe label span {
+div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-checkbox-wrapper label span {
   font-size: 10px !important;
   font-weight: normal!important;
 }
@@ -144,7 +145,7 @@ div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-footer .xly-actions
     line-height: 13px!important;
     margin: 5px auto;
   }
-  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-subscribe {
+  div.xly.xly-popup>div.xly.xly-container>div.xly.xly-row .xly-checkbox-wrapper {
     padding-bottom: 0px!important;
     padding-top: 5px!important;
   }

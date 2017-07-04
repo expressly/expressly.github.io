@@ -37,6 +37,25 @@
 {% endblock %}
 
 {% block content %}
+  <style>
+    .xly-show-less { display: none; }
+    #xlyToggleButton { font-weight: bold; }
+  </style>
+
+  <script>
+    var status = "less";
+    function xlyToggleContent() {
+        if (status === "less") {
+            document.querySelector('.xly-content-text').classList.remove('xly-show-less');
+            document.getElementById("xlyToggleButton").innerText = "less information";
+            status = "more";
+        } else if (status === "more") {
+            document.querySelector('.xly-content-text').classList.add('xly-show-less');
+            document.getElementById("xlyToggleButton").innerText = "...more information";
+            status = "less";
+        }
+    }
+  </script>
   <div class="xly-top">
     Win &pound;1,000 to spend in designer furniture
   </div>
@@ -50,7 +69,7 @@
               At NOXU Home they specialise in designer furniture made simple &#45; whatever your style there will be the perfect piece for you.
               <br />
               <br  />
-              <img src="{{ assetsUrl }}/lightbox/img/noxu-lamp.jpg" style="margin: 0 auto;"/>
+              <img src="https://assets01.buyexpressly.com/lightbox/img/noxu-lamp.jpg" style="margin: 0 auto;"/>
               <br />
               <br  />
               Transform your home with &pound;1,000 worth of designer furniture from Noxuhome.com. Designer made simple at NOXU Home. Homeware directly from the designers to your door.

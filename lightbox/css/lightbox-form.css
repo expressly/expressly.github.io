@@ -69,8 +69,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
       font-size: 14px !important;
     }
 
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
-    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span {
+    div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper label span {
         display: block;
         margin-left: 0;
     }
@@ -85,8 +84,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-content .xly-bo
     }
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     width: 100%;
@@ -94,24 +92,20 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-secure {
     color: #b2b2b2;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper {
     padding-left: 10px;
     text-indent: -12px;
     text-align: left;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper input,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe input,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper input,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms input,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
     vertical-align: middle;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper label span,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe label span,
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper label span,
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-competition-terms label span {
     font-size: 14px !important;
     font-weight: normal;
@@ -254,8 +248,7 @@ div.xly.xly-popup .xly-dot {
     font-size: 14px !important;
 }
 
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-newsletter-wrapper a,
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-subscribe a {
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-checkbox-wrapper a {
   color: inherit;
   font-size: 14px !important;
 }
@@ -282,6 +275,14 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   margin-top: 10px;
 }
 
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item .xly-field-error {
+    border: 1px solid red !important;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .xly-field-error + span {
+    color: red;
+}
+
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item .xly-error {
   display: none;
   height: 30px;
@@ -293,6 +294,11 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item
   color: #FFFFFF;
   margin-top: 10px;
   line-height: 28px;
+}
+
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .form-item #xly-globalError.xly-error {
+    margin-bottom: 5px;
+    border-radius: 5px
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-form .half-width-container .form-item #xly-enter-address {
