@@ -15,5 +15,9 @@
     </script>
 {% endblock %}
 
-{% block content %}{{ formContent | raw }}{% endblock %}
+{% if lightbox == 'confirm'  %}
+    {% block content %}{{ confirmContent | raw }}{% endblock %}
+{% else  %}
+    {% block content %}{{ formContent | raw }}{% endblock %}
+{% endif %}
 
