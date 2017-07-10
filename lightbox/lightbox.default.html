@@ -3,7 +3,7 @@
 {% block scripts %}
     <script>
         var xlyrData = {
-            v: '2017-07-10-01',
+            v: '2017-07-10-02',
             uuid: '{{ campaignCustomerUuid }}',
             lightbox: '{{ lightbox }}',
             registration: '{{ registration }}'
@@ -16,9 +16,8 @@
     </script>
 {% endblock %}
 
-{% if lightbox == 'confirm'  %}
-    {% block content %}{{ confirmContent | raw }}{% endblock %}
-{% else  %}
-    {% block content %}{{ formContent | raw }}{% endblock %}
-{% endif %}
+{% block content %}{{ lightbox == 'form' ? 'formContent' : 'confirmContent' | raw }}{% endblock %}
 
+<!--
+{{ confirmContent }}
+-->
