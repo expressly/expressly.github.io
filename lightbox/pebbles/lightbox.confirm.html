@@ -27,7 +27,13 @@
                     <div style="background: url('{{ takerLogo }}') no-repeat center; background-size: contain;"></div>
                 </div>
             </div>
-            {% block content %}{% endblock %}
+            <div id="dekte">{% block content %}{% endblock %}</div>
+            {% if content is not empty %}
+                <div class="xly-item xly-content">
+                    {% block content %}{% endblock %}
+                </div>
+            {% endif %}
+            </div>
             <div class="xly-item">
                 <div class="xly-secure">
                     <div class="xly-secure-img">
