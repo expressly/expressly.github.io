@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=1">
-<div id="xly" class="xly xly-popup xly-message">
+<div id="xly" class="xly xly-popup xly-message" style="display:none">
     <div class="xly xly-container">
         <div class="xly xly-row">
             <div class="xly-item xly-content">
@@ -12,7 +12,14 @@
 </div>
 <script>
     (function() {
-        function push() {
+        function close() {
+            // classList not supported by IE8
+            var root = document.getElementById('xly');
+            root.className = root.className + (root.className ? ' xly-popup-hide' : 'xly-popup-hide');
+            if (!window.history.replaceState) {
+                return;
+            }
+
             var url = window.location.href;
             var prefix = 'xlyt=';
             var parts = url.split('?');
@@ -25,12 +32,11 @@
             window.history.replaceState(null, "", parts[0] + (params.length > 0 ? '?' + params.join('&') : ""));
         }
 
-        var close = document.getElementById('xly-accept-link');
-        close.addEventListener('click', function(event) {
-            document.getElementById('xly').style.display = 'none';
-            if (window.history.replaceState) {
-                push();
-            }
-        });
+        var el = document.getElementById('xly-accept-link');
+        if (el.addEventListener) {
+            el.addEventListener('click', close, false);
+        } else if (el.attachEvent)  {
+            el.attachEvent('onclick', close);
+        }
     }());
 </script>

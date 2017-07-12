@@ -1,8 +1,16 @@
-var xlyt = xlyt || {
-        fetch: function (uuid, callback) {
-            var xhr;
+(function () {
+    function fetch(uuid, callback) {
+        var xhr;
 
-            if (typeof XMLHttpRequest !== 'undefined') xhr = new XMLHttpRequest();
+        if (typeof XDomainRequest !== 'undefined') {
+            xhr = new XDomainRequest();
+            xhr.onload = function () {
+                callback(xhr.responseText);
+            }
+        } else {
+            if (typeof XMLHttpRequest !== 'undefined') {
+                xhr = new XMLHttpRequest();
+            }
             else {
                 var versions = ["MSXML2.XmlHttp.5.0",
                     "MSXML2.XmlHttp.4.0",
@@ -20,9 +28,7 @@ var xlyt = xlyt || {
                 }
             }
 
-            xhr.onreadystatechange = ensureReadiness;
-
-            function ensureReadiness() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState < 4) {
                     return;
                 }
@@ -35,72 +41,84 @@ var xlyt = xlyt || {
                     callback(xhr.responseText);
                 }
             }
+        }
 
-            xhr.open('GET', "https://prod.expresslyapp.com/api/v2/migration/" + uuid + "/ajax", true);
-            xhr.withCredentials = true;
-            xhr.send('');
-        },
+        xhr.open('GET', "https://prod.expresslyapp.com/api/v2/migration/" + uuid + "/ajax", true);
+        xhr.withCredentials = true;
+        xhr.send('');
+    }
 
-        uuid: function () {
-            var url = window.location.href;
-            var regex = new RegExp("[?&]xlyt(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        },
+    function getUuid() {
+        var url = window.location.href;
+        var regex = /[?&]xlyt(=([^&#]*)|&|#|$)/,
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
-        render: function (payload) {
-            var content = document.createElement("div");
-            content.innerHTML = payload;
-            var head = document.getElementsByTagName('head')[0];
-            var cssLinks = content.getElementsByTagName("link");
-
-            content.style.display = cssLinks.length > 0 ? 'none' : 'block';
-            document.body.insertBefore(content, document.body.firstChild);
-
-            for (var i = 0; i < cssLinks.length; i++) {
-                var cssLink = cssLinks[i];
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = cssLink.href;
-                link.media = 'all';
-                link.onload = function () {
-                    content.style.display = 'block';
-                };
-                head.appendChild(link);
-                //content.removeChild(cssLink);
+    // IE 8 support
+    function parseLinks(payload) {
+        var regex = /<link [^>]* href="([^"]+)"[^>]*>/mig;
+        var links = [];
+        var m;
+        do {
+            m = regex.exec(payload);
+            if (m) {
+                links.push({href: m[1]});
             }
+        } while (m);
+        return links;
+    }
 
-            var scripts = content.getElementsByTagName("script");
-            for (var i = 0; i < scripts.length; i++) {
-                var scriptLink = scripts[i];
-                if (scriptLink.src) {
-                    var script = document.createElement('script');
-                    script.src = scriptLink.src;
-                    head.appendChild(script);
-                    //content.removeChild(scriptLink);
-                } else {
-                    xlyt.geval(scriptLink.innerText);
-                }
-            }
-        },
+    function render(payload) {
+        var content = document.createElement("div");
+        content.innerHTML = payload;
+        document.body.insertBefore(content, document.body.firstChild);
 
-        geval: function (data) {
-            if (data) {
-                ( window.execScript || function (data) {
-                    window["eval"].call(window, data);
-                } )(data);
-            }
-        },
+        var head = document.getElementsByTagName('head')[0];
+        var cssLinks = content.getElementsByTagName("link");
+        if (cssLinks.length === 0) {
+            cssLinks = parseLinks(payload);
+        }
 
-        initialise: function () {
-            var uuid = this.uuid();
-            if (uuid) {
-                this.fetch(uuid, this.render);
+        for (var i = 0, length = cssLinks.length; i < length; i++) {
+            var cssLink = cssLinks[i];
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = cssLink.href;
+            link.media = 'all';
+            head.appendChild(link);
+        }
+
+        var scripts = content.getElementsByTagName("script");
+        for (i = 0, length = scripts.length; i < length; i++) {
+            var scriptLink = scripts[i];
+            if (scriptLink.src) {
+                var script = document.createElement('script');
+                script.src = scriptLink.src;
+                head.appendChild(script);
+            } else {
+                geval(scriptLink.innerHTML);
             }
         }
-    };
+    }
 
-xlyt.initialise();
+    function geval(data) {
+        if (data) {
+            ( window.execScript || function (data) {
+                window["eval"].call(window, data);
+            } )(data);
+        }
+    }
+
+    function initialise() {
+        var uuid = getUuid();
+        if (uuid) {
+            fetch(uuid, render);
+        }
+    }
+
+    initialise();
+}());

@@ -21,7 +21,7 @@ div.xly.xly-popup.xly-message p {
 
 div.xly.xly-popup {
     overflow: auto;
-    display: block;
+    display: block !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -31,6 +31,10 @@ div.xly.xly-popup {
     font-weight: normal;
     z-index: 9999999999999999999;
     background-color: rgba(0, 0, 0, 0.5)
+}
+
+div.xly.xly-popup.xly-popup-hide {
+    display: none !important;
 }
 
 div.xly.xly-popup > div.xly.xly-container {
