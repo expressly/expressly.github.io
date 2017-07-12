@@ -78,8 +78,32 @@ XlyLightbox.prototype.migrateApi = function() {
     if (this.hasOptedOutOfNewsletter()) {
         url += '?optout=true';
     }
+    var metadata = this.getMetadataParams();
+    if (metadata) {
+        url += this.hasOptedOutOfNewsletter() ? '&' : '?';
+        url += metadata;
+    }
+
     window.location.replace(url);
 };
+
+XlyLightbox.prototype.getMetadataParams = function () {
+    var metadata = [];
+    var inputs = this.toArray(this.lightbox.querySelectorAll('input'));
+    inputs = inputs.concat(this.toArray(this.lightbox.querySelectorAll('select')));
+    for (var i = 0; i < inputs.length; ++i) {
+        var name = inputs[i].name;
+        if (!name || name.indexOf('meta-') !== 0) {
+            continue;
+        }
+        var value = this.value(inputs[i]);
+        if (value !== null) {
+            metadata.push(encodeURIComponent(name) + '=' + encodeURIComponent(value));
+        }
+    }
+    return metadata.join("&");
+};
+
 
 XlyLightbox.prototype.migrateJs = function() {
     var that = this;
@@ -455,6 +479,12 @@ XlyLightbox.prototype.getFormFields = function() {
 
 
 XlyLightbox.prototype.value = function(field) {
+    if (field.type === 'checkbox') {
+        return field.checked;
+    }
+    if (field.type === 'radio') {
+        return field.checked ? field.value : null;
+    }
     return field.value;
 
 };
