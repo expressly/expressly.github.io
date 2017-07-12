@@ -1,12 +1,14 @@
 (function () {
     function fetch(uuid, callback) {
         var xhr;
+        var protocol = 'https:';
 
         if (typeof XDomainRequest !== 'undefined') {
             xhr = new XDomainRequest();
             xhr.onload = function () {
                 callback(xhr.responseText);
             }
+            protocol = window.location.protocol;
         } else {
             if (typeof XMLHttpRequest !== 'undefined') {
                 xhr = new XMLHttpRequest();
@@ -43,7 +45,7 @@
             }
         }
 
-        xhr.open('GET', "https://prod.expresslyapp.com/api/v2/migration/" + uuid + "/ajax", true);
+        xhr.open('GET', protocol + "//prod.expresslyapp.com/api/v2/migration/" + uuid + "/ajax", true);
         xhr.withCredentials = true;
         xhr.send('');
     }
