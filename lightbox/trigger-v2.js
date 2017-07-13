@@ -7,7 +7,7 @@
             xhr = new XDomainRequest();
             xhr.onload = function () {
                 callback(xhr.responseText);
-            }
+            };
             protocol = window.location.protocol;
         } else {
             if (typeof XMLHttpRequest !== 'undefined') {
@@ -115,9 +115,13 @@
         }
     }
 
+    function compatible() {
+        return !!document.querySelectorAll;
+    }
+
     function initialise() {
         var uuid = getUuid();
-        if (uuid) {
+        if (uuid && compatible()) {
             fetch(uuid, render);
         }
     }
