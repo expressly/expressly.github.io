@@ -1,5 +1,5 @@
 (function () {
-
+    console.log("lb=1432");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -549,6 +549,9 @@
                 window.location.replace(json.redirectUrl + "?e=" + encodeURIComponent(json.error));
             } else {
                 that.config.migrationInitiateUrl = json.redirectUrl;
+                if (json.redirectUrl.indexOf(that.config.uuid) < 0) {
+                    that.config.uuid = json.redirectUrl.replace(/(.+\/migration\/)(.+)(\/initiate)/, "$2");
+                }
                 that.migrate();
             }
         });
