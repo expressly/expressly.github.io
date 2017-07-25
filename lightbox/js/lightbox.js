@@ -124,7 +124,7 @@
             return xhr;
         },
 
-        xdr: function (method, uri, callback, failedCallback) {
+        xdr: function (method, uri, callback, failedCallback, withCredentials) {
             var xdr;
             var protocol = 'https:';
             if (typeof XDomainRequest !== 'undefined') {
@@ -155,7 +155,7 @@
             }
 
             xdr.open(method, protocol + uri, true);
-            xdr.withCredentials = true;
+            xdr.withCredentials = typeof withCredentials === 'undefined' || withCredentials !== false;
             return xdr;
         }
     };
@@ -790,7 +790,8 @@
             },
             function (xhr) {
                 parseAddressContinue(address);
-            });
+            },
+            false);
 
         xhr.send('');
     };
