@@ -3,9 +3,10 @@
 {% block scripts %}
     <script>
         var xlyrData = {
-            v: '2017-07-10-07',
+            v: '2017-07-26-15',
             uuid: '{{ campaignCustomerUuid }}',
             lightbox: '{{ lightbox }}',
+            autoConfirm: '{{ autoConfirm }}',
             registration: '{{ registration }}'
             {% if registration == 'api' and migrationInitiateUrl != null %},migrationInitiateUrl: '{{ migrationInitiateUrl }}'{% endif %}
             {% if loginUrl != null %},loginUrl: '{{ loginUrl }}'{% endif %}

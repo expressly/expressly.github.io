@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1432");
+    console.log("lb=1518");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -244,6 +244,10 @@
             };
 
             initAddressLookup();
+        }
+
+        if (this.config.lightbox === 'confirm' && this.config.autoConfirm === 'true') {
+            this.submit();
         }
     }
 

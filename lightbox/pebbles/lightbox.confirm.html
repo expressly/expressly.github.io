@@ -10,7 +10,7 @@
                     {{ lightboxConfirmMessage | raw }}
                     <div>
                         <span>{{ giverName}}</span>
-                        <span class="xly-regular"> will send</span>
+                        <span class="xly-regular"> {{ autoConfirm ? 'is sending' : 'will send' }}</span>
                         <span>{{ takerName }}</span>
                         <span class="text-clear"></span>
                         <span class="xly-regular">your {{ detailsBeingMigrated }} - less typing for you!</span>
@@ -47,4 +47,4 @@
     </div>
 </div>
 {% block scripts %}{% endblock %}
-<script src="{{ assetsUrl }}/lightbox/js/lightbox.js?v={{ cssVersion }}"></script>
+<script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}"></script>
