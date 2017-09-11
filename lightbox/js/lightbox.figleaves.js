@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1518");
+    console.log("lb=1519");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -176,8 +176,46 @@
                 a.push(htmlCollection[i]);
             }
             return a;
-        }
+        },
 
+        evaluate: function (eo, context) {
+            if (typeof eo === 'string') {
+                return eo;
+            }
+
+            var value = '';
+
+            if (eo.type === 'literal') {
+                value = eo.value;
+            } else if (eo.type === 'context') {
+                value = context[eo.key];
+            } else if (eo.type === 'function') {
+                value = eo.fn(context);
+            }
+
+            if (value === null || typeof value === 'undefined') {
+                value = '';
+            }
+
+            return value;
+        }
+    };
+
+    var dom = {
+        getElementAttributesForId: function (id, content) {
+            var regex = new RegExp('<[^<>]*id=[\'"]' + escapeRegex(id) + '[\'"][^<>]*>', 'mig');
+            var attrMap = {};
+            var m = regex.exec(content);
+            if (m) {
+                var div = document.createElement('div');
+                div.innerHTML = m[0];
+                var attrs = div.children[0].attributes;
+                for (var i = attrs.length - 1; i >= 0; i--) {
+                    attrMap[attrs[i].name] = attrs[i].value;
+                }
+            }
+            return attrMap;
+        }
     };
 
     var lightbox = {
@@ -355,7 +393,11 @@
                 }
 
                 if (step.store) {
+                    console.log("before");
+                    console.log(context);
                     that.storeToContext(step.store, xhr.responseText, context);
+                    console.log("after");
+                    console.log(context);
                 }
 
                 if (remainingSteps.length > 0) {
@@ -365,7 +407,9 @@
                 }
             });
 
-            xhr.open(step.method, step.url, true);
+            var stepUrl = util.evaluate(step.url, context);
+            console.log(step.method + ' ' +  stepUrl);
+            xhr.open(step.method, stepUrl, true);
             xhr.withCredentials = true;
             if (step.data) {
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -389,20 +433,7 @@
 
         var params = [];
         for (var i = 0; i < data.length; ++i) {
-            var value = '';
-            if (data[i].type === 'literal') {
-                value = data[i].value;
-            } else if (data[i].type === 'context') {
-                value = context[data[i].key];
-            } else if (data[i].type === 'function') {
-                value = data[i].fn(context);
-            }
-
-
-            if (value === null || typeof value === 'undefined') {
-                value = '';
-            }
-
+            var value = util.evaluate(data[i], context);
             params.push(encodeURIComponent(data[i].name) + '=' + encodeURIComponent(value));
         }
 
@@ -438,10 +469,17 @@
         }
 
         for (i = 0; i < store.length; ++i) {
-            var inputArray = inputs[store[i].name];
-            if (inputArray && inputArray.length > 0) {
-                var index = store.index ? store.index : 0;
-                context[store[i].key] = inputArray[index].value;
+            if ('undefined' !== typeof store[i].name) {
+                var inputArray = inputs[store[i].name];
+                if (inputArray && inputArray.length > 0) {
+                    var index = store.index ? store.index : 0;
+                    context[store[i].key] = inputArray[index].value;
+                }
+            } else if ('undefined' !== typeof store[i].id) {
+                var attrsForId = dom.getElementAttributesForId(store[i].id, content);
+                if (attrsForId && 'undefined' !== typeof attrsForId[store[i].attr]) {
+                    context[store[i].key] = attrsForId[store[i].attr];
+                }
             }
         }
     };
