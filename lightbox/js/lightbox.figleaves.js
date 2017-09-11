@@ -198,12 +198,16 @@
             }
 
             return value;
+        },
+
+        escapeRegex: function (s) {
+            return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         }
     };
 
     var dom = {
         getElementAttributesForId: function (id, content) {
-            var regex = new RegExp('<[^<>]*id=[\'"]' + escapeRegex(id) + '[\'"][^<>]*>', 'mig');
+            var regex = new RegExp('<[^<>]*id=[\'"]' + util.escapeRegex(id) + '[\'"][^<>]*>', 'mig');
             var attrMap = {};
             var m = regex.exec(content);
             if (m) {
