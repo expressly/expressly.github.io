@@ -78,7 +78,6 @@ var xly = xly || (function () {
                 };
             }
 
-
             xhr.open('POST', protocol + "//prod.expresslyapp.com/api/adserver/banner" + path, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.withCredentials = true;
@@ -144,8 +143,8 @@ var xly = xly || (function () {
                         call('', link,
                             {
                                 ppid: ppid,
-                                width: img.getAttribute("width"),
-                                height: img.getAttribute("height"),
+                                width: parseInt(img.getAttribute("width")) || null,
+                                height: parseInt(img.getAttribute("height")) || null,
                                 campaigns: campaigns,
                                 source: getXlyAttr('source')
                             }
@@ -157,8 +156,8 @@ var xly = xly || (function () {
                             call('/precache', link,
                                 {
                                     merchantUuid: merchant,
-                                    width: img.getAttribute("width"),
-                                    height: img.getAttribute("height"),
+                                    width: parseInt(img.getAttribute("width")) || null,
+                                    height: parseInt(img.getAttribute("height")) || null,
                                     campaigns: campaigns,
                                     source: getXlyAttr('source'),
                                     email: email,
@@ -181,8 +180,8 @@ var xly = xly || (function () {
                             call('/anonymous', link,
                                 {
                                     merchantUuid: merchant,
-                                    width: img.getAttribute("width"),
-                                    height: img.getAttribute("height"),
+                                    width: parseInt(img.getAttribute("width")) || null,
+                                    height: parseInt(img.getAttribute("height")) || null,
                                     campaigns: campaigns,
                                     source: getXlyAttr('source')
                                 }
