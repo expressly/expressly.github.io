@@ -3,6 +3,7 @@ var microsite = function () {
     var protocol = 'https:';
     var email = $('#email');
     var postcode = $('#postal_code');
+    var phone = $('#phone');
 
     function submit() {
         if (validate()) {
@@ -27,7 +28,7 @@ var microsite = function () {
             city: $('#postal_town').val(),
             zip: postcode.val(),
             country: 'GB',
-            phone: $('#phone').val(),
+            phone: phone.val(),
             gender: $('#gender').val(),
             source: document.referrer
         };
@@ -61,6 +62,7 @@ var microsite = function () {
     var validators = [
         vrValidateRequired,
         vrValidateEmailField,
+        vrValidatePhoneUk,
         vrValidatePostCode,
         vrCheckAge,
         vrCheckTerms
@@ -107,7 +109,13 @@ var microsite = function () {
     function vrValidatePostCode() {
         return validateRegex(postcode, /^((?:(?:gir)|(?:[a-pr-uwyz])(?:(?:[0-9](?:[a-hjkpstuw]|[0-9])?)|(?:[a-hk-y][0-9](?:[0-9]|[abehmnprv-y])?)))) ?([0-9][abd-hjlnp-uw-z]{2})$/i)
             ? ''
-            : 'Please enter a valid postcode';
+            : 'Please enter a valid UK postcode';
+    }
+
+    function vrValidatePhoneUk() {
+        return validateRegex(phone, /^(0|\+44|0044)\s*[1235789]\s*([0-9]\s*){9}$/)
+            ? ''
+            : 'Please enter a valid UK phone number';
     }
 
     function vrValidateEmailField() {
