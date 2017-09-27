@@ -16,10 +16,12 @@ var microsite = function () {
         var lastName = $('#last-name').val();
         var streetNo = $('#street_number').val();
         var streetName = $('#route').val();
+        var campaigns = $('#campaign').val();
+        campaigns = campaigns ? campaigns.split(",") : null;
 
         return {
             merchantUuid: $('#merchant').val(),
-            campaigns: [$('#campaign').val()],
+            campaigns: campaigns,
             email: email.val(),
             fullName: firstName + ' ' + lastName,
             forename: firstName,
