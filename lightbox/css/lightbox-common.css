@@ -8,9 +8,15 @@ div.xly * {
     padding: 0;
 }
 
+div.xly .xly-content span {
+    font-weight: bold;
+}
+
 div.xly.xly-popup.xly-message h2 {
     font-size: 20px !important;
     font-weight: 400 !important;
+    background: white !important;
+    color: #808080 !important;
     margin-bottom: 10px;
 }
 
