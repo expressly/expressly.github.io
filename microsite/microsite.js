@@ -6,8 +6,11 @@ var microsite = function () {
     var phone = $('#phone');
 
     function submit() {
+        busy(true);
         if (validate()) {
             precacheAndRedirect(buildPayload());
+        } else {
+            busy(false);
         }
     }
 
@@ -50,6 +53,7 @@ var microsite = function () {
             },
             error: function (e) {
                 console.log(e);
+                busy(false);
                 alert("Oops, something went wrong with your submission. Please try again.");
             }
         });
@@ -182,6 +186,17 @@ var microsite = function () {
                 var circle = new google.maps.Circle({center: geolocation, radius: position.coords.accuracy});
                 autocomplete.setBounds(circle.getBounds());
             });
+        }
+    }
+
+    function busy(working) {
+        var $button = $('#xly-submitButton');
+        if (working) {
+            $button.attr('disabled', 'true');
+            $button.addClass('busy');
+        } else {
+            $button.removeAttr('disabled');
+            $button.removeClass('busy');
         }
     }
 
