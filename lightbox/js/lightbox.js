@@ -412,13 +412,21 @@
             });
 
             var stepUrl = util.evaluate(step.url, context);
-            console.log(step.method + ' ' +  stepUrl);
             xhr.open(step.method, stepUrl, true);
             xhr.withCredentials = true;
+            var data;
             if (step.data) {
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                if (step.dataType === 'json') {
+                    xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+                    data = that.getStepDataAsJson(step.data, context);
+                } else {
+                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    data = that.getStepData(step.data, context);
+                }
+
+                console.log('data=' + data);
             }
-            xhr.send(that.getStepData(step.data, context));
+            xhr.send(data);
         };
         executeStep(steps.shift(), context, steps);
     };
@@ -442,6 +450,19 @@
         }
 
         return params.join("&");
+    };
+
+    XlyLightbox.prototype.getStepData = function (data, context) {
+        if (!data) {
+            return '';
+        }
+
+        var params = {};
+        for (var i = 0; i < data.length; ++i) {
+            params[data[i].name] = util.evaluate(data[i], context);
+        }
+
+        return JSON.stringify(params);
     };
 
     XlyLightbox.prototype.storeToContext = function (store, content, context) {
