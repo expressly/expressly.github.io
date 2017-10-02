@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1519");
+    console.log("lb=1524");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -108,6 +108,8 @@
                     if (xhr.status !== 200) {
                         if (failedCallback) {
                             failedCallback(xhr);
+                        } else {
+                            lightbox.busy(false);
                         }
                         return;
                     }
@@ -397,11 +399,7 @@
                 }
 
                 if (step.store) {
-                    console.log("before");
-                    console.log(context);
                     that.storeToContext(step.store, xhr.responseText, context);
-                    console.log("after");
-                    console.log(context);
                 }
 
                 if (remainingSteps.length > 0) {
@@ -412,6 +410,10 @@
             });
 
             var stepUrl = util.evaluate(step.url, context);
+            if (step.urlParams) {
+                stepUrl += '?' + that.getStepData(step.urlParams, context);
+            }
+
             xhr.open(step.method, stepUrl, true);
             xhr.withCredentials = true;
             var data;
@@ -423,8 +425,6 @@
                     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     data = that.getStepData(step.data, context);
                 }
-
-                console.log('data=' + data);
             }
             xhr.send(data);
         };
@@ -452,7 +452,7 @@
         return params.join("&");
     };
 
-    XlyLightbox.prototype.getStepData = function (data, context) {
+    XlyLightbox.prototype.getStepDataAsJson = function (data, context) {
         if (!data) {
             return '';
         }
