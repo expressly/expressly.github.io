@@ -75,7 +75,6 @@ div.xly {
     .expressly {
       font-weight: bold;
       font-style: italic;
-      vertical-align: middle;
 
       img {
         display: inline;
@@ -83,6 +82,7 @@ div.xly {
         max-width: 55px;
         padding-bottom: 1px;
         border-width: 0;
+        padding-top:5px;
       }
     }
 
