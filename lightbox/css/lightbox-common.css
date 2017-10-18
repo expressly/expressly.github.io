@@ -1,3 +1,6 @@
+div.xly { }
+div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer { }
+
 div.xly * {
     font-family: "Graphik-Regular", Arial, sans-serif !important;
     font-size: 14px !important;
@@ -232,7 +235,7 @@ div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-act
 
 div.xly.xly-popup.xly-message > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions {
     margin: 20px 0 20px;
-    min-height: initial;
+    min-height: auto;
 }
 
 div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row .xly-footer .xly-actions a {
