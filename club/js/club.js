@@ -261,11 +261,11 @@ var club = function () {
         storeProfile: function(profile) {
             if (typeof(Storage) !== "undefined") {
                 if (profile !== null) {
-                    localStorage.profile = JSON.stringify(profile);
+                    localStorage.setItem("profile." + muid, JSON.stringify(profile));
                 } else {
-                    localStorage.removeItem('profile');
+                    localStorage.removeItem("profile." + muid);
                 }
-                localStorage.signedIn = profile !== null;
+                localStorage.setItem("signedIn." + muid, profile !== null);
             }
         },
         setProfile: function (profile, nostore) {
@@ -296,13 +296,15 @@ var club = function () {
             }
 
             if (typeof(Storage) !== "undefined" && !nostore) {
-                localStorage.entries = JSON.stringify(entries);
+                localStorage.setItem("entries." + muid, JSON.stringify(entries));
             }
         },
         redraw: function() {
             if (typeof(Storage) !== "undefined") {
-                var profile = localStorage.profile ? JSON.parse(localStorage.profile) : null;
-                var entries = localStorage.entries ? JSON.parse(localStorage.entries) : [];
+                var profileVal = localStorage.getItem("profile." + muid);
+                var entriesVal = localStorage.getItem("entries." + muid);
+                var profile = profileVal ? JSON.parse(profileVal) : null;
+                var entries = entriesVal ? JSON.parse(entriesVal) : [];
                 controller.setEntries(entries, true);
                 controller.setProfile(profile, true);
             }
@@ -642,7 +644,6 @@ var club = function () {
         $(window).bind('storage', function () {
             controller.redraw();
         });
-        localStorage.setItem('a', 'test');
         $('#action--register').click(function (event) {
             event.preventDefault();
             controller.register();
