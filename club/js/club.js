@@ -612,9 +612,9 @@ var club = function () {
                 syncFromValue();
 
                 var pad = function(value) {
-                  return value.length === 1
-                    ? '0' + value
-                    : value;
+                    return value.length === 1
+                        ? '0' + value
+                        : value;
                 };
 
                 inputs.change(function () {
@@ -628,10 +628,29 @@ var club = function () {
                     var target = $(event.target);
                     var length = parseInt(target.attr('maxlength'));
                     var inp = String.fromCharCode(event.keyCode);
+
+                    target.data("prev-val", target.val());
                     if (/[0-9]/.test(inp) && target.val().length >= length) {
                         event.preventDefault();
                     }
                     if (inp === '/' && length === 2) {
+                        var next = target.nextAll('input')[0];
+                        next.focus();
+                    }
+                });
+
+
+                inputs.keyup(function (event) {
+                    var target = $(event.target);
+                    var length = parseInt(target.attr('maxlength'));
+                    var inp = String.fromCharCode(event.keyCode);
+
+                    if (!/[0-9]*/.test(target.val()) || target.val().length > length) {
+                        target.val(target.data("prev-val"));
+                        return;
+                    }
+
+                    if (/[0-9]/.test(inp) && length === 2 && target.val().length === length) {
                         var next = target.nextAll('input')[0];
                         next.focus();
                     }
