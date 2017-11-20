@@ -245,8 +245,8 @@ var club = function () {
             form.competition.toggleClass('was-validated', true);
         },
 
-        autoPowerLink: function(cuid) {
-            if(state.profile) {
+        autoPowerLink: function (cuid) {
+            if (state.profile) {
                 var payload = Object.assign({}, state.profile);
                 delete payload['registrationCompleted'];
                 delete payload['resetPassword'];
@@ -258,7 +258,7 @@ var club = function () {
             }
         },
 
-        storeProfile: function(profile) {
+        storeProfile: function (profile) {
             if (typeof(Storage) !== "undefined") {
                 if (profile !== null) {
                     localStorage.setItem("profile." + muid, JSON.stringify(profile));
@@ -270,7 +270,7 @@ var club = function () {
         },
         setProfile: function (profile, nostore) {
             state.profile = profile;
-            if(!nostore) {
+            if (!nostore) {
                 controller.storeProfile(profile);
             }
             $('body').toggleClass("logged-in", profile !== null);
@@ -279,7 +279,7 @@ var club = function () {
             if (profile !== null) {
                 form.populate(form.competition, profile, true);
                 form.populate(form.profile, profile, true);
-                if(!nostore) {
+                if (!nostore) {
                     server.entries();
                 }
             } else {
@@ -299,7 +299,7 @@ var club = function () {
                 localStorage.setItem("entries." + muid, JSON.stringify(entries));
             }
         },
-        redraw: function() {
+        redraw: function () {
             if (typeof(Storage) !== "undefined") {
                 var profileVal = localStorage.getItem("profile." + muid);
                 var entriesVal = localStorage.getItem("entries." + muid);
@@ -478,7 +478,7 @@ var club = function () {
                 });
         },
 
-        entries: function() {
+        entries: function () {
             server.submit("competition/entries", "GET", null,
                 function (data) {
                     controller.setEntries(data);
@@ -499,15 +499,23 @@ var club = function () {
                         controller.loginRequired();
                     }
                 },
-                success: function(data) {
+                success: function (data) {
                     form.busy(false);
-                    if(success) { success(data); }
-                    else { printSuccess(data); }
+                    if (success) {
+                        success(data);
+                    }
+                    else {
+                        printSuccess(data);
+                    }
                 },
-                error: function(xhr, status, errorC) {
+                error: function (xhr, status, errorC) {
                     form.busy(false);
-                    if(error) { error(xhr, status, errorC); }
-                    else { printError(xhr, status, errorC); }
+                    if (error) {
+                        error(xhr, status, errorC);
+                    }
+                    else {
+                        printError(xhr, status, errorC);
+                    }
                 }
             });
         }
@@ -611,7 +619,7 @@ var club = function () {
                 target.change(syncFromValue);
                 syncFromValue();
 
-                var pad = function(value) {
+                var pad = function (value) {
                     return value.length === 1
                         ? '0' + value
                         : value;
@@ -656,6 +664,35 @@ var club = function () {
                     }
                 });
             });
+        }
+    };
+
+    var expirables = {
+        controls: $('[data-expiration]'),
+        parse: function (el) {
+            return moment($(el).data('expiration'));
+        },
+        nextExpiration: function () {
+            var min = moment().add(1, 'day').diff(moment(), "seconds");
+            expirables.controls.each(function () {
+                $this = $(this);
+                var diff = expirables.parse($this).diff(moment(), "seconds");
+                if (!$this.hasClass("is-expired")) {
+                    min = Math.max(Math.min(min, diff), 0);
+                }
+            });
+            return min * 1000;
+        },
+        update: function () {
+            var nextUpdate = expirables.nextExpiration();
+            var now = moment();
+            expirables.controls.each(function () {
+                var expires = expirables.parse(this);
+                if (now.isAfter(expires)) {
+                    $(this).addClass("is-expired");
+                }
+            });
+            setTimeout(expirables.update, nextUpdate + 1000);
         }
     };
 
@@ -708,17 +745,17 @@ var club = function () {
                 controller.autoPowerLink($(event.target).data('powerlink'));
             }
         });
-        $('.card-sorter').change(function() {
+        $('.card-sorter').change(function () {
             var selected = $($(this).find(":selected"));
             var source = selected.data("source");
             var direction = selected.data("direction");
-            $('#competition-cards').find('.competition-card').sort(function(a,b) {
+            $('#competition-cards').find('.competition-card').sort(function (a, b) {
                 var l = direction === 'asc' ? a : b;
                 var r = direction === 'asc' ? b : a;
                 return $(l).data(source) > $(r).data(source);
             }).appendTo('#competition-cards');
         });
-        $('.card-filter').change(function() {
+        $('.card-filter').change(function () {
             var selected = $($(this).find(":selected"));
             var filter = selected.data("filter");
             var container = $('#competition-cards');
@@ -730,6 +767,7 @@ var club = function () {
             }
         });
         $('.address_autocomplete').focus(addressAutoComplete.geolocate);
+        expirables.update();
     }
 
     // init
