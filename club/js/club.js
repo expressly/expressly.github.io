@@ -319,6 +319,9 @@ var club = function () {
     function printError(xhr) {
         console.log('error');
         console.log(xhr.responseText);
+        if (url.parameter('debug')) {
+            alert(xhr.responseText);
+        }
     }
 
     var server = {
