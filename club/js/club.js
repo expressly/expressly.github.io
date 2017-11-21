@@ -784,9 +784,14 @@ var club = function () {
             var source = selected.data("source");
             var direction = selected.data("direction");
             $('#competition-cards').find('.competition-card').sort(function (a, b) {
-                var l = direction === 'asc' ? a : b;
-                var r = direction === 'asc' ? b : a;
-                return $(l).data(source) > $(r).data(source);
+                var l = $(direction === 'asc' ? a : b);
+                var r = $(direction === 'asc' ? b : a);
+                var lp = l.hasClass('promoted') ? -1 : 1;
+                var rp = r.hasClass('promoted') ? -1 : 1;
+
+                return lp === rp
+                    ? l.data(source) > r.data(source)
+                    : l < r;
             }).appendTo('#competition-cards');
         });
         $('.card-filter').change(function () {
