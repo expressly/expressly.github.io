@@ -9,11 +9,18 @@
                 <div class="xly-bottom">
                     {{ lightboxConfirmMessage | raw }}
                     <div>
+                        <span>
+                            {% if migrationMessage != null %}
+                                {{ migrationMessage }}
+                            {% else %}
+                                Start shopping with no typing!
+                            {% endif %}
+                           <br/></span>
                         <span>{{ giverName}}</span>
-                        <span class="xly-regular"> {{ autoConfirm ? 'is sending' : 'will send' }}</span>
+                        <span class="xly-regular"> {{ autoConfirm ? 'is sharing' : 'can share' }} with</span>
                         <span>{{ takerName }}</span>
                         <span class="text-clear"></span>
-                        <span class="xly-regular">your {{ detailsBeingMigrated }} - less typing for you!</span>
+                        <span class="xly-regular">your {{ detailsBeingMigrated }} - with one click</span>
                     </div>
                 </div>
             </div>
