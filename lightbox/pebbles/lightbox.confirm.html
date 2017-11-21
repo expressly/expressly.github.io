@@ -11,11 +11,11 @@
                     <div>
                         <span>
                             {% if migrationMessage != null %}
-                                {{ migrationMessage }}
+                                {{ migrationMessage | raw }}
                             {% else %}
                                 Start shopping with no typing!
                             {% endif %}
-                           <br/></span>
+                           <br/><br/></span>
                         <span>{{ giverName}}</span>
                         <span class="xly-regular"> {{ autoConfirm ? 'is sharing' : 'can share' }} with</span>
                         <span>{{ takerName }}</span>
