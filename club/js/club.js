@@ -1,4 +1,4 @@
-/** v1.00 **/
+/** v1.01 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
@@ -330,6 +330,7 @@ var club = function () {
                 function (data) {
                     modal.login.modal('hide');
                     form.toggleFeedback('form--login', 'password', false);
+                    server.setToken(data.token);
                     controller.setProfile(data.account)
                 },
                 function (xhr) {
@@ -342,6 +343,7 @@ var club = function () {
         logout: function () {
             server.submit("account/logout", "POST", null,
                 function () {
+                    server.setToken(null);
                     controller.setProfile(null)
                 },
                 printError);
@@ -435,6 +437,7 @@ var club = function () {
             server.submit("account/register", "POST", payload,
                 function (data) {
                     modal.register.modal('hide');
+                    server.setToken(data.token);
                     controller.setProfile(data.account)
                 },
                 function (xhr, status, error) {
@@ -455,6 +458,7 @@ var club = function () {
             server.submit("competition/" + campaign + "/enter", "POST", payload,
                 function (data) {
                     form.busy(true);
+                    server.setToken(data.token);
                     controller.setProfile(data.account);
                     window.location.href = data.powerLink;
                 },
@@ -496,6 +500,7 @@ var club = function () {
                 data: payload ? JSON.stringify(payload) : null,
                 contentType: "application/json",
                 xhrFields: {withCredentials: true},
+                headers: server.getAuthHeader(),
                 statusCode: {
                     401: function () {
                         form.busy(false);
@@ -521,6 +526,32 @@ var club = function () {
                     }
                 }
             });
+        },
+
+        getToken: function() {
+            if (typeof(Storage) !== "undefined") {
+                return localStorage.getItem("token." + muid);
+            }
+            return null;
+        },
+
+        setToken: function(token) {
+            if (typeof(Storage) !== "undefined") {
+                if (!!token) {
+                    localStorage.setItem("token." + muid, token);
+                } else {
+                    localStorage.removeItem("token." + muid);
+                }
+            }
+        },
+
+        hasToken: function() {
+            var token = server.getToken();
+            return !!token && token.length > 0;
+        },
+
+        getAuthHeader: function() {
+            return server.hasToken() ? {'Authorization' : server.getToken() } : {};
         }
     };
 
