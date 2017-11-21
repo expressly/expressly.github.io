@@ -786,12 +786,16 @@ var club = function () {
             $('#competition-cards').find('.competition-card').sort(function (a, b) {
                 var l = $(direction === 'asc' ? a : b);
                 var r = $(direction === 'asc' ? b : a);
-                var lp = l.hasClass('promoted') ? -1 : 1;
-                var rp = r.hasClass('promoted') ? -1 : 1;
-
-                return lp === rp
-                    ? l.data(source) > r.data(source)
-                    : l < r;
+                var lp = $(a).hasClass('promoted') ? -1 : 1;
+                var rp = $(b).hasClass('promoted') ? -1 : 1;
+                var result = lp - rp;
+                if (result === 0) {
+                    result = l.data(source) - r.data(source);
+                }
+                if (result === 0) {
+                    result = l.data('competition-toggle').localeCompare(r.data('competition-toggle'));
+                }
+                return result;
             }).appendTo('#competition-cards');
         });
         $('.card-filter').change(function () {
