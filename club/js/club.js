@@ -326,6 +326,8 @@ var club = function () {
 
     var server = {
         login: function (payload) {
+            server.setToken(null);
+            controller.setProfile(null);
             server.submit("account/login", "POST", payload,
                 function (data) {
                     modal.login.modal('hide');
