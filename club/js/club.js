@@ -42,6 +42,7 @@ var club = function () {
     var form = {
         login: $('#form--login'),
         competition: $('#form--competition'),
+        contactUs: $('#form--contact-us'),
         profile: $('#form--profile'),
         register: $('#form--register'),
         passwordReset: $('#form--password-reset'),
@@ -279,6 +280,7 @@ var club = function () {
             if (profile !== null) {
                 form.populate(form.competition, profile, true);
                 form.populate(form.profile, profile, true);
+                form.populate(form.contactUs, {email: profile.email, name: profile.forename + ' ' + profile.surname}, false);
                 if (!nostore) {
                     server.entries();
                 }
@@ -308,6 +310,31 @@ var club = function () {
                 controller.setEntries(entries, true);
                 controller.setProfile(profile, true);
             }
+        },
+
+        contactUs: function () {
+            var formData = form.serialize(form.contactUs);
+            if (form.contactUs.get(0).checkValidity() === true) {
+                form.busy(true);
+                $.ajax({
+                    url: "https://formspree.io/info@buyexpressly.com",
+                    method: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (data) {
+                        window.location.href = form.contactUs.attr("action");
+                        form.busy(false);
+                    },
+                    error: function (xhr, status, errorC) {
+                        form.busy(false);
+                        modal.notify(
+                            "Error Sending Message",
+                            "Oops! Looks like something went wrong trying to send your message");
+                        printError(xhr, status, errorC);
+                    }
+                });
+            }
+            form.contactUs.toggleClass('was-validated', true);
         }
     };
 
@@ -776,6 +803,10 @@ var club = function () {
         $('#action--enter').click(function (event) {
             event.preventDefault();
             controller.submitEntry();
+        });
+        $('#action--contact-us').click(function (event) {
+            event.preventDefault();
+            controller.contactUs();
         });
         $('[data-powerlink-auto="true"]').click(function (event) {
             event.preventDefault();
