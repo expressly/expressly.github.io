@@ -504,6 +504,8 @@ var club = function () {
                 statusCode: {
                     401: function () {
                         form.busy(false);
+                        server.setToken(null);
+                        controller.setProfile(null);
                         controller.loginRequired();
                     }
                 },
