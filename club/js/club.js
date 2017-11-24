@@ -238,7 +238,7 @@ var club = function () {
                 var over18 = dates.getYearsSince(dates.parseIso8601(formData.dob)) >= 18;
                 form.toggleFeedback('form--competition', 'dob', !over18);
                 if (over18) {
-                    server.submitEntry(formData);
+                    server.submitEntry(formData, true);
                 }
             } else if (form.competition.find('.address-fields input:invalid').length > 0) {
                 $('#form--competition--address-fields').collapse('show');
@@ -253,7 +253,7 @@ var club = function () {
                 delete payload['resetPassword'];
                 payload.campaign = cuid;
                 payload.optin = false;
-                server.submitEntry(payload);
+                server.submitEntry(payload, true);
             } else {
                 modal.login.modal('show');
             }
@@ -269,7 +269,7 @@ var club = function () {
                 localStorage.setItem("signedIn." + muid, profile !== null);
             }
         },
-        setProfile: function (profile, nostore) {
+        setProfile: function (profile, nostore, noUpdateEntries) {
             state.profile = profile;
             if (!nostore) {
                 controller.storeProfile(profile);
@@ -281,7 +281,7 @@ var club = function () {
                 form.populate(form.competition, profile, true);
                 form.populate(form.profile, profile, true);
                 form.populate(form.contactUs, {email: profile.email, name: profile.forename + ' ' + profile.surname}, false);
-                if (!nostore) {
+                if (!nostore && !noUpdateEntries) {
                     server.entries();
                 }
             } else {
@@ -380,11 +380,12 @@ var club = function () {
 
         passwordResetRequest: function (payload) {
             server.submit("account/password-reset-request", "POST", payload, function () {
+                    modal.passwordResetRequest.one('hidden.bs.modal', function() {
+                        modal.notify(
+                            "Password Reset Email Sent",
+                            "Please check your email for your password reset link")
+                    });
                     modal.passwordResetRequest.modal('hide');
-                    modal.notify(
-                        "Password Reset Email Sent",
-                        "Please check your email for your password reset link")
-                    $('body').addClass('modal-open');
                 },
                 function (xhr, status, error) {
                     modal.passwordResetRequest.modal('hide');
@@ -395,23 +396,26 @@ var club = function () {
         passwordReset: function (token, newPassword) {
             server.submit("account/password-reset", "POST", {token: token, newPassword: newPassword},
                 function (data) {
+                    modal.passwordReset.one('hidden.bs.modal', function() {
+                        modal.notify(
+                            "Password Reset",
+                            "Your password has been changed");
+                    });
                     modal.passwordReset.modal('hide');
+                    server.setToken(data.token);
                     controller.setProfile(data.account);
                     url.removeParameter('token');
-                    modal.notify(
-                        "Password Reset",
-                        "Your password has been changed");
-                    $('body').addClass('modal-open');
                 },
                 function (xhr, status, error) {
                     printError(xhr, status, error);
                     if (xhr.status === 403) {
-                        // url.removeParameter('token');
+                        modal.passwordReset.one('hidden.bs.modal', function() {
+                            modal.notify(
+                                "Password Reset Link Expired",
+                                "Your password reset link has either expired or been used. Please try signing in or resetting your password again.");
+                        });
+
                         modal.passwordReset.modal('hide');
-                        modal.notify(
-                            "Password Reset Link Expired",
-                            "Your password reset link has either expired or been used. Please try signing in or resetting your password again.");
-                        $('body').addClass('modal-open');
                     } else {
                         form.toggleFeedback('form--password-reset', 'newPassword', true);
                     }
@@ -484,14 +488,14 @@ var club = function () {
                 });
         },
 
-        submitEntry: function (payload) {
+        submitEntry: function (payload, noUpdateEntries) {
             var campaign = payload.campaign;
             delete payload['campaign'];
             server.submit("competition/" + campaign + "/enter", "POST", payload,
                 function (data) {
                     form.busy(true);
                     server.setToken(data.token);
-                    controller.setProfile(data.account);
+                    controller.setProfile(data.account, false, noUpdateEntries);
                     window.location.href = data.powerLink;
                 },
                 function (xhr, status, error) {
@@ -786,16 +790,18 @@ var club = function () {
         });
         $('#action--login-to-signup').click(function (event) {
             event.preventDefault();
+            modal.login.one('hidden.bs.modal', function() {
+                modal.register.modal('show');
+            });
             modal.login.modal('hide');
-            modal.register.modal('show');
-            $('body').addClass('modal-open');
         });
         $('#action--login-to-reset').click(function (event) {
             event.preventDefault();
+            modal.login.one('hidden.bs.modal', function() {
+                modal.passwordResetRequest.modal('show');
+            });
             modal.login.modal('hide');
             $('#form--password-reset-request--email').val($('#form--login--email').val());
-            modal.passwordResetRequest.modal('show');
-            $('body').addClass('modal-open');
         });
         $('#action--password-reset').click(function (event) {
             event.preventDefault();
