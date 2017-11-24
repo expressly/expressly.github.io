@@ -384,6 +384,7 @@ var club = function () {
                     modal.notify(
                         "Password Reset Email Sent",
                         "Please check your email for your password reset link")
+                    $('body').addClass('modal-open');
                 },
                 function (xhr, status, error) {
                     modal.passwordResetRequest.modal('hide');
@@ -399,7 +400,8 @@ var club = function () {
                     url.removeParameter('token');
                     modal.notify(
                         "Password Reset",
-                        "Your password has been changed")
+                        "Your password has been changed");
+                    $('body').addClass('modal-open');
                 },
                 function (xhr, status, error) {
                     printError(xhr, status, error);
@@ -408,7 +410,8 @@ var club = function () {
                         modal.passwordReset.modal('hide');
                         modal.notify(
                             "Password Reset Link Expired",
-                            "Your password reset link has either expired or been used. Please try signing in or resetting your password again.")
+                            "Your password reset link has either expired or been used. Please try signing in or resetting your password again.");
+                        $('body').addClass('modal-open');
                     } else {
                         form.toggleFeedback('form--password-reset', 'newPassword', true);
                     }
@@ -785,12 +788,14 @@ var club = function () {
             event.preventDefault();
             modal.login.modal('hide');
             modal.register.modal('show');
+            $('body').addClass('modal-open');
         });
         $('#action--login-to-reset').click(function (event) {
             event.preventDefault();
             modal.login.modal('hide');
             $('#form--password-reset-request--email').val($('#form--login--email').val());
             modal.passwordResetRequest.modal('show');
+            $('body').addClass('modal-open');
         });
         $('#action--password-reset').click(function (event) {
             event.preventDefault();
