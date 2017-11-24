@@ -366,7 +366,7 @@ var club = function () {
                     if (xhr.status === 401) {
                         form.toggleFeedback('form--login', 'password', true);
                     }
-                });
+                }, true);
         },
 
         logout: function () {
@@ -528,14 +528,14 @@ var club = function () {
                 }, printError);
         },
 
-        submit: function (uri, method, payload, success, error) {
+        submit: function (uri, method, payload, success, error, noCredentials) {
             form.busy(true);
             $.ajax({
                 url: protocol + "//prod.expresslyapp.com/api/club/" + muid + "/" + uri,
                 type: method,
                 data: payload ? JSON.stringify(payload) : null,
                 contentType: "application/json",
-                xhrFields: {withCredentials: true},
+                xhrFields: {withCredentials: !noCredentials},
                 headers: server.getAuthHeader(),
                 statusCode: {
                     401: function () {
