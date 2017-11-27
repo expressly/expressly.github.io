@@ -246,12 +246,13 @@ var club = function () {
             form.competition.toggleClass('was-validated', true);
         },
 
-        autoPowerLink: function (cuid) {
+        autoPowerLink: function (cuid, title) {
             if (state.profile) {
                 var payload = Object.assign({}, state.profile);
                 delete payload['registrationCompleted'];
                 delete payload['resetPassword'];
                 payload.campaign = cuid;
+                payload.competitionTitle = title;
                 payload.optin = false;
                 server.submitEntry(payload, true);
             } else {
@@ -822,7 +823,8 @@ var club = function () {
         $('[data-powerlink-auto="true"]').click(function (event) {
             event.preventDefault();
             if (!$('body').hasClass('busy')) {
-                controller.autoPowerLink($(event.target).data('powerlink'));
+                var el = $(event.target);
+                controller.autoPowerLink(el.data('powerlink'), el.data('campaign-title'));
             }
         });
         $('.card-sorter').change(function () {
