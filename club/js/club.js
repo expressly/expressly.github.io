@@ -532,7 +532,7 @@ var club = function () {
         submit: function (uri, method, payload, success, error, noCredentials) {
             form.busy(true);
             $.ajax({
-                url: protocol + "//prod.expresslyapp.com/api/club/" + muid + "/" + uri + "?cb=" + new Date().getTime(),
+                url: protocol + "//prod.expresslyapp.com/api/club/" + muid + "/" + uri + "?cb=" + new Date().getTime() + "",
                 type: method,
                 data: payload ? JSON.stringify(payload) : null,
                 contentType: "application/json",
