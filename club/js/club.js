@@ -867,11 +867,13 @@ var club = function () {
         $('[data-toggle="tooltip"]').tooltip();
         dobControl.init();
         controller.redraw();
-        server.profile(function () {
-            if (url.parameter("token")) {
-                modal.passwordReset.modal('show');
-            }
-        });
+        if (server.hasToken()) {
+            server.profile(function () {
+                if (url.parameter("token")) {
+                    modal.passwordReset.modal('show');
+                }
+            });
+        }
     }());
 
     return {
