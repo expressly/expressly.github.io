@@ -873,6 +873,10 @@ var club = function () {
                     modal.passwordReset.modal('show');
                 }
             });
+        } else {
+            if (url.parameter("token")) {
+                modal.passwordReset.modal('show');
+            }
         }
     }());
 
