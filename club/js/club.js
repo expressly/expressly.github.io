@@ -328,7 +328,7 @@ var club = function () {
                 link.prop('href', powerlink);
                 if (!link.data("ga-event-attached")) {
                     link.click(function () {
-                        gah.event("Powerlink", "click", campaign);
+                        gah.event("Powerlink", "click", $(this).data('data-powerlink'));
                     });
                     link.data("ga-event-attached", true);
                 }
@@ -543,7 +543,7 @@ var club = function () {
                     form.busy(true);
                     server.setToken(data.token);
                     controller.setProfile(data.account, false, noUpdateEntries);
-                    gah.event('Powerlink', 'entry-success');
+                    gah.event('Powerlink', 'entry-success', campaign);
                     window.location.href = url.addSourceParameter(data.powerLink);
                 },
                 function (xhr, status, error) {
