@@ -144,6 +144,21 @@ var club = function () {
 
                 window.location.replace(parts[0] + (tokens.length > 0 ? '?' + tokens.join('&') : ''));
             }
+        },
+
+        addSourceParameter: function(url) {
+            var referrer = Cookies.get('referrer.' + muid);
+            if (referrer) {
+                var delim = url.indexOf("?") > -1 ? '&' : '?';
+                return url + delim + "source=" + encodeURIComponent(referrer);
+            }
+            return url;
+        },
+
+        storeReferrer: function() {
+            if (document.referrer && document.referrer.indexOf(window.location.hostname) < 0) {
+                Cookies.set('referrer.' + muid, document.referrer, {expires: 7, path: '/'});
+            }
         }
     };
 
@@ -294,8 +309,9 @@ var club = function () {
             $('.competition-entered').removeClass('competition-entered');
 
             for (var i = 0; i < entries.length; ++i) {
+                var powerlink = url.addSourceParameter(entries[i]['powerLink']);
                 $('[data-competition-toggle="' + entries[i]['campaignUuid'] + '"]').addClass('competition-entered');
-                $('[data-powerlink="' + entries[i]['campaignUuid'] + '"]').prop('href', entries[i]['powerLink']);
+                $('[data-powerlink="' + entries[i]['campaignUuid'] + '"]').prop('href', powerlink);
             }
 
             if (typeof(Storage) !== "undefined" && !nostore) {
@@ -498,7 +514,7 @@ var club = function () {
                     form.busy(true);
                     server.setToken(data.token);
                     controller.setProfile(data.account, false, noUpdateEntries);
-                    window.location.href = data.powerLink;
+                    window.location.href = url.addSourceParameter(data.powerLink);
                 },
                 function (xhr, status, error) {
                     if (xhr.status === 400) {
@@ -864,6 +880,7 @@ var club = function () {
 
     // init
     $(function () {
+        url.storeReferrer();
         registerEvents();
         $('[data-toggle="tooltip"]').tooltip();
         dobControl.init();
