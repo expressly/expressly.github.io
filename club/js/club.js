@@ -328,7 +328,7 @@ var club = function () {
                 link.prop('href', powerlink);
                 if (!link.data("ga-event-attached")) {
                     link.click(function () {
-                        gah.event("Powerlink", "click", $(this).data('data-powerlink'));
+                        gah.event("Powerlink", "click", $(this).data('powerlink'));
                     });
                     link.data("ga-event-attached", true);
                 }
