@@ -315,6 +315,7 @@ var club = function () {
 
         contactUs: function () {
             var formData = form.serialize(form.contactUs);
+            formData['UserAgent'] = window.navigator.userAgent;
             if (form.contactUs.get(0).checkValidity() === true) {
                 form.busy(true);
                 $.ajax({
