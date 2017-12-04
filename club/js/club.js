@@ -524,9 +524,15 @@ var club = function () {
                 },
                 function (xhr, status, error) {
                     if (xhr.status === 400) {
-                        var code = JSON.parse(xhr.responseText).code;
+                        var json = JSON.parse(xhr.responseText);
+                        var code = json.code;
+                        var description = json.description;
                         if (code === 'DUPLICATE_EMAIL') {
                             form.toggleFeedback('form--register', 'email', true, "Email address already registered. Please sign up or use a different email address");
+                            return
+                        }
+                        if (code === 'VALIDATION_FAILED' && description === 'Invalid email address') {
+                            form.toggleFeedback('form--register', 'email', true, "Please enter a valid email address");
                             return
                         }
                     }
@@ -548,7 +554,9 @@ var club = function () {
                 },
                 function (xhr, status, error) {
                     if (xhr.status === 400) {
-                        var code = JSON.parse(xhr.responseText).code;
+                        var json = JSON.parse(xhr.responseText);
+                        var code = json.code;
+                        var description = json.description;
                         if (code === 'DUPLICATE_EMAIL') {
                             modal.notify("Email Registered", "<p>Please log in to enter the compeition</p>");
                             form.toggleFeedback('form--competition', 'email', true, "Please login to enter competition");
@@ -562,6 +570,10 @@ var club = function () {
                         else if (code === 'CLUB_EMAIL_ALREADY_ENTERED') {
                             modal.notify("Duplicate Entry", "<p>Email address has already been entered into competition</p>");
                             form.toggleFeedback('form--competition', 'email', true, "Email address already entered into competition");
+                            return
+                        }
+                        else if (code === 'VALIDATION_FAILED' && description === 'Invalid email address') {
+                            form.toggleFeedback('form--competition', 'email', true, "Please enter a valid email address");
                             return
                         }
                     }
