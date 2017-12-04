@@ -162,6 +162,18 @@ var club = function () {
         }
     };
 
+    var gah = {
+        event: function(category, action, label) {
+            if (ga) {
+                ga('send', 'event', {
+                    eventCategory: category,
+                    eventAction: action,
+                    eventLabel: label
+                });
+            }
+        }
+    };
+
     var strings = {
         nullToEmpty: function (s) {
             return !s || s === undefined ? '' : s;
@@ -309,9 +321,17 @@ var club = function () {
             $('.competition-entered').removeClass('competition-entered');
 
             for (var i = 0; i < entries.length; ++i) {
+                var campaign = entries[i]['campaignUuid'];
                 var powerlink = url.addSourceParameter(entries[i]['powerLink']);
-                $('[data-competition-toggle="' + entries[i]['campaignUuid'] + '"]').addClass('competition-entered');
-                $('[data-powerlink="' + entries[i]['campaignUuid'] + '"]').prop('href', powerlink);
+                var link = $('[data-powerlink="' + campaign + '"]');
+                $('[data-competition-toggle="' + campaign + '"]').addClass('competition-entered');
+                link.prop('href', powerlink);
+                if (!link.data("ga-event-attached")) {
+                    link.click(function () {
+                        gah.event("Powerlink", "click", campaign);
+                    });
+                    link.data("ga-event-attached", true);
+                }
             }
 
             if (typeof(Storage) !== "undefined" && !nostore) {
@@ -378,7 +398,8 @@ var club = function () {
                     modal.login.modal('hide');
                     form.toggleFeedback('form--login', 'password', false);
                     server.setToken(data.token);
-                    controller.setProfile(data.account)
+                    controller.setProfile(data.account);
+                    gah.event('Account', 'login-success');
                 },
                 function (xhr) {
                     if (xhr.status === 401) {
@@ -391,7 +412,8 @@ var club = function () {
             server.submit("account/logout", "POST", null,
                 function () {
                     server.setToken(null);
-                    controller.setProfile(null)
+                    controller.setProfile(null);
+                    gah.event('Account', 'logout-success');
                 },
                 printError);
         },
@@ -404,9 +426,11 @@ var club = function () {
                             "Please check your email for your password reset link")
                     });
                     modal.passwordResetRequest.modal('hide');
+                    gah.event('Account', 'password-reset-success');
                 },
                 function (xhr, status, error) {
                     modal.passwordResetRequest.modal('hide');
+                    gah.event('Account', 'password-reset-failure');
                     printError(xhr, status, error);
                 });
         },
@@ -423,6 +447,7 @@ var club = function () {
                     server.setToken(data.token);
                     controller.setProfile(data.account);
                     url.removeParameter('token');
+                    gah.event('Account', 'password-change-success');
                 },
                 function (xhr, status, error) {
                     printError(xhr, status, error);
@@ -468,6 +493,7 @@ var club = function () {
                     form.profile.toggleClass('was-validated', false);
                     form.toggleFeedback('form--profile', 'currentPassword', false);
                     form.toggleFeedback('form--profile', 'email', false);
+                    gah.event('Account', 'profile-update-success');
                     modal.notify(
                         "Profile updated",
                         "Your profile has been updated")
@@ -483,6 +509,7 @@ var club = function () {
                             return
                         }
                     }
+                    gah.event('Account', 'profile-update-failure');
                     printError(xhr, status, error);
                 });
         },
@@ -492,7 +519,8 @@ var club = function () {
                 function (data) {
                     modal.register.modal('hide');
                     server.setToken(data.token);
-                    controller.setProfile(data.account)
+                    controller.setProfile(data.account);
+                    gah.event('Account', 'register-success');
                 },
                 function (xhr, status, error) {
                     if (xhr.status === 400) {
@@ -502,6 +530,7 @@ var club = function () {
                             return
                         }
                     }
+                    gah.event('Account', 'register-failure');
                     printError(xhr, status, error);
                 });
         },
@@ -514,6 +543,7 @@ var club = function () {
                     form.busy(true);
                     server.setToken(data.token);
                     controller.setProfile(data.account, false, noUpdateEntries);
+                    gah.event('Powerlink', 'entry-success');
                     window.location.href = url.addSourceParameter(data.powerLink);
                 },
                 function (xhr, status, error) {
@@ -535,6 +565,7 @@ var club = function () {
                             return
                         }
                     }
+                    gah.event('Powerlink', 'entry-failure');
                     printError(xhr, status, error);
                 });
         },
