@@ -278,6 +278,7 @@ var club = function () {
                 var payload = Object.assign({}, state.profile);
                 delete payload['registrationCompleted'];
                 delete payload['resetPassword'];
+                delete payload['accountId'];
                 payload.campaign = cuid;
                 payload.competitionTitle = title;
                 payload.optin = false;
