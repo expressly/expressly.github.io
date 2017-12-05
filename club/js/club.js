@@ -554,12 +554,12 @@ var club = function () {
                     window.location.href = url.addSourceParameter(data.powerLink);
                 },
                 function (xhr, status, error) {
-                    if (xhr.status === 400) {
+                    if (xhr.status === 400 || xhr.status === 401) {
                         var json = JSON.parse(xhr.responseText);
                         var code = json.code;
                         var description = json.description;
                         if (code === 'DUPLICATE_EMAIL') {
-                            modal.notify("Email Registered", "<p>Please log in to enter the compeition</p>");
+                            //modal.notify("Email Registered", "<p>Please log in to enter the compeition</p>");
                             form.toggleFeedback('form--competition', 'email', true, "Please login to enter competition");
                             return
                         }
