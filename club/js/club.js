@@ -2,7 +2,7 @@
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
-    var domainMigrationsEnabled = 'true' === $('body').data('domain-migrations-enabled');
+    var domainMigrationsEnabled = !!$('body').data('domain-migrations-enabled');
     var protocol = 'https:';
 
     var modal = {
