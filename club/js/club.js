@@ -2,6 +2,7 @@
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
+    var domainMigrationsEnabled = 'true' === $('body').data('domain-migrations-enabled');
     var protocol = 'https:';
 
     var modal = {
@@ -307,6 +308,9 @@ var club = function () {
             $('.data-forename').text(profile !== null ? profile.forename : '');
             $('.disable-if-logged-in').prop("disabled", profile !== null);
             if (profile !== null) {
+                if (!server.getToken()) {
+                    server.setMigrationStatus("no-token");
+                }
                 form.populate(form.competition, profile, true);
                 form.populate(form.profile, profile, true);
                 form.populate(form.contactUs, {email: profile.email, name: profile.forename + ' ' + profile.surname}, false);
@@ -314,9 +318,13 @@ var club = function () {
                     server.entries();
                 }
             } else {
+                if (!nostore) {
+                    server.setMigrationStatus("none");
+                }
                 controller.setEntries([]);
             }
         },
+
         setEntries: function (entries, nostore) {
             $('body').toggleClass('entered-at-least-one', entries.length > 0);
             $('.competition-entered').removeClass('competition-entered');
@@ -643,6 +651,7 @@ var club = function () {
                     localStorage.removeItem("token." + muid);
                 }
             }
+            server.setMigrationStatus("none");
         },
 
         hasToken: function() {
@@ -652,6 +661,27 @@ var club = function () {
 
         getAuthHeader: function() {
             return server.hasToken() ? {'Authorization' : server.getToken() } : {};
+        },
+
+        setMigrationStatus: function(status) {
+            if (server.getMigrationStatus() !== 'none') {
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem("migrated." + muid, status);
+                }
+            }
+        },
+
+        shouldCheckProfileForMigrated: function() {
+            var status = server.getMigrationStatus();
+            return domainMigrationsEnabled && (!status || status === 'no-token');
+        },
+
+        getMigrationStatus: function() {
+            var status = "none";
+            if (typeof(Storage) !== "undefined") {
+                status = localStorage.getItem("migrated." + muid);
+            }
+            return status;
         }
     };
 
@@ -929,7 +959,7 @@ var club = function () {
         $('[data-toggle="tooltip"]').tooltip();
         dobControl.init();
         controller.redraw();
-        if (server.hasToken()) {
+        if (server.hasToken() || server.shouldCheckProfileForMigrated()) {
             server.profile(function () {
                 if (url.parameter("token")) {
                     modal.passwordReset.modal('show');
