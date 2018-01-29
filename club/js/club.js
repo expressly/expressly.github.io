@@ -1,4 +1,4 @@
-/** v1.01 **/
+/** v1.02 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
@@ -72,7 +72,12 @@ var club = function () {
             var data = form.serializeArray();
             var result = {};
             $.map(data, function (o) {
-                result[o['name']] = o['value'];
+                if (o['name'].indexOf('meta-') === 0) {
+                    result['issuerData'] = result['issuerData'] || {}
+                    result['issuerData'][o['name'].substr('meta-'.length)] = o['value'];
+                } else {
+                    result[o['name']] = o['value'];
+                }
             });
             return result;
         },
