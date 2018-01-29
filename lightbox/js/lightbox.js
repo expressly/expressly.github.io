@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1524");
+    console.log("lb=1531");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -347,6 +347,21 @@
         return metadata.join("&");
     };
 
+    XlyLightbox.prototype.addLocalMetadata = function (context) {
+        var inputs = util.toArray(lightbox.root.querySelectorAll('input'));
+        inputs = inputs.concat(util.toArray(lightbox.root.querySelectorAll('select')));
+        for (var i = 0; i < inputs.length; ++i) {
+            var name = inputs[i].name;
+            if (!name || name.indexOf('meta-') !== 0) {
+                continue;
+            }
+            var value = this.value(inputs[i]);
+            if (value !== null) {
+                context[name] = value;
+            }
+        }
+        return context;
+    };
 
     XlyLightbox.prototype.migrateJs = function () {
         var that = this;
@@ -511,12 +526,12 @@
 
     XlyLightbox.prototype.buildContext = function (data) {
         var cd = data.migration.data.customerData;
-        var billingAddress = typeof cd.billingAddress !== 'undefined' ? cd.addresses[cd.billingAddress] : null;
-        var shippingAddress = typeof cd.shippingAddress !== 'undefined' ? cd.addresses[cd.shippingAddress] : billingAddress;
+        var billingAddress = typeof cd.billingAddress !== 'undefined' && cd.billingAddress !== -1 ? cd.addresses[cd.billingAddress] : null;
+        var shippingAddress = typeof cd.shippingAddress !== 'undefined' && cd.shippingAddress !== -1 ? cd.addresses[cd.shippingAddress] : billingAddress;
         if (!billingAddress) {
             billingAddress = shippingAddress;
         }
-        var anyAddress = billingAddress ? billingAddress : (cd.addresses.length > 0 ? cd.addresses[0] : null);
+        var anyAddress = billingAddress ? billingAddress : (cd.addresses && cd.addresses.length > 0 ? cd.addresses[0] : null);
         var phone = cd.phones && cd.phones.length > 0
             ? cd.phones[billingAddress && typeof billingAddress.phone !== 'undefined' ? billingAddress.phone : 0].number
             : null;
@@ -577,6 +592,15 @@
             context.anyProvince = anyAddress.stateProvince;
             context.anyCountry = anyAddress.country;
         }
+
+        var meta = data.migration.meta;
+        if (meta && meta.issuerData) {
+            for (var i = 0; i < meta.issuerData.length; ++i) {
+                context['meta-' + meta.issuerData[i].field] = meta.issuerData[i].value;
+            }
+        }
+
+        this.addLocalMetadata(context);
 
         return context;
     };
