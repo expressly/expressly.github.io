@@ -955,6 +955,14 @@ var club = function () {
         });
         $('.address_autocomplete').focus(addressAutoComplete.geolocate);
         expirables.update();
+
+        $('.terms-dynamic').each(function() {
+            var el = $(this);
+            var a = $(el.find('a').one()).clone();
+            a.text("Terms and Conditions.");
+            el.html('');
+            el.append(a);
+        });
     }
 
     // init
