@@ -606,7 +606,7 @@
     };
 
     XlyLightbox.prototype.pull = function (callback) {
-        var xhr = ajax.xdr('GET', "//prod.expresslyapp.com/api/v2/migration/" + this.config.uuid + "/user/ajax", function (xhr) {
+        var xhr = ajax.xdr('GET', "//prod.expresslyapp.com/api/v2/migration/" + this.config.uuid + "/user/ajax?optout=" + this.hasOptedOutOfNewsletter(), function (xhr) {
             callback(JSON.parse(xhr.responseText));
         });
         xhr.send('');
