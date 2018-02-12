@@ -963,6 +963,18 @@ var club = function () {
             el.html('');
             el.append(a);
         });
+        $('[data-pdf-source]').click(function() {
+            var $this = $(this);
+            var doc = new jsPDF();
+            doc.fromHTML($('#' + $this.data('pdf-source')).html().replace(/[^\x00-\x7F]/g, ""), 15, 15, {
+                'width': 170
+            });
+            var fileName = $this.data("pdf-title");
+            if(fileName === undefined) {
+                fileName = 'compeition-rules.pdf';
+            }
+            doc.save(fileName);
+        });
     }
 
     // init
