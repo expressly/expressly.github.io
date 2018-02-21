@@ -965,10 +965,21 @@ var club = function () {
         });
         $('[data-pdf-source]').click(function() {
             var $this = $(this);
-            var doc = new jsPDF();
-            doc.fromHTML($('#' + $this.data('pdf-source')).html().replace(/[^\x00-\x7F]/g, ""), 15, 15, {
-                'width': 170
-            });
+            var page_width = $this.data('page-width');
+            var page_height = $this.data('page-height');
+
+            if(isNaN(page_width)) {
+                page_width = 293;
+            }
+
+            if(isNaN(page_height)) {
+                page_height = 350;
+            }
+
+            var page_content_width = page_width - 30;
+
+            var doc = new jsPDF('p', 'mm', [page_width, page_height]);
+            doc.fromHTML($('#' + $this.data('pdf-source')).html().replace(/[^\x00-\x7F]/g, ""), 15, 15, {width: page_content_width});
             var fileName = $this.data("pdf-title");
             if(fileName === undefined) {
                 fileName = 'compeition-rules.pdf';
