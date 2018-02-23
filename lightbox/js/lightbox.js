@@ -157,7 +157,6 @@
             }
 
             xdr.open(method, protocol + uri, true);
-            xdr.setRequestHeader('x-requested-with', 'XMLHttpRequest');
             xdr.withCredentials = typeof withCredentials === 'undefined' || withCredentials !== false;
             return xdr;
         }
