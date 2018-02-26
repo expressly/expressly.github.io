@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1531");
+    console.log("lb=1802.001");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -432,6 +432,13 @@
             xhr.open(step.method, stepUrl, true);
             xhr.withCredentials = true;
             var data;
+            if (step.headers) {
+                for (var property in step.headers) {
+                    if (step.headers.hasOwnProperty(property)) {
+                        xhr.setRequestHeader(property, step.headers[property]);
+                    }
+                }
+            }
             if (step.data) {
                 if (step.dataType === 'json') {
                     xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");

@@ -53,4 +53,8 @@
     </div>
 </div>
 {% block scripts %}{% endblock %}
-<script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=2"></script>
+{% if lightboxJs != null %}
+    <script src="{{ lightboxJs }}"></script>
+{% else %}
+    <script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=2"></script>
+{% endif %}
