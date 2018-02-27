@@ -73,8 +73,12 @@ var club = function () {
             var result = {};
             $.map(data, function (o) {
                 if (o['name'].indexOf('meta-') === 0) {
-                    result['issuerData'] = result['issuerData'] || {}
+                    result['issuerData'] = result['issuerData'] || {};
                     result['issuerData'][o['name'].substr('meta-'.length)] = o['value'];
+                } else if (o['name'] === 'answer') {
+                    result[o['name']] = o['value'];
+                    result['issuerData'] = result['issuerData'] || {};
+                    result['issuerData'][o['name']] = o['value'];
                 } else {
                     result[o['name']] = o['value'];
                 }
