@@ -148,7 +148,8 @@ var club = function () {
                     }
                 }
 
-                window.location.replace(parts[0] + (tokens.length > 0 ? '?' + tokens.join('&') : ''));
+                window.history.replaceState({}, document.title, parts[0] + (tokens.length > 0 ? '?' + tokens.join('&') : ''));
+                // window.location.replace(parts[0] + (tokens.length > 0 ? '?' + tokens.join('&') : ''));
             }
         },
 
@@ -420,6 +421,18 @@ var club = function () {
                         form.toggleFeedback('form--login', 'password', true);
                     }
                 }, true);
+        },
+
+        loginWithToken: function (token) {
+            server.submit("account/login-with-token", "POST", {token: token, rememberMe: true},
+                function (data) {
+                    server.setToken(data.token);
+                    controller.setProfile(data.account);
+                    url.removeParameter('alt');
+                },
+                function(xhr) {
+                    url.removeParameter('alt');
+                });
         },
 
         logout: function () {
@@ -995,7 +1008,10 @@ var club = function () {
         $('[data-toggle="tooltip"]').tooltip();
         dobControl.init();
         controller.redraw();
-        if (server.hasToken() || server.shouldCheckProfileForMigrated()) {
+
+        if (url.parameter("alt")) {
+            server.loginWithToken(url.parameter("alt"));
+        } else if (server.hasToken() || server.shouldCheckProfileForMigrated()) {
             server.profile(function () {
                 if (url.parameter("token")) {
                     modal.passwordReset.modal('show');
