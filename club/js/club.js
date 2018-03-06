@@ -253,6 +253,10 @@ var club = function () {
             server.logout();
         },
 
+        passwordResetRequestLoggedIn: function() {
+            server.passwordResetRequest({email: state.profile.email });
+        },
+
         passwordResetRequest: function () {
             if (form.passwordResetRequest.get(0).checkValidity() === true) {
                 var formData = form.serialize(form.passwordResetRequest);
@@ -959,6 +963,10 @@ var club = function () {
         $('#action--profile').click(function (event) {
             event.preventDefault();
             controller.updateProfile();
+        });
+        $('#action--profile--password-reset-request').click(function (event) {
+            event.preventDefault();
+            controller.passwordResetRequestLoggedIn();
         });
         $('#action--enter').click(function (event) {
             event.preventDefault();
