@@ -1,9 +1,29 @@
-/** v1.02 **/
+/** v1.03 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
     var domainMigrationsEnabled = !!$('body').data('domain-migrations-enabled');
     var protocol = 'https:';
+
+    var storage = {
+        get: function(key, defValue) {
+            var value;
+            if (typeof(Storage) !== "undefined") {
+                value = localStorage.getItem(key + "." + muid);
+            }
+            return !!value ?  value : defValue;
+        },
+        set: function(key, data) {
+            if (typeof(Storage) !== "undefined") {
+                localStorage.setItem(key + "." + muid, data);
+            }
+        },
+        remove: function(key) {
+            if (typeof(Storage) !== "undefined") {
+                localStorage.removeItem(key + "." + muid);
+            }
+        }
+    };
 
     var modal = {
         alert: $('#modal--alert'),
@@ -16,6 +36,19 @@ var club = function () {
             modal.alert.find("#modal--alert-label").html(title);
             modal.alert.find("#modal--alert-message").html(message);
             modal.alert.modal('show');
+        },
+
+        flashNotification: function(title, message) {
+            storage.set("notification", JSON.stringify({title: title, message: message}));
+        },
+
+        unflashNotification: function() {
+            var notification = storage.get("notification", null);
+            if (notification) {
+                storage.remove("notification");
+                var n = JSON.parse(notification);
+                modal.notify(n.title, n.message);
+            }
         }
     };
 
@@ -300,14 +333,12 @@ var club = function () {
         },
 
         storeProfile: function (profile) {
-            if (typeof(Storage) !== "undefined") {
-                if (profile !== null) {
-                    localStorage.setItem("profile." + muid, JSON.stringify(profile));
-                } else {
-                    localStorage.removeItem("profile." + muid);
-                }
-                localStorage.setItem("signedIn." + muid, profile !== null);
+            if (profile !== null) {
+                storage.set("profile", JSON.stringify(profile));
+            } else {
+                storage.remove("profile");
             }
+            storage.set("signedIn", profile !== null);
         },
         setProfile: function (profile, nostore, noUpdateEntries) {
             state.profile = profile;
@@ -353,19 +384,17 @@ var club = function () {
                 }
             }
 
-            if (typeof(Storage) !== "undefined" && !nostore) {
-                localStorage.setItem("entries." + muid, JSON.stringify(entries));
+            if (!nostore) {
+                storage.set("entries", JSON.stringify(entries));
             }
         },
         redraw: function () {
-            if (typeof(Storage) !== "undefined") {
-                var profileVal = localStorage.getItem("profile." + muid);
-                var entriesVal = localStorage.getItem("entries." + muid);
-                var profile = profileVal ? JSON.parse(profileVal) : null;
-                var entries = entriesVal ? JSON.parse(entriesVal) : [];
-                controller.setEntries(entries, true);
-                controller.setProfile(profile, true);
-            }
+            var profileVal = storage.get("profile", null);
+            var entriesVal = storage.get("entries", null);
+            var profile = profileVal ? JSON.parse(profileVal) : null;
+            var entries = entriesVal ? JSON.parse(entriesVal) : [];
+            controller.setEntries(entries, true);
+            controller.setProfile(profile, true);
         },
 
         contactUs: function () {
@@ -545,6 +574,23 @@ var club = function () {
                 });
         },
 
+        unsubscribe: function (redirectTo) {
+            server.submit("account/unsubscribe", "POST", {},
+                function (data) {
+                    controller.setProfile(data);
+                    modal.flashNotification(
+                        "Unsubscribed",
+                        "You have been unsubscribed from the newsletter. To opt back in please go to My Account.");
+                    window.location.replace(redirectTo);
+                },
+                function (xhr, status, error) {
+                    modal.notify(
+                        "Something went wrong!",
+                        "We were unable to unsubscribe you. Please use the contact us form to unsubscribe.");
+                    printError(xhr, status, error);
+                });
+        },
+
         register: function (payload) {
             server.submit("account/register", "POST", payload,
                 function (data) {
@@ -659,19 +705,14 @@ var club = function () {
         },
 
         getToken: function() {
-            if (typeof(Storage) !== "undefined") {
-                return localStorage.getItem("token." + muid);
-            }
-            return null;
+            return storage.get("token", null);
         },
 
         setToken: function(token) {
-            if (typeof(Storage) !== "undefined") {
-                if (!!token) {
-                    localStorage.setItem("token." + muid, token);
-                } else {
-                    localStorage.removeItem("token." + muid);
-                }
+            if (!!token) {
+                storage.set("token", token);
+            } else {
+                storage.remove("token");
             }
             server.setMigrationStatus("none");
         },
@@ -687,9 +728,7 @@ var club = function () {
 
         setMigrationStatus: function(status) {
             if (server.getMigrationStatus() !== 'none') {
-                if (typeof(Storage) !== "undefined") {
-                    localStorage.setItem("migrated." + muid, status);
-                }
+                storage.set("migrated", status);
             }
         },
 
@@ -699,11 +738,7 @@ var club = function () {
         },
 
         getMigrationStatus: function() {
-            var status = "none";
-            if (typeof(Storage) !== "undefined") {
-                status = localStorage.getItem("migrated." + muid);
-            }
-            return status;
+            return storage.get('migrated', 'none');
         }
     };
 
@@ -933,6 +968,11 @@ var club = function () {
             event.preventDefault();
             controller.contactUs();
         });
+        $('#action--unsubscribe').click(function (event) {
+            event.preventDefault();
+            var el = $(event.target);
+            server.unsubscribe(el.data('redirect'));
+        });
         $('[data-powerlink-auto="true"]').click(function (event) {
             event.preventDefault();
             if (!$('body').hasClass('busy')) {
@@ -1026,6 +1066,8 @@ var club = function () {
                 modal.passwordReset.modal('show');
             }
         }
+
+        modal.unflashNotification();
     }());
 
     return {
