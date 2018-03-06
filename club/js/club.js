@@ -254,13 +254,13 @@ var club = function () {
         },
 
         passwordResetRequestLoggedIn: function() {
-            server.passwordResetRequest({email: state.profile.email });
+            server.passwordResetRequest({email: state.profile.email }, false);
         },
 
         passwordResetRequest: function () {
             if (form.passwordResetRequest.get(0).checkValidity() === true) {
                 var formData = form.serialize(form.passwordResetRequest);
-                server.passwordResetRequest(formData);
+                server.passwordResetRequest(formData, true);
             }
             form.passwordResetRequest.toggleClass('was-validated', true);
         },
@@ -482,14 +482,20 @@ var club = function () {
                 printError);
         },
 
-        passwordResetRequest: function (payload) {
+        passwordResetRequest: function (payload, closeDialog) {
             server.submit("account/password-reset-request", "POST", payload, function () {
-                    modal.passwordResetRequest.one('hidden.bs.modal', function() {
+                    if (closeDialog) {
+                        modal.passwordResetRequest.one('hidden.bs.modal', function () {
+                            modal.notify(
+                                "Password Reset Email Sent",
+                                "Please check your email for your password reset link")
+                        });
+                        modal.passwordResetRequest.modal('hide');
+                    } else {
                         modal.notify(
                             "Password Reset Email Sent",
                             "Please check your email for your password reset link")
-                    });
-                    modal.passwordResetRequest.modal('hide');
+                    }
                     gah.event('Account', 'password-reset-success');
                 },
                 function (xhr, status, error) {
