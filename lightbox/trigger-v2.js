@@ -76,7 +76,7 @@
     function render(payload) {
         var content = document.createElement("div");
         content.innerHTML = payload;
-        document.body.insertBefore(content, document.body.firstChild);
+        document.body.appendChild(content);
 
         var head = document.getElementsByTagName('head')[0];
         var cssLinks = content.getElementsByTagName("link");

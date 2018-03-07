@@ -242,8 +242,8 @@
         var that = this;
         this.config = config;
 
-        if (lightbox.root && lightbox.root !== document.body.firstChild) {
-            document.body.insertBefore(lightbox.root, document.body.firstChild);
+        if (lightbox.root && lightbox.root !== document.body.lastChild) {
+            document.body.appendChild(lightbox.root);
         }
 
         var migrateButton = document.getElementById("xly-accept-link");
