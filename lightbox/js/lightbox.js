@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1802.001");
+    console.log("lb=1803.001");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -414,7 +414,14 @@
                 }
 
                 if (step.store) {
-                    that.storeToContext(step.store, xhr.responseText, context);
+                    debugger;
+                    console.log(xhr.getResponseHeader('content-type'));
+                    if(xhr.getResponseHeader('content-type') === "application/json") {
+                        that.storeJsonToContext(step.store, xhr.responseText, context);
+
+                    } else {
+                        that.storeToContext(step.store, xhr.responseText, context);
+                    }
                 }
 
                 if (remainingSteps.length > 0) {
@@ -485,6 +492,30 @@
         }
 
         return JSON.stringify(params);
+    };
+
+    XlyLightbox.prototype.storeJsonToContext = function (store, content, context) {
+        var r = {};
+        function collect(o, path) {
+            for (k in o) {
+                if (o.hasOwnProperty(k)) {
+                    var v = o[k];
+                    if (typeof v === 'object') {
+                        collect(v, path + k + ".");
+                    } else {
+                        r[path + k] = v;
+                    }
+                }
+            }
+        }
+        collect(JSON.parse(content), '');
+
+        for (i = 0; i < store.length; ++i) {
+            var key = 'undefined' !== typeof store[i]['name'] ? store[i]['name'] : store[i]['id'];
+            if ('undefined' !== key && 'undefined' !== r[key]) {
+                context[store[i].key] = r[key];
+            }
+        }
     };
 
     XlyLightbox.prototype.storeToContext = function (store, content, context) {
