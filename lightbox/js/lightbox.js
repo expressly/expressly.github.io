@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1803.001");
+    console.log("lb=1803.002");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -416,7 +416,7 @@
                 if (step.store) {
                     debugger;
                     console.log(xhr.getResponseHeader('content-type'));
-                    if(xhr.getResponseHeader('content-type') === "application/json") {
+                    if(xhr.getResponseHeader('content-type') && xhr.getResponseHeader('content-type').indexOf("application/json") >= 0) {
                         that.storeJsonToContext(step.store, xhr.responseText, context);
 
                     } else {
