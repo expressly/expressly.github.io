@@ -276,7 +276,6 @@ var microsite = function () {
                     withCredentials: true
                 },
                 success: function (response) {
-                    form.busy(false);
                     window.location.href = response.migrationLink;
                 },
                 error: function (e) {
