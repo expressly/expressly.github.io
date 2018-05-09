@@ -1,4 +1,4 @@
-/** v1.03 **/
+/** v1.04 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
@@ -101,8 +101,13 @@ var club = function () {
             control.toggleClass('is-invalid', toggle);
         },
 
-        serialize: function (form) {
-            var data = form.serializeArray();
+        isInOptOutMode: function(form) {
+            var f = form.find('[name=optout]');
+            return f.length > 0;
+        },
+
+        serialize: function (f) {
+            var data = f.serializeArray();
             var result = {};
             $.map(data, function (o) {
                 if (o['name'].indexOf('meta-') === 0) {
@@ -116,13 +121,23 @@ var club = function () {
                     result[o['name']] = o['value'];
                 }
             });
+
+            if (form.isInOptOutMode(f)) {
+                result.optin = !result.optout;
+                delete result.optout
+            }
+
             return result;
         },
 
-        populate: function (form, data, trigger) {
-            if (form.length) {
+        populate: function (f, data, trigger) {
+            if (f.length) {
+                if (form.isInOptOutMode(f)) {
+                    data.optout = !data.optin;
+                }
+
                 $.each(data, function (key, value) {
-                    var ctrl = $('[name=' + key + ']', form);
+                    var ctrl = $('[name=' + key + ']', f);
                     switch (ctrl.prop("type")) {
                         case "radio":
                         case "checkbox":
@@ -330,6 +345,7 @@ var club = function () {
                 payload.campaign = cuid;
                 payload.competitionTitle = title;
                 payload.optin = false;
+                payload.optin3p = false;
                 server.submitEntry(payload, true);
             } else {
                 modal.login.modal('show');
