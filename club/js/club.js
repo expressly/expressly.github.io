@@ -604,6 +604,7 @@ var club = function () {
             server.submit("account/unsubscribe", "POST", {},
                 function (data) {
                     controller.setProfile(data);
+                    gah.event('Account', 'unsubscribe');
                     modal.flashNotification(
                         "Unsubscribed",
                         "You have been unsubscribed from the newsletter. To opt back in please go to My Account.");
