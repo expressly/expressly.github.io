@@ -1,5 +1,4 @@
 (function() {
-    console.log('attaching');
     function close() {
         // classList not supported by IE8
         var root = document.getElementById('xly');
