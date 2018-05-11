@@ -1,3 +1,4 @@
+var xlytLoaded = xlytLoaded ? xlytLoaded :
 (function () {
     function fetch(uuid, callback) {
         var xhr;
@@ -120,6 +121,7 @@
     }
 
     function initialise() {
+        console.log('xly trigger loaded');
         var uuid = getUuid();
         if (uuid && compatible()) {
             fetch(uuid, render);
@@ -127,4 +129,5 @@
     }
 
     initialise();
+    return true;
 }());
