@@ -353,8 +353,8 @@ var club = function () {
                 delete payload['termsAccepted'];
                 payload.campaign = cuid;
                 payload.competitionTitle = title;
-                payload.terms = false;
-                payload.optin = false;
+                payload.terms = true;
+                payload.optin = true;
                 payload.optin2p = false;
                 payload.optin3p = false;
                 server.submitEntry(payload, true);
