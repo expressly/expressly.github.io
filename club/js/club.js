@@ -1,4 +1,4 @@
-/** v1.04 **/
+/** v1.05 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
@@ -342,9 +342,20 @@ var club = function () {
                 delete payload['registrationCompleted'];
                 delete payload['resetPassword'];
                 delete payload['accountId'];
+                delete payload['termsTs'];
+                delete payload['termsIpAddress'];
+                delete payload['optinTs'];
+                delete payload['optinIpAddress'];
+                delete payload['optin2pTs'];
+                delete payload['optin2pIpAddress'];
+                delete payload['optin3pTs'];
+                delete payload['optin3pIpAddress'];
+                delete payload['termsAccepted'];
                 payload.campaign = cuid;
                 payload.competitionTitle = title;
+                payload.terms = false;
                 payload.optin = false;
+                payload.optin2p = false;
                 payload.optin3p = false;
                 server.submitEntry(payload, true);
             } else {
