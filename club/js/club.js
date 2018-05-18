@@ -690,9 +690,18 @@ var club = function () {
                         else if (code === 'VALIDATION_FAILED' && description === 'Invalid email address') {
                             form.toggleFeedback('form--competition', 'email', true, "Please enter a valid email address");
                             return
+                        } else {
+                            if(sessionStorage.getItem('failed.' + campaign) !== 'true') {
+                                gah.event('Powerlink', 'entry-failure', campaign);
+                                sessionStorage.setItem('failed.' + campaign, 'true');
+                            }
+                        }
+                    } else {
+                        if(sessionStorage.getItem('failed.' + campaign) !== 'true') {
+                            gah.event('Powerlink', 'entry-failure', campaign);
+                            sessionStorage.setItem('failed.' + campaign, 'true');
                         }
                     }
-                    gah.event('Powerlink', 'entry-failure');
                     printError(xhr, status, error);
                 });
         },
