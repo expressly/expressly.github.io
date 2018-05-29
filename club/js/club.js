@@ -1,9 +1,10 @@
-/** v1.05 **/
+/** v1.06 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
     var domainMigrationsEnabled = !!$('body').data('domain-migrations-enabled');
     var protocol = 'https:';
+    var reenterTimerId = null;
 
     var storage = {
         get: function(key, defValue) {
@@ -336,6 +337,14 @@ var club = function () {
             form.competition.toggleClass('was-validated', true);
         },
 
+        submitEntryAgain: function (cuid, title) {
+            var payload = {
+                emailEntrant: true,
+                competitionTitle: title
+            };
+            server.submitEntryAgain(cuid, payload);
+        },
+
         autoPowerLink: function (cuid, title) {
             if (state.profile) {
                 var payload = Object.assign({}, state.profile);
@@ -399,13 +408,29 @@ var club = function () {
 
         setEntries: function (entries, nostore) {
             $('body').toggleClass('entered-at-least-one', entries.length > 0);
-            $('.competition-entered').removeClass('competition-entered');
+            $('.competition-entered')
+                .removeClass('competition-entered')
+                .removeClass('reenter-never')
+                .removeClass('reenter-now')
+                .removeClass('reenter-later');
+
+            var now = moment();
+            var min = moment().add(1, 'day').diff(now, "seconds");
 
             for (var i = 0; i < entries.length; ++i) {
                 var campaign = entries[i]['campaignUuid'];
                 var powerlink = url.addSourceParameter(entries[i]['powerLink']);
                 var link = $('[data-powerlink="' + campaign + '"]');
-                $('[data-competition-toggle="' + campaign + '"]').addClass('competition-entered');
+                var nextEntryTime = entries[i].nextEntryTime ? moment(entries[i].nextEntryTime) : null;
+                var reenterClass = 'reenter-never';
+                if (nextEntryTime != null) {
+                    var diff = nextEntryTime.diff(now, "seconds");
+                    if (diff > 0) {
+                        min = Math.min(min, diff);
+                    }
+                    reenterClass = now.isAfter(nextEntryTime) ? 'reenter-now' : 'reenter-later';
+                }
+                $('[data-competition-toggle="' + campaign + '"]').addClass('competition-entered ' + reenterClass);
                 link.prop('href', powerlink);
                 if (!link.data("ga-event-attached")) {
                     link.click(function () {
@@ -415,10 +440,16 @@ var club = function () {
                 }
             }
 
+            if (reenterTimerId) {
+                clearTimeout(reenterTimerId);
+            }
+            reenterTimerId = setTimeout(controller.redraw, (min * 1000) + 2001);
+
             if (!nostore) {
                 storage.set("entries", JSON.stringify(entries));
             }
         },
+
         redraw: function () {
             var profileVal = storage.get("profile", null);
             var entriesVal = storage.get("entries", null);
@@ -701,6 +732,25 @@ var club = function () {
                             gah.event('Powerlink', 'entry-failure', campaign);
                             sessionStorage.setItem('failed.' + campaign, 'true');
                         }
+                    }
+                    printError(xhr, status, error);
+                });
+        },
+
+        submitEntryAgain: function (campaign, payload) {
+            server.submit("competition/" + campaign + "/enter-again", "POST", payload,
+                function (data) {
+                    form.busy(true);
+                    server.setToken(data.token);
+                    controller.setProfile(data.account, false, false);
+                    gah.event('Powerlink', 'entry-success', campaign);
+                    window.location.href = url.addSourceParameter(data.powerLink);
+                    form.busy(false);
+                },
+                function (xhr, status, error) {
+                    if(sessionStorage.getItem('failed.' + campaign) !== 'true') {
+                        gah.event('Powerlink', 'entry-failure', campaign);
+                        sessionStorage.setItem('failed.' + campaign, 'true');
                     }
                     printError(xhr, status, error);
                 });
@@ -1029,6 +1079,13 @@ var club = function () {
             if (!$('body').hasClass('busy')) {
                 var el = $(event.target);
                 controller.autoPowerLink(el.data('powerlink'), el.data('campaign-title'));
+            }
+        });
+        $('[data-reenter]').click(function (event) {
+            event.preventDefault();
+            if (!$('body').hasClass('busy')) {
+                var el = $(event.target);
+                controller.submitEntryAgain(el.data('reenter'), el.data('campaign-title'));
             }
         });
         $('.card-sorter').change(function () {
