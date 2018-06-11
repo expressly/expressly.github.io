@@ -1,0 +1,34 @@
+<div class="xly-footer">
+    <div class="xly-item">
+        <div class="xly-actions">
+            {% if isMessage != true %}
+                <div id="xly-decline-wrapper" class="xly-hide-when-busy">
+                    <a id="xly-decline-link" href="{{ migrationCancelledUrl }}"><div class="xly-decline">Cancel</div></a>
+                </div>
+            {% endif %}
+            <div id="xly-accept-wrapper" class="xly-hide-when-busy">
+                <a id="xly-accept-link"><div class="xly-accept">{% if isMessage != true %}OK{% else %}Close{% endif %}</div></a>
+            </div>
+            <div class="xly-loader xly-show-when-busy"><img src="{{ assetsUrl }}/microsite/spinner.gif"></div>
+        </div>
+        <div class="xly-terms">
+            <div class="xly-policy">
+                {% if isMessage != true %}
+                    <a class="xly-dot" href="{{ termsUrl }}" target="_blank">Terms</a>
+                    | <a class="xly-dot" href="{{ privacyUrl }}" target="_blank">Privacy</a>
+                    {% if hideNotName != true %}
+                        | <div class="xly-not-name" title="Not {{ firstName }}?"><a href="{{ takerUrl }}">Not {{ firstName }}</a></div> ?
+                    {% endif %}
+                    <span class="text-clear-bottom"></span>
+                {% endif %}
+                Powered by
+                <span class="expressly">
+                  <a href="https://www.buyexpressly.com">
+                      <img src="{{ assetsUrl }}/img/expressly.svg" alt="expressly">
+                  </a>
+                </span>
+            </div>
+        </div>
+        <div class="xly-clear"></div>
+    </div>
+</div>

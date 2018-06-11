@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=9">
+<div id="xly" class="xly xly-popup" style="display:none">
+    <div class="xly xly-container">
+        <div class="xly xly-row">
+            <div class="xly-item xly-content">
+                <div class="xly-top">
+                    Benvenuto {{ firstName}}
+                </div>
+                <div class="xly-bottom">
+                    {{ lightboxConfirmMessage | raw }}
+                    <div>
+                        <span>
+                            {% if migrationMessage != null %}
+                                {{ migrationMessage | raw }}
+                            {% else %}
+                                Start shopping with no typing!
+                            {% endif %}
+                           <br/><br/></span>
+                        <span>{{ giverName}}</span>
+                        <span class="xly-regular"> {{ autoConfirm ? 'is sharing' : 'can share' }} with</span>
+                        <span>{{ takerName }}</span>
+                        <span class="xly-regular">your {{ detailsBeingMigrated }} - with 1 click</span>
+                    </div>
+                </div>
+            </div>
+            <div class="xly-item xly-logo">
+                <div class="xly-cell xly-bordered">
+                    <div style="background: url('{{ giverLogo }}') no-repeat center; background-size: contain;"></div>
+                </div>
+                <div class="xly-cell">
+                    <div class="xly-arrows"></div>
+                </div>
+                <div class="xly-cell xly-bordered">
+                    <div style="background: url('{{ takerLogo }}') no-repeat center; background-size: contain;"></div>
+                </div>
+            </div>
+            {% block content %}{% endblock %}
+            <div class="xly-item">
+                <div class="xly-secure">
+                    <div class="xly-secure-img">
+
+                    </div>
+                    Secure data transfer <a href="https://buyexpressly.com/consumer" target="_blank">(learn more)</a>
+                </div>
+                <div class="xly-checkbox-wrapper">
+                    <div style="display:{{ displayOptout }}">
+                        <label for="xly-subscribe-input"><input type="checkbox" id="xly-subscribe-input"/> <span>I do not want to receive updates from {{ takerName }}</span></label>
+                    </div>
+                </div>
+            </div>
+            {% include "./lightbox.footer.html" %}
+        </div>
+    </div>
+</div>
+{% block scripts %}{% endblock %}
+{% if lightboxJs != null %}
+    <script src="{{ lightboxJs }}"></script>
+{% else %}
+    <script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
+{% endif %}
