@@ -1,0 +1,121 @@
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-form.css?v={{ cssVersion }}&v1=7">
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=7">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div id="xly" class="xly xly-popup" style="display:none">
+    <div class="xly xly-container">
+        <div class="xly xly-row">
+            <div class="xly-item xly-content">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="xly-item xly-form">
+                <form autocomplete="on" method="post" name="address" id="xly-submit-form">
+                    <div id="xly-submit-form-fields">
+                        <div class="form-item field email">
+                            <div class="xly-error" style="display:none;" id="xly-globalError"></div>
+                        </div>
+                        <div class="half-width-container">
+                            <div class="form-item field text half-width-child" id="xly-firstName">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input id="xly-firstName-field" type="text" class="field-element text xly-required" name="firstName"
+                                       placeholder="First Name" maxlength="35">
+                            </div>
+                            <div class="form-item field text half-width-child" id="xly-lastName">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input id="xly-lastName-field" type="text" class="field-element text xly-required" name="lastName"
+                                       placeholder="Last Name" maxlength="35">
+                            </div>
+                        </div>
+                        <div class="half-width-container">
+                            <div class="form-item field email half-width-child" id="xly-email">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input type="hidden" id="xly-campaignCustomer-email" value="{{ emailAddress }}" />
+                                <input id="xly-email-field" type="text" spellcheck="false" class="field-element xly-required" name="email"
+                                       placeholder="Email" maxlength="62">
+                            </div>
+                            <div class="form-item field text half-width-child" id="xly-phone">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input id="xly-phone-field" type="number" class="field-element text xly-required" name="phone" maxlength="15" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="half-width-container">
+                            <div class="form-item field text half-width-child" id="xly-postcode">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input id="xly-postcode-field" type="text" class="field-element text xly-required" name="postcode" placeholder="Postcode" maxlength="8">
+                            </div>
+                            <div class="form-item field text half-width-child" id="xly-look-up">
+                                <button type="button" id="xly-addressLookup" class="field-element">Look Up</button>
+                            </div>
+                        </div>
+                        <div class="form-item field text" id="xly-address">
+                            <div class="xly-error" style="display:none;"></div>
+                            <span id="crafty_postcode_result_display"></span><br/>
+                            <input id="xly-address1-field" type="text" class="field-element text xly-required" name="address1" id="address1"
+                                   placeholder="Address" maxlength="95">
+                        </div>
+                        <div class="form-item field text" id="xly-town">
+                            <div class="xly-error" style="display:none;"></div>
+                            <input id="xly-town-field" type="text" class="field-element text xly-required" name="town" placeholder="Town"
+                                   maxlength="35">
+                        </div>
+                        <div class="half-width-container">
+                            <div class="form-item field select">
+                                <select name="gender" class="field-element text half-width-child" id="xly-gender">
+                                    <option selected="" value="" style="color:#fff;">Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-item field text">
+                                <div class="xly-error" style="display:none;"></div>
+                                <input type="text" class="field-element text half-width-child xly-required" maxlength="10"
+                                       name="dob" id="xly-dob" placeholder="DOB: dd/mm/yyyy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xly-clear"></div>
+                    <div class="xly-item xly-padding-vertical-10">
+                        <div class="xly-checkbox-wrapper" style="display:{{ displayOptout }}">
+                            <div>
+                                <p>
+                                    <label for="xly-subscribe-input"><input type="checkbox" id="xly-subscribe-input" />
+                                        <span>
+                                            {% if subscribeLabel != null %}
+                                                {{ subscribeLabel }}
+                                            {% else %}
+                                                I do not want to receive updates from {{ takerName }}
+                                            {% endif %}
+                                        </span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="xly-checkbox-wrapper">
+                            <div>
+                                <p>
+                                    <label for="xly-terms-input"><input type="checkbox" id="xly-terms-input" value="1"/>
+                                        <span>I accept the competition
+                                            <a class="xly-dot" href="{{ competitionTerms }}" target="_blank">T&amp;C's</a>
+                                        </span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% set hideNotName = true %}
+                    {% include "./lightbox.footer.html" %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}{% endblock %}
+<script src="{{ assetsUrl }}/js/crafty_postcode.class.js"></script>
+{% if lightboxJs %}
+<script src="{{ lightboxJs != null }}"></script>
+{% else %}
+<script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=2"></script>
+{% endif %}

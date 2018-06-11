@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=6.4">
+<div id="xly" class="xly xly-popup xly-message" style="display:none">
+    <div class="xly xly-container">
+        <div class="xly xly-row">
+            <div class="xly-item xly-content">
+                {% block content %}{% endblock %}
+            </div>
+            {% set isMessage = true %}
+            {% include "./lightbox.footer.html" %}
+        </div>
+    </div>
+</div>
+<script src="{{ assetsUrl }}/lightbox/js/lightbox-close.min.js?v={{ cssVersion }}&cb=1"></script>
