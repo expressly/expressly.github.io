@@ -22,7 +22,7 @@
 .legal-text-bottom {
     font-size: 10px !important;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .xly-item + .xly-footer {
