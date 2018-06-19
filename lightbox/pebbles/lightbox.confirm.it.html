@@ -42,29 +42,29 @@
             </div>
             {% block content %}{% endblock %}
 
-            {% if agreementText != null %}
-                <div class="xly-item">
-                    <div class="xly-checkbox-wrapper confirm-popup-radios">
-                        <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
-                            <input type="radio" class="custom-control-input" id="xly-subscribe-input-accept">
-                            <label class="custom-control-label" for="xly-subscribe-input-accept">
-                                Accetto
-                            </label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
-                            <input type="radio" class="custom-control-input" id="xly-subscribe-input">
-                            <label class="custom-control-label" for="xly-subscribe-input">
-                                Non accetto
-                            </label>
-                        </div>
+            <div class="xly-item">
+                <div class="xly-checkbox-wrapper confirm-popup-radios">
+                    <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
+                        <input type="radio" class="custom-control-input" id="xly-subscribe-input-accept">
+                        <label class="custom-control-label" for="xly-subscribe-input-accept">
+                            Accetto
+                        </label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
+                        <input type="radio" class="custom-control-input" id="xly-subscribe-input">
+                        <label class="custom-control-label" for="xly-subscribe-input">
+                            Non accetto
+                        </label>
                     </div>
                 </div>
-                <div class="xly-item">
-                    {{ agreementText }}
-                </div>
-            {% else %}
-                Agreement text isn't present.
-            {% endif %}
+            </div>
+            <div class="xly-item">
+                che i miei dati personali siano tratti da {{ takerName }} per l'invio di communicazioni promozionali relative ai propri prodotti, inclusa la newsletter per accedere in tempo reale alle vendite di {{ takerName }}, e per ricerche di mercato, via email e per posta.
+            </div>
+
+            <div class="xly-item">
+                <a href="#" target="_blank">Leggi l'informativa privacy di {{ takerName }}</a>
+            </div>
 
             <div class="xly-item">
                 <div class="xly-secure">
