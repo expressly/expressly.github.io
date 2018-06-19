@@ -78,27 +78,19 @@
                     <div class="xly-clear"></div>
                     <div class="xly-item xly-padding-vertical-10">
                         <div class="xly-checkbox-wrapper" style="display:{{ displayOptout }}">
-                            <div class="half-width-container">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="xly-subscribe-input-accept">
-                                    <label class="custom-control-label" for="xly-subscribe-input-accept">
-                                        Accetto
+                            <div>
+                                <p>
+                                    <label for="xly-subscribe-input"><input type="checkbox" id="xly-subscribe-input" />
+                                        <span>
+                                            {% if subscribeLabel != null %}
+                                                {{ subscribeLabel }}
+                                            {% else %}
+                                                Non sono interessato a ricevere aggiornamenti da {{ takerName }}
+                                            {% endif %}
+                                        </span>
                                     </label>
-                                </div>
+                                </p>
                             </div>
-                            <div class="half-width-container">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="xly-subscribe-input">
-                                    <label class="custom-control-label" for="xly-subscribe-input">
-                                        {% if subscribeLabel != null %}
-                                            {{ subscribeLabel }}
-                                        {% else %}
-                                            Non accetto
-                                        {% endif %}
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="xly-clear"></div>
                         </div>
                         <div class="xly-checkbox-wrapper">
                             <div>
