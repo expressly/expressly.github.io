@@ -1,3 +1,13 @@
 /**
  * Any override CSS code for the Italian popup will be added here.
  */
+
+.xly-checkbox-wrapper.confirm-popup-radios {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline {
+    display: inline;
+}
