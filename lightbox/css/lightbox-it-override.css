@@ -11,3 +11,15 @@
 .xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline {
     display: inline;
 }
+
+.legal-text-top {
+    font-size: 12px !important;
+    font-style: italic;
+    font-weight: 300;
+    text-align: center;
+}
+
+.legal-text-bottom {
+    font-size: 10px !important;
+    text-align: left;
+}
