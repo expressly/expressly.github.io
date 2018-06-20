@@ -19,7 +19,7 @@
                            <br/><br/></span>
                         <span class="xly-regular">Crea un account su </span>
                         <span>{{ takerName }}</span>
-                        <span class="xly-regular"> con i tuoi dati {{ detailsBeingMigrated }} da </span>
+                        <span class="xly-regular"> con i tuoi dati ({{ detailsBeingMigrated }}) da </span>
                         <span>{{ giverName}}</span>
                     </div>
                     <div>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="xly-item">
-                <a href="#" target="_blank">Leggi l'informativa privacy di {{ takerName }}</a>
+                <a href="{{ privacyUrl }}" target="_blank">Leggi l'informativa privacy di {{ takerName }}</a>
             </div>
 
             {% include "./lightbox.footer.it.html" %}
