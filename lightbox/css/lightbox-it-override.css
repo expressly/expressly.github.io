@@ -25,6 +25,21 @@
     margin-bottom: 10px !important;
 }
 
+.xly-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.xly-item.xly-logo {
+    padding-top: 0 !important;
+}
+
+.xly-privacy-link {
+    font-weight: normal !important;
+    text-decoration: underline !important;
+    font-size: 10px !important;
+}
+
 .xly-item + .xly-footer {
     margin-top: 10px;
 }

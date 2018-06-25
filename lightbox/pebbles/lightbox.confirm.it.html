@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=9">
-<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=13">
+<link rel="stylesheet" type="text/css"
+      href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=14">
 <div id="xly" class="xly xly-popup xly-popup-it" style="display:none">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -22,13 +23,15 @@
                         <span class="xly-regular"> con i tuoi dati {% if detailsBeingMigratedOverride != null %} ({{ detailsBeingMigratedOverride }}) {% else %} ({{ detailsBeingMigrated }}) {% endif %} da </span>
                         <span>{{ giverName}}</span>
                     </div>
-                    <div>
-                        <span class="xly-regular legal-text-top" style="font-size: 12px !important;">
-                            Servizio possibile grazie al tuo diritto alla portabilit&agrave; dei dati Regolamento  UE 2016/679. Art. 20.
-                        </span>
-                    </div>
                 </div>
             </div>
+
+            <div class="xly-item">
+                <span class="xly-regular legal-text-top" style="font-size: 12px !important;">
+                    Servizio possibile grazie al tuo diritto alla portabilit&agrave; dei dati Regolamento  UE 2016/679. Art. 20.
+                </span>
+            </div>
+
             <div class="xly-item xly-logo">
                 <div class="xly-cell xly-bordered">
                     <div style="background: url('{{ giverLogo }}') no-repeat center; background-size: contain;"></div>
@@ -59,11 +62,14 @@
                 </div>
             </div>
             <div class="xly-item legal-text-bottom" style="font-size: 10px !important;">
-                che i miei dati personali siano tratti da {{ takerName }} per l'invio di communicazioni promozionali relative ai propri prodotti, inclusa la newsletter per accedere in tempo reale alle vendite di {{ takerName }}, e per ricerche di mercato, via email e per posta.
+                che i miei dati personali siano tratti da {{ takerName }} per l'invio di communicazioni promozionali
+                relative ai propri prodotti, inclusa la newsletter per accedere in tempo reale alle vendite di {{
+                takerName }}, e per ricerche di mercato, via email e per posta.
             </div>
 
             <div class="xly-item">
-                <a href="{{ privacyUrl }}" target="_blank">Leggi l'informativa privacy di {{ takerName }}</a>
+                <a href="{{ privacyUrl }}" target="_blank" class="xly-privacy-link" style="font-size: 10px !important;">Leggi
+                    l'informativa privacy di {{ takerName }}</a>
             </div>
 
             {% include "./lightbox.footer.it.html" %}
@@ -72,7 +78,7 @@
 </div>
 {% block scripts %}{% endblock %}
 {% if lightboxJs != null %}
-    <script src="{{ lightboxJs }}"></script>
+<script src="{{ lightboxJs }}"></script>
 {% else %}
-    <script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
+<script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
 {% endif %}
