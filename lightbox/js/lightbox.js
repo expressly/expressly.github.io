@@ -1,5 +1,5 @@
 (function () {
-    console.log("lb=1803.003");
+    console.log("lb=1807.001");
     var shiv = {
         addEventListenerTo: function (eventName, el, fn) {
             if (el.addEventListener) {
@@ -595,7 +595,7 @@
             context.billingFirstName = billingAddress.firstName ? billingAddress.firstName : cd.firstName;
             context.billingLastName = billingAddress.lastName ? billingAddress.lastName : cd.lastName;
             context.billingCompany = billingAddress.companyName ? billingAddress.companyName : cd.company;
-            context.billingPhone = typeof billingAddress.phone !== 'undefined' ? cd.phones[billingAddress.phone].number : phone;
+            context.billingPhone = typeof billingAddress.phone !== 'undefined' && cd.phones && cd.phones.length > 0 ? cd.phones[billingAddress.phone].number : phone;
             context.billingAddress1 = billingAddress.address1;
             context.billingAddress2 = billingAddress.address2;
             context.billingCity = billingAddress.city;
@@ -608,7 +608,7 @@
             context.shippingFirstName = shippingAddress.firstName ? shippingAddress.firstName : cd.firstName;
             context.shippingLastName = shippingAddress.lastName ? shippingAddress.lastName : cd.lastName;
             context.shippingCompany = shippingAddress.companyName ? shippingAddress.companyName : cd.company;
-            context.shippingPhone = typeof shippingAddress.phone !== 'undefined' ? cd.phones[shippingAddress.phone].number : phone;
+            context.shippingPhone = typeof shippingAddress.phone !== 'undefined' && cd.phones && cd.phones.length > 0 ? cd.phones[shippingAddress.phone].number : phone;
             context.shippingAddress1 = shippingAddress.address1;
             context.shippingAddress2 = shippingAddress.address2;
             context.shippingCity = shippingAddress.city;
@@ -621,7 +621,7 @@
             context.anyFirstName = anyAddress.firstName ? anyAddress.firstName : cd.firstName;
             context.anyLastName = anyAddress.lastName ? anyAddress.lastName : cd.lastName;
             context.anyCompany = anyAddress.companyName ? anyAddress.companyName : cd.company;
-            context.anyPhone = typeof anyAddress.phone !== 'undefined' ? cd.phones[anyAddress.phone].number : phone;
+            context.anyPhone = typeof anyAddress.phone !== 'undefined' && cd.phones && cd.phones.length > 0 ? cd.phones[anyAddress.phone].number : phone;
             context.anyAddress1 = anyAddress.address1;
             context.anyAddress2 = anyAddress.address2;
             context.anyCity = anyAddress.city;
