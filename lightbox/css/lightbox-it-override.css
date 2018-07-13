@@ -14,6 +14,10 @@
     display: inline;
 }
 
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] {
+    display: none !important;
+}
+
 .legal-text-top {
     font-size: 12px !important;
     font-style: italic;
