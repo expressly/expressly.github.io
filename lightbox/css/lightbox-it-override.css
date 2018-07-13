@@ -1,4 +1,50 @@
-div.xly.xly-popup > div.xly.xly-container > div.xly.xly-row {
-    border: none !important;
-    border-radius: 0 !important;
+/**
+ * Any override CSS code for the Italian popup will be added here.
+ */
+
+.xly-checkbox-wrapper.confirm-popup-radios {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    text-align: center;
+}
+
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline {
+    display: inline;
+}
+
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] {
+    display: none !important;
+}
+
+.legal-text-top {
+    font-size: 12px !important;
+    font-style: italic;
+    font-weight: 300;
+    text-align: center;
+}
+
+.legal-text-bottom {
+    font-size: 10px !important;
+    text-align: left;
+    margin-bottom: 10px !important;
+}
+
+.xly-item {
+    margin-top: 10px !important;
+}
+
+.xly-item.xly-logo {
+    padding-top: 10px !important;
+}
+
+.xly-privacy-link {
+    font-weight: normal !important;
+    text-decoration: underline !important;
+    font-size: 10px !important;
+}
+
+.xly-item + .xly-footer {
+    margin-top: 10px;
 }

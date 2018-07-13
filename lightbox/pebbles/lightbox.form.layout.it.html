@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-form.css?v={{ cssVersion }}&v1=7">
-<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=8">
+<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=18">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div id="xly" class="xly xly-popup xly-popup-it" style="display:none">
@@ -44,7 +44,7 @@
                                 <input id="xly-postcode-field" type="text" class="field-element text xly-required" name="postcode" placeholder="Postcode" maxlength="8">
                             </div>
                             <div class="form-item field text half-width-child" id="xly-look-up">
-                                <button type="button" id="xly-addressLookup" class="field-element">Look Up</button>
+                                <button type="button" id="xly-addressLookup" class="field-element">Cerca</button>
                             </div>
                         </div>
                         <div class="form-item field text" id="xly-address">
@@ -61,10 +61,10 @@
                         <div class="half-width-container">
                             <div class="form-item field select">
                                 <select name="gender" class="field-element text half-width-child" id="xly-gender">
-                                    <option selected="" value="" style="color:#fff;">Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option selected="" value="" style="color:#fff;">Sesso</option>
+                                    <option value="Male">Maschio</option>
+                                    <option value="Female">Femmina</option>
+                                    <option value="Other">Altro</option>
                                 </select>
                             </div>
                             <div class="form-item field text">
@@ -85,7 +85,7 @@
                                             {% if subscribeLabel != null %}
                                                 {{ subscribeLabel }}
                                             {% else %}
-                                                I do not want to receive updates from {{ takerName }}
+                                                Non sono interessato a ricevere aggiornamenti da {{ takerName }}
                                             {% endif %}
                                         </span>
                                     </label>
@@ -96,8 +96,7 @@
                             <div>
                                 <p>
                                     <label for="xly-terms-input"><input type="checkbox" id="xly-terms-input" value="1"/>
-                                        <span>I accept the competition
-                                            <a class="xly-dot" href="{{ competitionTerms }}" target="_blank">T&amp;C's</a>
+                                        <span>Accetto i <a class="xly-dot" href="{{ competitionTerms }}" target="_blank">termini</a> della competizione
                                         </span>
                                     </label>
                                 </p>
@@ -105,7 +104,7 @@
                         </div>
                     </div>
                     {% set hideNotName = true %}
-                    {% include "./lightbox.footer.html" %}
+                    {% include "./lightbox.footer.it.html" %}
                 </form>
             </div>
         </div>

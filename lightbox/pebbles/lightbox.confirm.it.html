@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=9">
-<link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=8">
+<link rel="stylesheet" type="text/css"
+      href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=18">
 <div id="xly" class="xly xly-popup xly-popup-it" style="display:none">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -14,16 +15,23 @@
                             {% if migrationMessage != null %}
                                 {{ migrationMessage | raw }}
                             {% else %}
-                                Start shopping with no typing!
+                                Salta tutti i moduli!
                             {% endif %}
                            <br/><br/></span>
-                        <span>{{ giverName}}</span>
-                        <span class="xly-regular"> {{ autoConfirm ? 'is sharing' : 'can share' }} with</span>
+                        <span class="xly-regular">Crea un account su </span>
                         <span>{{ takerName }}</span>
-                        <span class="xly-regular">your {{ detailsBeingMigrated }} - with 1 click</span>
+                        <span class="xly-regular"> con i tuoi dati {% if detailsBeingMigratedOverride != null %} ({{ detailsBeingMigratedOverride }}) {% else %} ({{ detailsBeingMigrated }}) {% endif %} da </span>
+                        <span>{{ giverName}}</span>
                     </div>
                 </div>
             </div>
+
+            <div class="xly-item">
+                <span class="xly-regular legal-text-top" style="font-size: 12px !important;">
+                    Servizio possibile grazie al tuo diritto alla portabilit&agrave; dei dati Regolamento  UE 2016/679. Art. 20.
+                </span>
+            </div>
+
             <div class="xly-item xly-logo">
                 <div class="xly-cell xly-bordered">
                     <div style="background: url('{{ giverLogo }}') no-repeat center; background-size: contain;"></div>
@@ -36,26 +44,41 @@
                 </div>
             </div>
             {% block content %}{% endblock %}
-            <div class="xly-item">
-                <div class="xly-secure">
-                    <div class="xly-secure-img">
 
+            <div class="xly-item">
+                <div class="xly-checkbox-wrapper confirm-popup-radios">
+                    <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
+                        <input type="radio" class="custom-control-input" name="output" value="1" id="xly-subscribe-input-accept">
+                        <label class="custom-control-label" for="xly-subscribe-input-accept">
+                            Accetto
+                        </label>
                     </div>
-                    Secure data transfer <a href="https://buyexpressly.com/consumer" target="_blank">(learn more)</a>
-                </div>
-                <div class="xly-checkbox-wrapper">
-                    <div style="display:{{ displayOptout }}">
-                        <label for="xly-subscribe-input"><input type="checkbox" id="xly-subscribe-input"/> <span>I do not want to receive updates from {{ takerName }}</span></label>
+                    <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
+                        <input type="radio" class="custom-control-input" name="output" value="0" id="xly-subscribe-input">
+                        <label class="custom-control-label" for="xly-subscribe-input">
+                            Non accetto
+                        </label>
                     </div>
                 </div>
             </div>
-            {% include "./lightbox.footer.html" %}
+            <div class="xly-item legal-text-bottom" style="font-size: 10px !important;">
+                che i miei dati personali siano tratti da {{ takerName }} per l'invio di communicazioni promozionali
+                relative ai propri prodotti, inclusa la newsletter per accedere in tempo reale alle vendite di {{
+                takerName }}, e per ricerche di mercato, via email e per posta.
+            </div>
+
+            <div class="xly-item">
+                <a href="{{ privacyUrl }}" target="_blank" class="xly-privacy-link" style="font-size: 10px !important;">Leggi
+                    l'informativa privacy di {{ takerName }}</a>
+            </div>
+
+            {% include "./lightbox.footer.it.html" %}
         </div>
     </div>
 </div>
 {% block scripts %}{% endblock %}
 {% if lightboxJs != null %}
-    <script src="{{ lightboxJs }}"></script>
+<script src="{{ lightboxJs }}"></script>
 {% else %}
-    <script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
+<script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
 {% endif %}

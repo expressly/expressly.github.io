@@ -3,21 +3,21 @@
         <div class="xly-actions">
             {% if isMessage != true %}
                 <div id="xly-decline-wrapper" class="xly-hide-when-busy">
-                    <a id="xly-decline-link" href="{{ migrationCancelledUrl }}"><div class="xly-decline">Cancel</div></a>
+                    <a id="xly-decline-link" href="{{ migrationCancelledUrl }}"><div class="xly-decline">No</div></a>
                 </div>
             {% endif %}
             <div id="xly-accept-wrapper" class="xly-hide-when-busy">
-                <a id="xly-accept-link"><div class="xly-accept">{% if isMessage != true %}OK{% else %}Close{% endif %}</div></a>
+                <a id="xly-accept-link"><div class="xly-accept">{% if isMessage != true %}OK{% else %}Chiudi{% endif %}</div></a>
             </div>
             <div class="xly-loader xly-show-when-busy"><img src="{{ assetsUrl }}/microsite/spinner.gif"></div>
         </div>
         <div class="xly-terms">
             <div class="xly-policy">
                 {% if isMessage != true %}
-                    <a class="xly-dot" href="{{ termsUrl }}" target="_blank">Terms</a>
+                    <a class="xly-dot" href="{{ termsUrl }}" target="_blank">Termini</a>
                     | <a class="xly-dot" href="{{ privacyUrl }}" target="_blank">Privacy</a>
                     {% if hideNotName != true %}
-                        | <div class="xly-not-name" title="Not {{ firstName }}?"><a href="{{ takerUrl }}">Not {{ firstName }}</a></div> ?
+                        | <div class="xly-not-name" title="Not {{ firstName }}?"><a href="{{ takerUrl }}">Non {{ firstName }}</a></div> ?
                     {% endif %}
                     <span class="text-clear-bottom"></span>
                 {% endif %}
