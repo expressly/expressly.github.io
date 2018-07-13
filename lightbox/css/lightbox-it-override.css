@@ -19,7 +19,7 @@
 }
 
 .xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] + label {
-    padding-left: 20px !important;
+    padding-top: 0 !important;
     margin-left: 10px !important;
 }
 
