@@ -18,6 +18,15 @@
     display: none !important;
 }
 
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] + label {
+    padding-top: 0 !important;
+    margin-left: 10px !important;
+}
+
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] + label:before {
+    top: 0 !important;
+}
+
 .legal-text-top {
     font-size: 12px !important;
     font-style: italic;
