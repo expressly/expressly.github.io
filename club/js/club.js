@@ -1,4 +1,4 @@
-/** v1.06 **/
+/** v1.07 **/
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
@@ -461,6 +461,7 @@ var club = function () {
 
         contactUs: function () {
             var formData = form.serialize(form.contactUs);
+            formData['_subject'] = formData['_subject'] + ' ' + formData['name'];
             formData['UserAgent'] = window.navigator.userAgent;
             if (form.contactUs.get(0).checkValidity() === true) {
                 form.busy(true);
@@ -1015,6 +1016,13 @@ var club = function () {
     };
 
     function registerEvents() {
+        $('form').on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
         $(window).bind('storage', function () {
             controller.redraw();
         });
