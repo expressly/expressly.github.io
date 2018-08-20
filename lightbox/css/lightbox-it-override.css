@@ -27,6 +27,10 @@
     top: 0 !important;
 }
 
+.xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio].invalid + label {
+    color: rgba(156, 38, 44, 1);
+}
+
 .legal-text-top {
     font-size: 12px !important;
     font-style: italic;
@@ -56,4 +60,20 @@
 
 .xly-item + .xly-footer {
     margin-top: 10px;
+}
+
+.xly-actions #xly-accept-wrapper {
+    position: relative;
+}
+
+.xly-actions #xly-accept-wrapper.disabled:before {
+    position: absolute;
+    content: '';
+    left: 7px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
+    background: rgba(239, 239, 239, 0.85);
+    cursor: not-allowed;
 }
