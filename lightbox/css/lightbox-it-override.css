@@ -21,10 +21,16 @@
 .xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] + label {
     padding-top: 0 !important;
     margin-left: 10px !important;
+    height: 25px !important;
+    line-height: 25px !important;
 }
 
 .xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio] + label:before {
     top: 0 !important;
+    left: 0 !important;
+    margin: 4px !important;
+    width: 16px !important;
+    height: 16px !important;
 }
 
 .xly-checkbox-wrapper.confirm-popup-radios > .custom-control-inline > input[type=radio].invalid + label {
