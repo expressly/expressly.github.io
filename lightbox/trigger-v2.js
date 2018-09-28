@@ -75,6 +75,11 @@ var xlytLoaded = xlytLoaded ? xlytLoaded :
     }
 
     function render(payload) {
+        if (!document.body) {
+            console.log("body not found - trying again");
+            setTimeout(function(){ render(payload) }, 50);
+            return;
+        }
         var content = document.createElement("div");
         content.innerHTML = payload;
         document.body.appendChild(content);
