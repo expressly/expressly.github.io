@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ assetsUrl }}/lightbox/css/style.css?v={{ cssVersion }}&v1=9">
 <link rel="stylesheet" type="text/css"
-      href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=20">
+      href="{{ assetsUrl }}/lightbox/css/lightbox-it-override.css?v={{ cssVersion }}&v1=23">
 <div id="xly" class="xly xly-popup xly-popup-it" style="display:none">
     <div class="xly xly-container">
         <div class="xly xly-row">
@@ -49,13 +49,13 @@
                 <div class="xly-checkbox-wrapper confirm-popup-radios">
                     <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
                         <input type="radio" class="custom-control-input" name="optout" value="1" id="xly-subscribe-input-accept">
-                        <label class="custom-control-label" for="xly-subscribe-input-accept">
+                        <label class="custom-control-label" id="xly-subscribe-input-accept-label" for="xly-subscribe-input-accept">
                             Accetto
                         </label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline" style="display: inline;">
                         <input type="radio" class="custom-control-input" name="optout" value="0" id="xly-subscribe-input">
-                        <label class="custom-control-label" for="xly-subscribe-input">
+                        <label class="custom-control-label" id="xly-subscribe-input-label" for="xly-subscribe-input">
                             Non accetto
                         </label>
                     </div>
@@ -81,4 +81,5 @@
 <script src="{{ lightboxJs }}"></script>
 {% else %}
 <script src="{{ assetsUrl }}/lightbox/js/lightbox.min.js?v={{ cssVersion }}&cb=3"></script>
+<script src="{{ assetsUrl }}/lightbox/js/it-radio-validation.js?v={{ cssVersion }}&cb=3"></script>
 {% endif %}
