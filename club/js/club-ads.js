@@ -14,6 +14,8 @@ $(function() {
 });
 
 (function () {
+    var muid = document.body.getAttribute('data-muid');
+    var personalAdKey = 'personalAds.' + muid;
     var TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g;
     var versionNumBits = 6;
@@ -416,8 +418,10 @@ $(function() {
         getVendorList(consent.vendorListVersion, function (data) {
             if (data.vendors.length === vendorsAllowed.length) {
                 setCookie(personalAdsCookieName, '1', 31);
+                localStorage.setItem(personalAdKey, true);
             } else {
                 setCookie(personalAdsCookieName, '0', 31);
+                localStorage.setItem(personalAdKey, false);
             }
         });
 
@@ -425,7 +429,5 @@ $(function() {
     }
 
     var personalisedAdsValue = getPersonalisedAds();
-    var muid = document.body.getAttribute('data-muid');
-    var personalAdKey = 'personalAds.' + muid;
     localStorage.setItem(personalAdKey, personalisedAdsValue);
 })();
