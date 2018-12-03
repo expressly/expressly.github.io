@@ -845,23 +845,35 @@ var club = function () {
             street_number: 'short_name',
             route: 'long_name',
             postal_town: 'long_name',
-            postal_code: 'short_name'
+            locality: 'long_name',
+            postal_code: 'short_name',
+            country: 'short_name'
         },
 
         init: function () {
             $('.address-autocomplete').each(function () {
                 var $this = $(this);
                 var prefix = $this.data('prefix');
+                var countries = $('#form--competition').data('countries');
+                countries = $(document.body).data('countries');
+                if (!countries) {
+                    countries = $(document.body).data('countries');
+                }
+                if (!countries) {
+                    countries = ['GB'];
+                }
 
                 var autocomplete = new google.maps.places.Autocomplete(
                     this,
-                    {types: ['address'], componentRestrictions: {country: "uk"}});
+                    {types: ['address'], componentRestrictions: {country: countries}});
 
                 var fields = {
                     addressLine1: $('#' + prefix + 'addressLine1'),
                     addressLine2: $('#' + prefix + 'addressLine2'),
+                    locality: $('#' + prefix + 'city'),
                     city: $('#' + prefix + 'city'),
-                    postalCode: $('#' + prefix + 'postalCode')
+                    postalCode: $('#' + prefix + 'postalCode'),
+                    country: $('#' + prefix + 'country')
                 };
 
                 autocomplete.addListener('place_changed', function () {
@@ -898,10 +910,21 @@ var club = function () {
 
         fillInAddress: function (fields, autocomplete) {
             var data = addressAutoComplete.collectPlaceData(autocomplete.getPlace());
+            console.log(autocomplete.getPlace());
+            console.log(data);
             fields.addressLine1.val((strings.nullToEmpty(data['street_number']) + ' ' + strings.nullToEmpty(data['route'])).trim());
             fields.addressLine2.val('');
-            fields.city.val(strings.nullToEmpty(data['postal_town']));
+            var city = strings.nullToEmpty(data['postal_town']);
+            if (city === '') {
+                city = strings.nullToEmpty(data['locality']);
+            }
+            fields.city.val(city);
             fields.postalCode.val(strings.nullToEmpty(data['postal_code']));
+            var country = strings.nullToEmpty(data['country']);
+            if (country === '') {
+                country = 'GB';
+            }
+            fields.country.val(country);
         },
 
         // Bias the autocomplete object to the user's geographical location,
