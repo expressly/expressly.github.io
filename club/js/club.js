@@ -855,7 +855,6 @@ var club = function () {
                 var $this = $(this);
                 var prefix = $this.data('prefix');
                 var countries = $('#form--competition').data('countries');
-                countries = $(document.body).data('countries');
                 if (!countries) {
                     countries = $(document.body).data('countries');
                 }
