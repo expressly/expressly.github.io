@@ -385,7 +385,19 @@ var club = function () {
             if (!nostore) {
                 controller.storeProfile(profile);
             }
-            $('body').toggleClass("logged-in", profile !== null);
+
+            var $body = $(document.body);
+            $body.toggleClass("logged-in", profile !== null);
+            var classList = $body.attr('class').split(/\s+/);
+            for (i = 0; i < classList.length; i++) {
+                if(classList[i].length > 0 && classList[i].startsWith('country-')){
+                    $body.removeClass(classList[i]);
+                }
+            }
+            if (profile !== null) {
+                $body.addClass("country-" + profile.country);
+            }
+
             $('.data-forename').text(profile !== null ? profile.forename : '');
             $('.disable-if-logged-in').prop("disabled", profile !== null);
             if (profile !== null) {
