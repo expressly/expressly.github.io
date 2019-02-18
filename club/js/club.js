@@ -2,6 +2,7 @@
 var club = function () {
     $.support.cors = true;
     var muid = $('body').data('muid');
+    var disableEmailEntries = !!$('body').data('disable-entry-emails');
     var domainMigrationsEnabled = !!$('body').data('domain-migrations-enabled');
     var protocol = 'https:';
     var reenterTimerId = null;
@@ -339,7 +340,7 @@ var club = function () {
 
         submitEntryAgain: function (cuid, title) {
             var payload = {
-                emailEntrant: true,
+                emailEntrant: !disableEmailEntries,
                 competitionTitle: title
             };
             server.submitEntryAgain(cuid, payload);
