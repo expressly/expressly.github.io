@@ -11,7 +11,7 @@ $(function() {
             var kinesis = new AWS.Firehose({apiVersion: '2015-08-04'});
             kinesis.putRecord({
                 Record: {
-                    Data: JSON.stringify(components)
+                    Data: JSON.stringify(components) + '\n'
                 },
                 DeliveryStreamName: 'expressly-club-pageviews'
             }, function (err, data) {
