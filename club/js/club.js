@@ -922,8 +922,6 @@ var club = function () {
 
         fillInAddress: function (fields, autocomplete) {
             var data = addressAutoComplete.collectPlaceData(autocomplete.getPlace());
-            console.log(autocomplete.getPlace());
-            console.log(data);
             fields.addressLine1.val((strings.nullToEmpty(data['street_number']) + ' ' + strings.nullToEmpty(data['route'])).trim());
             fields.addressLine2.val('');
             var city = strings.nullToEmpty(data['postal_town']);
@@ -1161,7 +1159,7 @@ var club = function () {
                 container.find('[data-category]').show();
             }
         });
-        $('.address_autocomplete').focus(addressAutoComplete.geolocate);
+        $('.address-autocomplete').focus(addressAutoComplete.geolocate);
         expirables.update();
 
         $('.terms-dynamic').each(function() {
