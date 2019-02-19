@@ -894,6 +894,19 @@ var club = function () {
                         autocomplete);
                 });
 
+                $this.focus(function() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var geolocation = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            var circle = new google.maps.Circle({center: geolocation, radius: position.coords.accuracy});
+                            autocomplete.setBounds(circle.getBounds());
+                        });
+                    }
+                });
+
                 var reconstitute = function () {
                     var address = [fields.addressLine1.val(), fields.addressLine2.val(), fields.city.val(), fields.postalCode.val()];
                     $this.val(arrays.filter(address, function (v) {
@@ -1159,7 +1172,6 @@ var club = function () {
                 container.find('[data-category]').show();
             }
         });
-        $('.address-autocomplete').focus(addressAutoComplete.geolocate);
         expirables.update();
 
         $('.terms-dynamic').each(function() {
