@@ -37,7 +37,12 @@ $(function() {
 
             var length = components.length;
             for (var i = 0; i < length; i++) {
-                data[components[i].key] = components[i].value;
+                var key = components[i].key;
+                var value = components[i].value;
+                if (value && String(value).length > 31 && (key === 'canvas' || key === 'webgl')) {
+                    value = Fingerprint2.x64hash128(String(value), 31);
+                }
+                data[key] = value;
             }
 
             send(data);
