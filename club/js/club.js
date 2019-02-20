@@ -863,51 +863,10 @@ var club = function () {
             country: 'short_name'
         },
 
-        init: function () {
+        init: function() {
             $('.address-autocomplete').each(function () {
                 var $this = $(this);
-                var prefix = $this.data('prefix');
-                var countries = $('#form--competition').data('countries');
-                if (!countries) {
-                    countries = $(document.body).data('countries');
-                }
-                if (!countries) {
-                    countries = ['GB'];
-                }
-
-                var autocomplete = new google.maps.places.Autocomplete(
-                    this,
-                    {   types: ['address'],
-                        fields: ['address_components', 'formatted_address'],
-                        componentRestrictions: {country: countries}});
-
-                var fields = {
-                    addressLine1: $('#' + prefix + 'addressLine1'),
-                    addressLine2: $('#' + prefix + 'addressLine2'),
-                    locality: $('#' + prefix + 'city'),
-                    city: $('#' + prefix + 'city'),
-                    postalCode: $('#' + prefix + 'postalCode'),
-                    country: $('#' + prefix + 'country')
-                };
-
-                autocomplete.addListener('place_changed', function () {
-                    addressAutoComplete.fillInAddress(
-                        fields,
-                        autocomplete);
-                });
-
-                $this.focus(function() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var geolocation = {
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude
-                            };
-                            var circle = new google.maps.Circle({center: geolocation, radius: position.coords.accuracy});
-                            autocomplete.setBounds(circle.getBounds());
-                        });
-                    }
-                });
+                $this.focus(addressAutoComplete.initOnFocus);
 
                 var reconstitute = function () {
                     var address = [fields.addressLine1.val(), fields.addressLine2.val(), fields.city.val(), fields.postalCode.val()];
@@ -916,12 +875,62 @@ var club = function () {
                     }).join(", "))
                 };
 
+                var fields = addressAutoComplete.getFields($this);
                 fields.addressLine1.change(reconstitute);
                 fields.addressLine2.change(reconstitute);
                 fields.city.change(reconstitute);
                 fields.postalCode.change(reconstitute);
                 reconstitute();
             });
+        },
+
+        getFields: function($this) {
+            var prefix = $this.data('prefix');
+            return {
+                addressLine1: $('#' + prefix + 'addressLine1'),
+                addressLine2: $('#' + prefix + 'addressLine2'),
+                locality: $('#' + prefix + 'city'),
+                city: $('#' + prefix + 'city'),
+                postalCode: $('#' + prefix + 'postalCode'),
+                country: $('#' + prefix + 'country')
+            };
+        },
+
+        initOnFocus: function () {
+            var $this = $(this);
+            $this.unbind( "focus", addressAutoComplete.initOnFocus);
+
+            var countries = $('#form--competition').data('countries');
+            if (!countries) {
+                countries = $(document.body).data('countries');
+            }
+            if (!countries) {
+                countries = ['GB'];
+            }
+
+            var autocomplete = new google.maps.places.Autocomplete(
+                this,
+                {   types: ['address'],
+                    fields: ['address_components', 'formatted_address'],
+                    componentRestrictions: {country: countries}});
+
+            var fields = addressAutoComplete.getFields($this);
+            autocomplete.addListener('place_changed', function () {
+                addressAutoComplete.fillInAddress(
+                    fields,
+                    autocomplete);
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({center: geolocation, radius: position.coords.accuracy});
+                    autocomplete.setBounds(circle.getBounds());
+                });
+            }
         },
 
         collectPlaceData: function (place) {
