@@ -877,7 +877,9 @@ var club = function () {
 
                 var autocomplete = new google.maps.places.Autocomplete(
                     this,
-                    {types: ['address'], componentRestrictions: {country: countries}});
+                    {   types: ['address'],
+                        fields: ['address_components', 'formatted_address'],
+                        componentRestrictions: {country: countries}});
 
                 var fields = {
                     addressLine1: $('#' + prefix + 'addressLine1'),
